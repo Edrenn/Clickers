@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Clickers.Views.ArmyView.ArmyView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Clickers.Views"
+      xmlns:CV="clr-namespace:Clickers.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <CV:InfoBarUserControl Grid.Row="0" />
+        <Button x:Name="ToCastleButton" Content="ToCastle" Grid.Row="1" Width="50" HorizontalAlignment="Left" />
+        <StackPanel x:Name="Units" Grid.Row="2" Orientation="Horizontal"/>
+    </Grid>
+</UserControl>

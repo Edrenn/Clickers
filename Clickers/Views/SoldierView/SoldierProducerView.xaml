@@ -1,0 +1,67 @@
+﻿<Window x:Class="Clickers.Views.SoldierProducerView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sold="clr-namespace:Clickers.Views.SoldierView"
+      xmlns:local="clr-namespace:Clickers.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid x:Name="MainGrid" Background="Red">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="PriceTB" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Button x:Name="CloseButton" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Height="50" Width="50"/>
+
+        <sold:SoldierView x:Name="SoldierView" Grid.Row="1" Visibility="Collapsed"/>
+        <!--<StackPanel Grid.Row="1">
+            
+        </StackPanel>-->
+        <!--<ItemsControl x:Name="AllSoldierIC" ItemsSource="{Binding AllUnitsType}"  Grid.Row="1" Grid.RowSpan="2" Visibility="Collapsed">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image x:Name="SoldierImage" Source="{Binding ImagePath}" Grid.Column="0"/>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{} ATQ : {0}">
+                                        <Binding Path="AttackValue"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{} Prix : {0}">
+                                        <Binding Path="Price"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>-->
+
+        <Button x:Name="BuyButton" Content="Acheter" Grid.Row="2"/>
+        <Button x:Name="UpgradeButton" Content="Acheter" Grid.Row="2" Visibility="Collapsed"/>
+    </Grid>
+</Window>

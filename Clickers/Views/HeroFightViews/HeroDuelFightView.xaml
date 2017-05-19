@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="Clickers.Views.HeroFightViews.HeroDuelFightView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clickers.Views.HeroFightViews"
+             xmlns:sk="clr-namespace:Clickers.Views.HeroFightViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"  Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <TextBlock Text="Turn "/>
+            <TextBlock x:Name="TurnTB" Text="{Binding Turn}"/>
+
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="AllyHeroAttributesSP" >
+                <TextBlock Text="Caractéristiques" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="HP : " />
+                    <TextBlock Text="{Binding Life,UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Armor : " />
+                    <TextBlock Text="{Binding Armor,UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Attaque : " />
+                    <TextBlock Text="{Binding AttackValue,UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Niveau : " />
+                    <TextBlock Text="{Binding Level,UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel x:Name="AllyHeroSP" Grid.Column="1" />
+
+            <Image x:Name="VersusImage" Grid.Column="2" VerticalAlignment="Center" />
+
+            <StackPanel x:Name="EnnemyHeroSP" Grid.Column="3" />
+
+            <StackPanel x:Name="EnnemyHeroAttributesSP" Grid.Column="4" >
+                <TextBlock Text="Caractéristiques" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="HP : " />
+                    <TextBlock Text="{Binding Life,UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Armor : " />
+                    <TextBlock Text="{Binding Armor,UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Attaque : " />
+                    <TextBlock Text="{Binding AttackValue,UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Niveau : " />
+                    <TextBlock Text="{Binding Level,UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid x:Name="SkillsGrid" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Button x:Name="ItemsButton" Grid.Column="3" Content="Objets" />
+            <Button x:Name="ValidateButton" Grid.Column="4" Content="Valider" />
+
+        </Grid>
+    </Grid>
+</UserControl>

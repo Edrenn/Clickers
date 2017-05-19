@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Clickers.Views.HealerHouseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clickers.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Background="Green">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <local:InfoBarUserControl />
+
+        <TextBlock Text="Maison du Soigneur" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button x:Name="ToCastleButton" Grid.Row="1" Height="50" Width="50" Content="ToCastle" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Grid Grid.Row="2" Background="Red">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="HeroHealTB" Text="Soigner mes héros" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="HeroHealButton" Grid.Row="1" Height="30" Width="200" Content="Sélectionner un héro"/>
+        </Grid>
+
+        <Grid Grid.Row="3" Background="Aqua">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="ObjectListTB" Text="Objets" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <StackPanel x:Name="ItemsSP" Grid.Row="1" Orientation="Horizontal"></StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

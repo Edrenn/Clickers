@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Clickers.Views.TaverneView.HeroView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clickers.Views.TaverneView"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="HeroName" HorizontalAlignment="Center" Text="{Binding Name}"/>
+        <Image x:Name="HeroImage" Source="{Binding ImagePath}" Grid.Row="1"/>
+        <StackPanel x:Name="HeroInfoSP" Grid.Row="2">
+            <Label x:Name="HeroHealth" Content="{Binding AttackValue}"/>
+            <Label x:Name="HeroAttackValue" Content="{Binding Life}"/>
+            <Label x:Name="HeroArmor" Content="{Binding Armor}"/>
+            <Label x:Name="HeroLevel" Content="{Binding Level}"/>
+            <Label x:Name="HeroPrice" Content="{Binding Price}"/>
+        </StackPanel>
+        <Button x:Name="SelectHeroButton" Grid.Row="3" Content="Select" Width="70" />
+    </Grid>
+</UserControl>

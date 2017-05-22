@@ -1,4 +1,4 @@
-﻿using Clickers.Models;
+﻿using Clickers.Models.Buildings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace Clickers.DataBaseManager.EntitiesLink
 
         }
 
-        public SoldiersProducer GetSoldiersProducer(SoldiersProducer soldiersProducer)
+        public SoldiersProducer SetSoldiers(SoldiersProducer soldiersProducer)
         {
             this.DbSetT.Attach(soldiersProducer);
             this.Entry(soldiersProducer).Reference(x => x.SoldierType).Load();

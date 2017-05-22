@@ -7,8 +7,11 @@ using System.Windows;
 using System.Windows.Controls;
 
 using Clickers.Views;
+using Clickers.Views.ItemViews;
 using Clickers.Views.TaverneView;
 using Clickers.Models;
+using Clickers.Models.Items;
+using Clickers.Models.Buildings;
 
 namespace Clickers.ViewModel
 {
@@ -21,18 +24,21 @@ namespace Clickers.ViewModel
             set { view = value; }
         }
 
-        Window popUp;
-
-        public HealerHouseViewModel(HealerHouseView view)
+        private HealerHouse healerHouse;
+        public HealerHouse HealerHouse
         {
-            this.View = view;
-            this.View.DataContext = this;
-            EventGenerator();
+            get { return healerHouse; }
+            set { healerHouse = value; }
         }
 
-        public HealerHouseViewModel()
+        Window popUp;
+
+        public HealerHouseViewModel(HealerHouseView view, HealerHouse healerHouse)
         {
-            this.View = new HealerHouseView();
+            this.HealerHouse = healerHouse;
+            this.View = view;
+            this.View.DataContext = HealerHouse;
+            PotionStockGenerator();
             EventGenerator();
         }
 
@@ -96,6 +102,16 @@ namespace Clickers.ViewModel
             Button button = (Button)sender;
             HeroView heroView = (HeroView)button.Content;
             heroView.HeroContext.Life = heroView.HeroContext.MaxLife;
+        }
+
+        private void PotionStockGenerator()
+        {
+            foreach (Potion potion in this.HealerHouse.PotionList)
+            {
+                PotionView newView = new PotionView(potion);
+                this.View.ItemsSP.Children.Add(newView);
+
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using Clickers.ViewModel;
+using Clickers.Models.Buildings;
 
 namespace Clickers.Views
 {
@@ -22,10 +23,10 @@ namespace Clickers.Views
     /// </summary>
     public partial class HealerHouseView : UserControl
     {
-        public HealerHouseView()
+        public HealerHouseView(HealerHouse healerHouse)
         {
             InitializeComponent();
-            HealerHouseViewModel controller = new HealerHouseViewModel(this);
+            HealerHouseViewModel controller = new HealerHouseViewModel(this,healerHouse);
         }
     }
 }

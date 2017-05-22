@@ -16,11 +16,6 @@ namespace Clickers.ViewModel.SoldierProducer
         public SoldierViewModel(SoldierView view, Soldier soldier)
         {
             this.view = view;
-            view.BuyButton.Click += BuyButton_Click;
-        }
-
-        private void BuyButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Clickers.DataBaseManager.EntitiesLink;
-using Clickers.Json;
 using Clickers.Models;
+using Clickers.Json;
+using Clickers.Models.Buildings;
 using Clickers.Models.Generators;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Clickers.DataBaseManager
         public DbSet<SoldiersProducer> DbSetSoldiersProducer { get; set; }
         public DbSet<Soldier> DbSetSoldiers { get; set; }
         public DbSet<Hero> DbSetHeros { get; set; }
+        public DbSet<HealerHouse> DbSetHealerHouse { get; set; }
 
         public MySQLFullDB()
             : base(JsonManager.Instance.ReadFile<ConnectionString>(@"D:\Workspaces\Clickers\Clickers\JsonConfig\", @"MysqlConfig.json").ToString())
@@ -43,6 +45,8 @@ namespace Clickers.DataBaseManager
                 {
                     DbSetHeros.Add(hero);
                 }
+                HealerHouse HealerHouse = JsonManager.Instance.GetHealerHouseFromJSon();
+                DbSetHealerHouse.Add(HealerHouse);
                 this.SaveChangesAsync();
             }
         }

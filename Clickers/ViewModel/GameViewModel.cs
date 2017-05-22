@@ -1,8 +1,4 @@
-﻿using Clickers.DataBaseManager.EntitiesLink;
-using Clickers.DataBaseManager;
-using Clickers.Models;
-using Clickers.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,6 +7,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+
+using Clickers.DataBaseManager.EntitiesLink;
+using Clickers.DataBaseManager;
+using Clickers.Models;
+using Clickers.Models.Buildings;
+using Clickers.Views;
 
 namespace Clickers
 {
@@ -93,14 +95,9 @@ namespace Clickers
         private GameViewModel()
         {
             MainCastle = new Castle(castleName);
-            MySQLManager<Hero> mySQLHeroManager = new MySQLManager<Hero>();
-            Task<List<Hero>> allHeros = mySQLHeroManager.GetAll();
-            MainCastle.Heroes = allHeros.Result;
-            MySQLHero mySQLHero = new MySQLHero();
-            foreach (Hero hero in MainCastle.Heroes)
-            {
-                mySQLHero.GetSkills(hero);
-            }
+
+            getAllHero();
+            GetAllSoldierProducer();
             ennemyCastle = new Castle("Méchant Chato");
         }
 
@@ -119,6 +116,28 @@ namespace Clickers
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        private void getAllHero()
+        {
+            MySQLManager<Hero> mySQLHeroManager = new MySQLManager<Hero>();
+            MainCastle.Heroes = mySQLHeroManager.GetAll();
+            MySQLHero mySQLHero = new MySQLHero();
+            foreach (Hero hero in MainCastle.Heroes)
+            {
+                mySQLHero.GetSkills(hero);
+            }
+        }
+
+        private void GetAllSoldierProducer()
+        {
+            MySQLManager<SoldiersProducer> mySQLSPManager = new MySQLManager<SoldiersProducer>();
+            MainCastle.SoldiersProducers = mySQLSPManager.GetAll();
+            SoldierProducerMySQLManager SPMySQLM = new SoldierProducerMySQLManager();
+            foreach (SoldiersProducer sp in MainCastle.SoldiersProducers)
+            {
+                SPMySQLM.SetSoldiers(sp);
             }
         }
 

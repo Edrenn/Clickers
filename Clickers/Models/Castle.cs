@@ -1,9 +1,12 @@
-﻿using Clickers.Models.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Clickers.Models.Items;
+using Clickers.Models.Base;
+using Clickers.Models.Buildings;
 
 namespace Clickers.Models
 {
@@ -65,6 +68,14 @@ namespace Clickers.Models
             set { soldiersProducers = value; }
         }
 
+        private List<Item> itemStock;
+        public List<Item> ItemStock
+        {
+            get { return itemStock; }
+            set { itemStock = value; }
+        }
+
+
         private List<Hero> heroes;
         public List<Hero> Heroes
         {
@@ -81,6 +92,7 @@ namespace Clickers.Models
             this.Army = new Army();
             this.GoldProducers = new List<RessourceProducer>();
             this.SoldiersProducers = new List<SoldiersProducer>();
+            this.ItemStock = new List<Item>();
         }
     }
 }

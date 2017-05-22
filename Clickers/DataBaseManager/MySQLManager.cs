@@ -71,7 +71,7 @@ namespace Clickers.DataBaseManager
             return await this.DbSetT.FindAsync(id) as TEntity;
         }
 
-        public async Task<List<TEntity>> GetAll()
+        public async Task<List<TEntity>> GetAll_Task()
         {
             bool isOk = true;
             int itemNumber = 1;
@@ -91,6 +91,13 @@ namespace Clickers.DataBaseManager
                 itemNumber++;
             }
             return itemList;
+        }
+
+        public List<TEntity> GetAll()
+        {
+            Task<List<TEntity>> test = this.GetAll_Task();
+            List<TEntity> tarte = test.Result;
+            return tarte;
         }
 
         public async Task<IEnumerable<TEntity>> Get()

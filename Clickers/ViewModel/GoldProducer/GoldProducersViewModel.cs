@@ -1,7 +1,4 @@
-﻿using Clickers.DataBaseManager;
-using Clickers.Models;
-using Clickers.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,6 +8,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+
+using Clickers.DataBaseManager;
+using Clickers.Models;
+using Clickers.Models.Buildings;
+using Clickers.Views;
 
 namespace Clickers.ViewModel
 {

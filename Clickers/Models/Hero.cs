@@ -1,11 +1,13 @@
-﻿using Clickers.Models.Base;
-using Clickers.Models.Skills;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Clickers.Models.Items;
+using Clickers.Models.Base;
+using Clickers.Models.Skills;
 
 namespace Clickers.Models
 {

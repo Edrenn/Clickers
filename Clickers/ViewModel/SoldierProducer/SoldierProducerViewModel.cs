@@ -1,12 +1,14 @@
-﻿using Clickers.DataBaseManager.EntitiesLink;
-using Clickers.Models;
-using Clickers.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+
+using Clickers.DataBaseManager.EntitiesLink;
+using Clickers.Models;
+using Clickers.Models.Buildings;
+using Clickers.Views;
 
 namespace Clickers.ViewModel.SoldierProducer
 {

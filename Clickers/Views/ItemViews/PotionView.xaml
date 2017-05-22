@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Clickers.Views.ItemViews.PotionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clickers.Views.ItemViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="250">
+    <Grid Background="White" Width="250">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="160" />
+            <RowDefinition Height="120" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="PotionName" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
+            <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock Text="Soin : "/>
+                <TextBlock x:Name="PotionHealingValue" Text="{Binding HealValue,UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </StackPanel>
+
+            <Image x:Name="PotionImage" Grid.Row="1" Source="{Binding ImagePath}" />
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="0.2*" />
+            </Grid.RowDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <TextBlock x:Name="PotionDescription" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Description,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="150"/>
+            </ScrollViewer>
+            <StackPanel  Grid.Row="1" Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Prix : "/>
+                <TextBlock x:Name="PotionPrice" Text="{Binding Price,UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </Grid>
+
+        <Button x:Name="BuyPotionButton" Grid.Row="3" Content="Acheter" HorizontalAlignment="Center" Click="BuyPotionButton_Click" Width="120" />
+    </Grid>
+</UserControl>

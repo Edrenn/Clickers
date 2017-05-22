@@ -1,5 +1,4 @@
-﻿using Clickers.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -7,6 +6,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Clickers.Models;
+using Clickers.Models.Items;
+using Clickers.Models.Buildings;
 
 namespace Clickers.Json
 {
@@ -140,6 +143,27 @@ namespace Clickers.Json
 
             }
             return existingHero;
+        }
+
+        public HealerHouse GetHealerHouseFromJSon()
+        {
+            string path = "D:\\Workspaces\\Clickers\\Clickers\\JsonConfig\\";
+            string file = "HealerHouse.Json";
+            HealerHouse existingHealerHouse = new HealerHouse();
+
+            using (StreamReader fileItem = File.OpenText(path + file))
+            using (JsonTextReader reader = new JsonTextReader(fileItem))
+            {
+                string jSonContent = fileItem.ReadToEnd();
+                existingHealerHouse = JsonConvert.DeserializeObject<HealerHouse>(jSonContent, new JsonSerializerSettings());
+            }
+            foreach (Item potion in existingHealerHouse.PotionList)
+            {
+                potion.Name = ConvertToUTF8(potion.Name);
+                potion.Description = ConvertToUTF8(potion.Description);
+
+            }
+            return existingHealerHouse;
         }
 
         public string ConvertToUTF8(string itemToConvert)

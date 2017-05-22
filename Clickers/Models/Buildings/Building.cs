@@ -1,15 +1,21 @@
-﻿using Clickers.Models.Base;
-using Clickers.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Clickers.Models
+using Clickers.Models.Base;
+
+namespace Clickers.Models.Buildings
 {
-    public class Item : BaseDBEntity
+    public class Building : BaseDBEntity
     {
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
         private string name;
         public string Name
@@ -53,24 +59,25 @@ namespace Clickers.Models
             }
         }
 
+        private bool isActive;
+        public bool IsActive
+        {
+            get
+            {
+                return isActive;
+            }
+
+            set
+            {
+                isActive = value;
+            }
+        }
+
         private string imagePath;
         public string ImagePath
         {
             get { return imagePath; }
             set { imagePath = value; }
         }
-
-        private Enums.ItemTypes type;
-        public Enums.ItemTypes Type
-        {
-            get { return type; }
-            set { type = value; }
-        }
-
-        public Item()
-        {
-
-        }
-
     }
 }

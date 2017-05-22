@@ -11,13 +11,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <local:InfoBarUserControl />
 
-        <TextBlock Text="Maison du Soigneur" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Text="{Binding Name}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Button x:Name="ToCastleButton" Grid.Row="1" Height="50" Width="50" Content="ToCastle" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <Grid Grid.Row="2" Background="Red">
@@ -35,7 +35,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock x:Name="ObjectListTB" Text="Objets" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <StackPanel x:Name="ItemsSP" Grid.Row="1" Orientation="Horizontal"></StackPanel>
+            <ScrollViewer  Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Center" MaxWidth="750">
+                <StackPanel x:Name="ItemsSP" Orientation="Horizontal"></StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

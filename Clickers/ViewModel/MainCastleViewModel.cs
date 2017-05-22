@@ -1,14 +1,16 @@
-﻿using Clickers.DataBaseManager;
-using Clickers.Models;
-using Clickers.ViewModel.Army;
-using Clickers.Views;
-using Clickers.Views.ArmyView;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+
+using Clickers.DataBaseManager;
+using Clickers.Models;
+using Clickers.Models.Buildings;
+using Clickers.Views;
+using Clickers.ViewModel.Army;
+using Clickers.Views.ArmyView;
 
 namespace Clickers.ViewModel
 {
@@ -87,7 +89,8 @@ namespace Clickers.ViewModel
 
         private void HealerHouse_Click(object sender, RoutedEventArgs e)
         {
-            HealerHouseView newHealerHouseView = new HealerHouseView();
+            HealerHouse healerHouse = Json.JsonManager.Instance.GetHealerHouseFromJSon();
+            HealerHouseView newHealerHouseView = new HealerHouseView(healerHouse);
             Switcher.Switch(newHealerHouseView);
         }
     }

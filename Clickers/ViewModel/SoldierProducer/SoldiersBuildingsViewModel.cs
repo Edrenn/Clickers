@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+
 using Clickers.DataBaseManager;
 using Clickers.ViewModel.SoldierProducer;
 using Clickers.DataBaseManager.EntitiesLink;
 using Clickers.Models.Reflection;
-using System.Windows.Media;
+using Clickers.Models.Buildings;
 
 namespace Clickers.ViewModel
 {
@@ -50,6 +52,10 @@ namespace Clickers.ViewModel
         {
             this.View = view;
             EventGenerator();
+            Task<Soldier> soldier = this.RecupSoldiers(1);
+            this.View.soldierView1.DataContext = soldier.Result;
+            soldier = this.RecupSoldiers(2);
+            this.View.soldierView2.DataContext = soldier.Result;
         }
 
         private async Task<SoldiersProducer> RecupProducer(int idToRecup)
@@ -81,28 +87,33 @@ namespace Clickers.ViewModel
 
         private void Caserne1Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (Producer1 == null)
-            {
-                Task<SoldiersProducer> newProducer = RecupProducer(1);
-                Producer1 = newProducer.Result;
-                Producer1 = newSoldierProducerMySQLManager.GetSoldiersProducer(Producer1);
-            }
-            SoldierProducerViewModel popUp = SoldierProducerViewModel.GetProducersViewModelMultition(Producer1);
-            popUp.View.SoldierView.DataContext = Producer1.SoldierType;
-            popUp.View.Visibility = System.Windows.Visibility.Visible;
+            this.View.Caserne1Button.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.soldierView1.Visibility = System.Windows.Visibility.Visible;
+
+            //if (Producer1 == null)
+            //{
+            //    Task<SoldiersProducer> newProducer = RecupProducer(1);
+            //    Producer1 = newProducer.Result;
+            //    Producer1 = newSoldierProducerMySQLManager.SetSoldiers(Producer1);
+            //}
+            //SoldierProducerViewModel popUp = SoldierProducerViewModel.GetProducersViewModelMultition(Producer1);
+            //popUp.View.SoldierView.DataContext = Producer1.SoldierType;
+            //popUp.View.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void Caserne2Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (Producer2 == null)
-            {
-                Task<SoldiersProducer> newProducer = RecupProducer(2);
-                Producer2 = newProducer.Result;
-                Producer2 = newSoldierProducerMySQLManager.GetSoldiersProducer(Producer2);
-            }
-            SoldierProducerViewModel popUp = SoldierProducerViewModel.GetProducersViewModelMultition(Producer2);
-            popUp.View.SoldierView.DataContext = Producer2.SoldierType;
-            popUp.View.Visibility = System.Windows.Visibility.Visible;
+            this.View.Caserne2Button.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.soldierView2.Visibility = System.Windows.Visibility.Visible;
+            //if (Producer2 == null)
+            //{
+            //    Task<SoldiersProducer> newProducer = RecupProducer(2);
+            //    Producer2 = newProducer.Result;
+            //    Producer2 = newSoldierProducerMySQLManager.SetSoldiers(Producer2);
+            //}
+            //SoldierProducerViewModel popUp = SoldierProducerViewModel.GetProducersViewModelMultition(Producer2);
+            //popUp.View.SoldierView.DataContext = Producer2.SoldierType;
+            //popUp.View.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void Caserne3Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -111,7 +122,7 @@ namespace Clickers.ViewModel
             {
                 Task<SoldiersProducer> newProducer = RecupProducer(3);
                 Producer3 = newProducer.Result;
-                Producer3 = newSoldierProducerMySQLManager.GetSoldiersProducer(Producer3);
+                Producer3 = newSoldierProducerMySQLManager.SetSoldiers(Producer3);
             }
             SoldierProducerViewModel popUp = SoldierProducerViewModel.GetProducersViewModelMultition(Producer3);
             if (Producer3.IsActive == true)

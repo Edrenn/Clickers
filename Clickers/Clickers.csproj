@@ -108,20 +108,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataBaseManager\EntitiesLink\MySQLHealerHouse.cs" />
     <Compile Include="DataBaseManager\EntitiesLink\MySQLHero.cs" />
-    <Compile Include="DataBaseManager\EntitiesLink\MySQLSoldiersProducer.cs" />
     <Compile Include="DataBaseManager\EntitiesLink\SoldierProducerMySQLManager.cs" />
     <Compile Include="Models\Army.cs" />
     <Compile Include="Models\Battle.cs" />
+    <Compile Include="Models\Buildings\Building.cs" />
     <Compile Include="Models\Castle.cs" />
     <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\Buildings\HealerHouse.cs" />
     <Compile Include="Models\Hero.cs" />
-    <Compile Include="Models\Item.cs" />
-    <Compile Include="Models\RessourceProducer.cs" />
+    <Compile Include="Models\Items\Item.cs" />
+    <Compile Include="Models\Items\Potion.cs" />
+    <Compile Include="Models\Buildings\RessourceProducer.cs" />
+    <Compile Include="Models\Items\Weapon.cs" />
     <Compile Include="Models\Skills\Skill.cs" />
     <Compile Include="Models\Skills\SkillsEnum.cs" />
     <Compile Include="Models\Soldiers.cs" />
-    <Compile Include="Models\SoldiersProducer.cs" />
+    <Compile Include="Models\Buildings\SoldiersProducer.cs" />
     <Compile Include="ViewModel\ArmyFolder\ArmyViewModel.cs" />
     <Compile Include="ViewModel\ArmyFolder\BattleViewModel.cs" />
     <Compile Include="ViewModel\ArmyFolder\HeroFightViewModel.cs" />
@@ -162,6 +166,9 @@
     </Compile>
     <Compile Include="Views\HeroFightViews\SkillView.xaml.cs">
       <DependentUpon>SkillView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ItemViews\PotionView.xaml.cs">
+      <DependentUpon>PotionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SoldierView\SoldierProducerView.xaml.cs">
       <DependentUpon>SoldierProducerView.xaml</DependentUpon>
@@ -238,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HeroFightViews\SkillView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ItemViews\PotionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -367,6 +378,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Styles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\SmallHealingPotion.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

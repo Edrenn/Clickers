@@ -28,6 +28,7 @@
         <Button x:Name="HealerHouseButton" Content="HealerHouse" Grid.Column="2" Grid.Row="2"/>
 
         <Button x:Name="CaserneButton" Content="Caserne" Grid.Column="0" Grid.Row="3"/>
+        <Button x:Name="BlackSmithButton" Content="Forgeron" Grid.Column="1" Grid.Row="3"/>
         <Button x:Name="GoldFieldButton" Content="GoldFields" Grid.Column="2" Grid.Row="3"/>
 
         <Button x:Name="ArmyButton" Content="Army" Grid.Column="0" Grid.Row="4"/>

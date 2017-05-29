@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Clickers.ViewModel.SoldierProducer;
+
 namespace Clickers.Views.SoldierView
 {
     /// <summary>
@@ -20,6 +22,13 @@ namespace Clickers.Views.SoldierView
     /// </summary>
     public partial class SoldierView : UserControl
     {
+        private SoldierViewModel controller;
+        public SoldierViewModel Controller
+        {
+            get { return controller; }
+            set { controller = value; }
+        }
+
         public SoldierView()
         {
             InitializeComponent();

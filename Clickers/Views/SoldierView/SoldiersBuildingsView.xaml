@@ -28,10 +28,51 @@
         <local:SoldierView x:Name="soldierView1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Collapsed"/>
         <local:SoldierView x:Name="soldierView2" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Collapsed"/>
         <local:SoldierView x:Name="soldierView3" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Collapsed"/>
-        
-        <Button x:Name="Caserne1Button" Content="Caserne1" Grid.Row="2" Grid.Column="2"/>
-        <Button x:Name="Caserne2Button" Content="Caserne2" Grid.Row="3" Grid.Column="0"/>
-        <Button x:Name="Caserne3Button" Content="Caserne3" Grid.Row="4" Grid.Column="1"/>
+
+
+        <StackPanel x:Name="CaserneSP" Grid.Row="2" Grid.Column="2"></StackPanel>
+        <Grid x:Name="CaserneGrid"  Grid.Row="2" Grid.Column="2" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <!--<StackPanel x:Name="CaserneSP" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text=" Prix : "/>
+                <TextBlock Text="{Binding Price,UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>-->
+            <Button x:Name="Caserne1Button" Content="Caserne" Grid.Row="1"/>
+        </Grid>
+
+
+        <StackPanel x:Name="ArcherieSP" Grid.Row="3" Grid.Column="2"></StackPanel>
+        <Grid x:Name="ArcherieGrid"  Grid.Row="3" Grid.Column="3" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <!--<StackPanel x:Name="ArcherieSP" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text=" Prix : "/>
+                <TextBlock Text="{Binding Price,UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>-->
+            <Button x:Name="Caserne2Button" Content="Caserne2" Grid.Row="1"/>
+        </Grid>
+
+
+        <StackPanel x:Name="EcurieSP" Grid.Row="4" Grid.Column="2"></StackPanel>
+        <Grid x:Name="EcurieGrid"  Grid.Row="4" Grid.Column="3" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <!--<StackPanel x:Name="EcurieSP" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text=" Prix : "/>
+                <TextBlock Text="{Binding Price,UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>-->
+            <Button x:Name="EcurieButton" Content="Caserne3" Grid.Row="1"/>
+        </Grid>
 
     </Grid>
 </UserControl>

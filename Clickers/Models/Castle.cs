@@ -61,8 +61,8 @@ namespace Clickers.Models
             set { goldProducers = value; }
         }
 
-        private List<SoldiersProducer> soldiersProducers;
-        public List<SoldiersProducer> SoldiersProducers
+        private Dictionary<String, SoldiersProducer> soldiersProducers;
+        public Dictionary<String,SoldiersProducer> SoldiersProducers
         {
             get { return soldiersProducers; }
             set { soldiersProducers = value; }
@@ -91,7 +91,7 @@ namespace Clickers.Models
             this.Life = 100;
             this.Army = new Army();
             this.GoldProducers = new List<RessourceProducer>();
-            this.SoldiersProducers = new List<SoldiersProducer>();
+            this.SoldiersProducers = new Dictionary<String, SoldiersProducer>();
             this.ItemStock = new List<Item>();
         }
     }

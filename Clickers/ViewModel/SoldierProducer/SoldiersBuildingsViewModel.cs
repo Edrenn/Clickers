@@ -12,34 +12,16 @@ using Clickers.ViewModel.SoldierProducer;
 using Clickers.DataBaseManager.EntitiesLink;
 using Clickers.Models.Reflection;
 using Clickers.Models.Buildings;
+using Clickers.Views.SoldierView;
 
 namespace Clickers.ViewModel
 {
     public class SoldiersBuildingsViewModel
     {
+        #region Fields
         MySQLManager<SoldiersProducer> mySoldiersProducerSQLManager = new MySQLManager<SoldiersProducer>();
         MySQLManager<Soldier> mySQLSoldierManager = new MySQLManager<Soldier>();
         SoldierProducerMySQLManager newSoldierProducerMySQLManager = new SoldierProducerMySQLManager();
-        private SoldiersProducer producer1 = null;
-        public SoldiersProducer Producer1
-        {
-            get { return producer1; }
-            set { producer1 = value; }
-        }
-
-        private SoldiersProducer producer2 = null;
-        public SoldiersProducer Producer2
-        {
-            get { return producer2; }
-            set { producer2 = value; }
-        }
-
-        private SoldiersProducer producer3 = null;
-        public SoldiersProducer Producer3
-        {
-            get { return producer3; }
-            set { producer3 = value; }
-        }
 
         private SoldiersBuildingsView view;
         public SoldiersBuildingsView View
@@ -47,17 +29,27 @@ namespace Clickers.ViewModel
             get;
             set;
         }
+        #endregion
 
+        #region Constructor
         public SoldiersBuildingsViewModel(SoldiersBuildingsView view)
         {
             this.View = view;
-            EventGenerator();
-            Task<Soldier> soldier = this.RecupSoldiers(1);
-            this.View.soldierView1.DataContext = soldier.Result;
-            soldier = this.RecupSoldiers(2);
-            this.View.soldierView2.DataContext = soldier.Result;
-        }
 
+
+            //SoldierViewModel chevalier = new SoldierViewModel(this.View.soldierView1, this.RecupSoldiers(1).Result);
+            //SoldierViewModel archer = new SoldierViewModel(this.View.soldierView2, this.RecupSoldiers(2).Result);
+            //SoldierViewModel cavalier = new SoldierViewModel(this.View.soldierView3, this.RecupSoldiers(3).Result);
+            CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"],this.View.soldierView1);
+            CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers["Archerie"], this.View.soldierView2);
+            CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers["Ecurie"], this.View.soldierView3);
+
+
+            this.View.CastleButton.Click += CastleButton_Click;
+        }
+        #endregion
+
+        #region Private Methods
         private async Task<SoldiersProducer> RecupProducer(int idToRecup)
         {
             SoldiersProducer producerToRdeturn = await mySoldiersProducerSQLManager.Get(idToRecup);
@@ -70,13 +62,68 @@ namespace Clickers.ViewModel
             return soldier;
         }
 
-        private void EventGenerator()
+        /// <summary>
+        /// This method will find if a SoldierProducer is already bought (IsActive = true) or not and will change the view if it's necessary
+        /// </summary>
+        /// <param name="soldierProducer">The SoldierProducer that we want to check</param>
+        private void CaserneCheck(SoldiersProducer soldierProducer,SoldierView soldierView)
         {
-            this.View.CastleButton.Click += CastleButton_Click;
-            this.View.Caserne1Button.Click += Caserne1Button_Click;
-            this.View.Caserne2Button.Click += Caserne2Button_Click;
-            this.View.Caserne3Button.Click += Caserne3Button_Click;
+            switch (soldierProducer.Name)
+            {
+                case "Caserne":
+                    if (soldierProducer.IsActive == true)
+                    {
+                        this.View.CaserneGrid.Visibility = System.Windows.Visibility.Collapsed;
+                        this.View.soldierView1.Controller = new SoldierViewModel(soldierView, soldierProducer.SoldierType);
+                        this.View.soldierView1.Visibility = System.Windows.Visibility.Visible;
+                    }
+                    else
+                    {
+                        // This dataContext allows us to see the price and the name of the SoldierProducer
+                        SoldierProducerViewModel caserneView = new SoldierProducerViewModel(GameViewModel.Instance.MainCastle.SoldiersProducers[soldierProducer.Name], soldierView);
+                        this.View.CaserneSP.Children.Add(caserneView.View);
+                        this.View.CaserneGrid.DataContext = GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"];
+                        this.View.Caserne1Button.Click += Caserne1Button_Click;
+                    }
+                    break;
+                case "Archerie":
+                    if (soldierProducer.IsActive == true)
+                    {
+                        this.View.ArcherieGrid.Visibility = System.Windows.Visibility.Collapsed;
+                        this.View.soldierView1.Controller = new SoldierViewModel(soldierView, soldierProducer.SoldierType);
+                        this.View.soldierView2.Visibility = System.Windows.Visibility.Visible;
+                    }
+                    else
+                    {
+                        // This dataContext allows us to see the price and the name of the SoldierProducer
+                        SoldierProducerViewModel archerieView = new SoldierProducerViewModel(GameViewModel.Instance.MainCastle.SoldiersProducers[soldierProducer.Name], soldierView);
+                        this.View.ArcherieSP.Children.Add(archerieView.View);
+                        this.View.ArcherieGrid.DataContext = GameViewModel.Instance.MainCastle.SoldiersProducers["Archerie"];
+                        this.View.Caserne2Button.Click += Caserne2Button_Click;
+                    }
+                    break;
+                case "Ecurie":
+                    if (soldierProducer.IsActive == true)
+                    {
+                        this.View.EcurieGrid.Visibility = System.Windows.Visibility.Collapsed;
+                        this.View.soldierView1.Controller = new SoldierViewModel(soldierView, soldierProducer.SoldierType);
+                        this.View.soldierView3.Visibility = System.Windows.Visibility.Visible;
+                    }
+                    else
+                    {
+                        // This dataContext allows us to see the price and the name of the SoldierProducer
+                        SoldierProducerViewModel archerieView = new SoldierProducerViewModel(GameViewModel.Instance.MainCastle.SoldiersProducers[soldierProducer.Name], soldierView);
+                        this.View.EcurieSP.Children.Add(archerieView.View);
+                        this.View.EcurieGrid.DataContext = GameViewModel.Instance.MainCastle.SoldiersProducers["Ecurie"];
+                        this.View.EcurieButton.Click += Caserne3Button_Click;
+                    }
+                    break;
+                    break;
+            }
+
         }
+
+        #region Events
 
         private void CastleButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -87,51 +134,28 @@ namespace Clickers.ViewModel
 
         private void Caserne1Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.View.Caserne1Button.Visibility = System.Windows.Visibility.Collapsed;
+            GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"].IsActive = true;
+            GameViewModel.Instance.GoldCounter -= GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"].Price;
+            this.View.CaserneGrid.Visibility = System.Windows.Visibility.Collapsed;
             this.View.soldierView1.Visibility = System.Windows.Visibility.Visible;
-
-            //if (Producer1 == null)
-            //{
-            //    Task<SoldiersProducer> newProducer = RecupProducer(1);
-            //    Producer1 = newProducer.Result;
-            //    Producer1 = newSoldierProducerMySQLManager.SetSoldiers(Producer1);
-            //}
-            //SoldierProducerViewModel popUp = SoldierProducerViewModel.GetProducersViewModelMultition(Producer1);
-            //popUp.View.SoldierView.DataContext = Producer1.SoldierType;
-            //popUp.View.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void Caserne2Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.View.Caserne2Button.Visibility = System.Windows.Visibility.Collapsed;
+            GameViewModel.Instance.MainCastle.SoldiersProducers["Archerie"].IsActive = true;
+            GameViewModel.Instance.GoldCounter -= GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"].Price;
+            this.View.ArcherieGrid.Visibility = System.Windows.Visibility.Collapsed;
             this.View.soldierView2.Visibility = System.Windows.Visibility.Visible;
-            //if (Producer2 == null)
-            //{
-            //    Task<SoldiersProducer> newProducer = RecupProducer(2);
-            //    Producer2 = newProducer.Result;
-            //    Producer2 = newSoldierProducerMySQLManager.SetSoldiers(Producer2);
-            //}
-            //SoldierProducerViewModel popUp = SoldierProducerViewModel.GetProducersViewModelMultition(Producer2);
-            //popUp.View.SoldierView.DataContext = Producer2.SoldierType;
-            //popUp.View.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void Caserne3Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (Producer3 == null)
-            {
-                Task<SoldiersProducer> newProducer = RecupProducer(3);
-                Producer3 = newProducer.Result;
-                Producer3 = newSoldierProducerMySQLManager.SetSoldiers(Producer3);
-            }
-            SoldierProducerViewModel popUp = SoldierProducerViewModel.GetProducersViewModelMultition(Producer3);
-            if (Producer3.IsActive == true)
-            {
-                popUp.View.Background = Brushes.Green;
-                popUp.View.SoldierView.Visibility = System.Windows.Visibility.Visible;
-            }
-            popUp.View.SoldierView.DataContext = Producer3.SoldierType;
-            popUp.View.Visibility = System.Windows.Visibility.Visible;
+            GameViewModel.Instance.MainCastle.SoldiersProducers["Ecurie"].IsActive = true;
+            GameViewModel.Instance.GoldCounter -= GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"].Price;
+            this.View.EcurieGrid.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.soldierView3.Visibility = System.Windows.Visibility.Visible;
         }
+        #endregion
+        #endregion
     }
 }

@@ -9,6 +9,7 @@ using Clickers.DataBaseManager.EntitiesLink;
 using Clickers.Models;
 using Clickers.Models.Buildings;
 using Clickers.Views;
+using Clickers.Views.SoldierView;
 
 namespace Clickers.ViewModel.SoldierProducer
 {
@@ -21,103 +22,43 @@ namespace Clickers.ViewModel.SoldierProducer
             set { view = value; }
         }
 
-        private SoldiersProducer soldiersProducer;
-        public SoldiersProducer SoldiersProducer
+        private SoldierView soldierView;
+        public SoldierView SoldierView
         {
-            get { return soldiersProducer; }
-            set { soldiersProducer = value; }
+            get { return soldierView; }
+            set { soldierView = value; }
         }
 
-        private static Dictionary<SoldiersProducer, SoldierProducerViewModel> _instances = new Dictionary<SoldiersProducer, SoldierProducerViewModel>();
-        private static object _lock = new object();
-
-        public static SoldierProducerViewModel GetProducersViewModelMultition(SoldiersProducer Key)
+        private SoldiersProducer soldierProducer;
+        public SoldiersProducer SoldierProducer
         {
-            lock (_lock)
+            get { return soldierProducer; }
+            set { soldierProducer = value; }
+        }
+
+        public SoldierProducerViewModel(SoldiersProducer soldiersProducer,SoldierView soldierView)
+        {
+            this.View = new SoldierProducerView();
+            this.SoldierView = soldierView;
+            SoldierProducer = soldiersProducer;
+            this.View.DataContext = SoldierProducer;
+            this.View.SoldierProducerBuyButton.Click += SoldierProducerBuyButtonClick;
+        }
+
+        private void SoldierProducerBuyButtonClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (GameViewModel.Instance.GoldCounter >= SoldierProducer.Price)
             {
-                if (!_instances.ContainsKey(Key))
-                {
-                    _instances.Add(Key, new SoldierProducerViewModel(Key));
-                }
-                return _instances[Key];
-            }
-        }
-
-        public SoldierProducerViewModel(SoldiersProducer soldiersProducer)
-        {
-            this.View = new SoldierProducerView(this);
-            View.SoldierView.BuyButton.Click += SoldierViewBuyButtonClick;
-            SoldiersProducer = soldiersProducer;
-            View.DataContext = SoldiersProducer;
-            View.PriceTB.Text = "Prix : " + SoldiersProducer.Price.ToString();
-            EventGenerator();
-        }
-
-        private void SoldierViewBuyButtonClick(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (GameViewModel.Instance.GoldCounter >= SoldiersProducer.SoldierType.Price)
-            {
-                Soldier newSoldier = new Soldier();
-                newSoldier.InitializeSoldier(SoldiersProducer.SoldierType);
-                GameViewModel.Instance.MainCastle.Army.AllSoldiers.Add(newSoldier);
-                GameViewModel.Instance.GoldCounter -= SoldiersProducer.SoldierType.Price;
+                SoldierViewModel controller = new SoldierViewModel(this.SoldierView, this.SoldierProducer.SoldierType);
+                this.SoldierView.Visibility = System.Windows.Visibility.Visible;
+                GameViewModel.Instance.GoldCounter -= SoldierProducer.Price;
+                this.View.Visibility = System.Windows.Visibility.Collapsed;
+                this.SoldierProducer.IsActive = true;
             }
             else
             {
-                System.Windows.MessageBox.Show("Il vous manque " + (SoldiersProducer.SoldierType.Price - GameViewModel.Instance.GoldCounter) + " d'Or");
+                System.Windows.MessageBox.Show("Il vous manque " + (SoldierProducer.Price - GameViewModel.Instance.GoldCounter) + " d'Or");
             }
-        }
-
-        private void EventGenerator()
-        {
-            View.BuyButton.Click += BuyButton_Click;
-            View.CloseButton.Click += CloseButton_Click;
-            View.UpgradeButton.Click += UpgradeButton_Click;
-        }
-
-        private void UpgradeButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (GameViewModel.Instance.GoldCounter < SoldiersProducer.Price)
-            {
-                int rest = SoldiersProducer.Price - GameViewModel.Instance.GoldCounter;
-                System.Windows.MessageBox.Show("Il vous manque " + rest + " Golds !");
-            }
-            else
-            {
-                GameViewModel.Instance.GoldCounter -= SoldiersProducer.Price;
-                SoldiersProducer.Price *= 2;
-                SoldiersProducer.IsActive = true;
-            }
-        }
-
-        private void CloseButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            View.Visibility = System.Windows.Visibility.Collapsed;
-        }
-
-        private void BuyButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (GameViewModel.Instance.GoldCounter < SoldiersProducer.Price)
-            {
-                int rest = SoldiersProducer.Price - GameViewModel.Instance.GoldCounter;
-                System.Windows.MessageBox.Show("Il vous manque " + rest + " Golds !");
-            }
-            else
-            {
-                GameViewModel.Instance.GoldCounter -= SoldiersProducer.Price;
-                SoldiersProducer.Price *= 2;
-                SoldiersProducer.IsActive = true;
-                View.MainGrid.Background = Brushes.Green;
-                View.SoldierView.DataContext = SoldiersProducer.SoldierType;
-                View.SoldierView.Visibility = System.Windows.Visibility.Visible;
-                View.BuyButton.Visibility = System.Windows.Visibility.Collapsed;
-                View.UpgradeButton.Visibility = System.Windows.Visibility.Visible;
-            }
-        }
-
-        private void RefreshView()
-        {
-            View.PriceTB.Text = "Prix : " + SoldiersProducer.Price.ToString();
         }
     }
 }

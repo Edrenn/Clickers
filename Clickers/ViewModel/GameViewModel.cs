@@ -133,10 +133,11 @@ namespace Clickers
         private void GetAllSoldierProducer()
         {
             MySQLManager<SoldiersProducer> mySQLSPManager = new MySQLManager<SoldiersProducer>();
-            MainCastle.SoldiersProducers = mySQLSPManager.GetAll();
+            List<SoldiersProducer> allSoldierProducers = mySQLSPManager.GetAll();
             SoldierProducerMySQLManager SPMySQLM = new SoldierProducerMySQLManager();
-            foreach (SoldiersProducer sp in MainCastle.SoldiersProducers)
+            foreach (SoldiersProducer sp in allSoldierProducers)
             {
+                MainCastle.SoldiersProducers.Add(sp.Name, sp);
                 SPMySQLM.SetSoldiers(sp);
             }
         }

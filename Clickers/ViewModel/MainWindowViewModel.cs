@@ -33,6 +33,12 @@ namespace Clickers.ViewModel
         {
             view.newGameButton.Click += NewGameButton_Click;
             view.loadGameButton.Click += LoadGameButton_Click;
+            view.QuitButton.Click += QuitButton_Click;
+        }
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.view.Close();
         }
 
         private void LoadGameButton_Click(object sender, RoutedEventArgs e)

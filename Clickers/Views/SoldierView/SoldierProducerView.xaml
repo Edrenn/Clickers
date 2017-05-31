@@ -5,17 +5,39 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Clickers.Views.SoldierView"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="3000">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../../Styles/BaseDictionary.xaml"/>
+    </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
-        </Grid.RowDefinitions>
-        <StackPanel x:Name="ArcherieSP" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock Text=" Prix : "/>
-            <TextBlock Text="{Binding Price,UpdateSourceTrigger=PropertyChanged}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+            <Image Source="../../Assets/Image/wallLargeTexture2.jpg" Height="200" />
+            <Image Source="../../Assets/Image/wallLargeTexture2.jpg" Margin="-1,0,0,0" Height="200"/>
+            <Image Source="../../Assets/Image/wallLargeTexture2.jpg" Margin="-1,0,0,0" Height="200"/>
+            <Image Source="../../Assets/Image/wallLargeTexture2.jpg" Margin="-1,0,0,0" Height="200"/>
+            <Image Source="../../Assets/Image/wallLargeTexture2.jpg" Margin="-1,0,0,0" Height="200"/>
+            <Image Source="../../Assets/Image/wallLargeTexture2.jpg" Margin="-1,0,0,0" Height="200"/>
+            <Image Source="../../Assets/Image/wallLargeTexture2.jpg" Margin="-1,0,0,0" Height="200"/>
+            <Image Source="../../Assets/Image/wallLargeTexture2.jpg" Margin="-1,0,0,0" Height="200"/>
         </StackPanel>
-        <Button x:Name="SoldierProducerBuyButton" Content="Acheter" Grid.Row="1"/>
+        <TextBlock Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TitlePolice}" Foreground="White" HorizontalAlignment="Left"  FontSize="70" Margin="100,0,0,0" VerticalAlignment="Center"/>
+        <Image Source="../../Assets/Image/locked.png"  HorizontalAlignment="Center" Margin="00,0,0,0" Height="200"/>
+        <TextBlock Text=" Prix : " Style="{StaticResource TitlePolice}"  Foreground="White" HorizontalAlignment="Center"  Margin="600,0,0,0" FontSize="70" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding Price,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Style="{StaticResource TitlePolice}"  Foreground="White"  Margin="900,0,0,0" FontSize="70" VerticalAlignment="Center"/>
+
+
+        <Button x:Name="SoldierProducerBuyButton" Grid.Column="1"  Style="{StaticResource MenuButton}">
+            <Button.Content>
+                <Grid>
+                    <Image Source="../../Assets/Image/SquareButton.png"/>
+                    <TextBlock Text="Acheter" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Style="{ StaticResource TitlePolice}" />
+                </Grid>
+            </Button.Content>
+        </Button>
+
     </Grid>
 </UserControl>

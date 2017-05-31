@@ -4,22 +4,70 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clickers"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
-        WindowState="Maximized">
+        mc:Ignorable="d" Height="1080" Width="1920"
+        WindowState="Maximized"
+        WindowStyle="None">
+    <Window.Resources>
+        <ResourceDictionary Source="Styles/BaseDictionary.xaml"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">Nom du Jeu</Label>
-        <Button x:Name="newGameButton" Content="Nouvelle Partie" Grid.Row="1" Width="400"/>
-        <Button x:Name="loadGameButton" Content="Reprendre la Partie" Grid.Row="3" Width="400"/>
-        <Button x:Name="creditGameButton" Content="Crédits" Grid.Row="5" Width="400"/>
+
+        <Image Source="Assets/Image/HomeBack2.jpg" Margin="0,-37,-0.4,-83.15" Grid.RowSpan="6" />
+
+        <TextBlock x:Name="GameNameTB" Style="{StaticResource TitlePolice}" Text="Clickers" Grid.Row="0" FontSize="120" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        <Button x:Name="newGameButton" Style="{StaticResource MenuButton}" Width="300" Height="90" Grid.Row="1">
+            <Button.Content>
+                <Grid>
+                    <Image Source="Assets/Image/Bouton.png"/>
+                    <TextBlock Text="Nouvelle Partie" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Style="{ StaticResource TitlePolice}" />
+                </Grid>
+            </Button.Content>
+        </Button>
+
+        <Button x:Name="loadGameButton" Height="90" Grid.Row="2" Style="{StaticResource MenuButton}"  Width="300">
+            <Button.Content>
+                <Grid>
+                    <Image Source="Assets/Image/Bouton.png"/>
+                    <TextBlock Text="Reprendre Partie" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Style="{ StaticResource TitlePolice}" />
+                </Grid>
+            </Button.Content>
+        </Button>
+
+        <Button x:Name="OptionButton" Height="90" Grid.Row="3" Style="{StaticResource MenuButton}"  Width="300">
+            <Button.Content>
+                <Grid>
+                    <Image Source="Assets/Image/Bouton.png"/>
+                    <TextBlock Text="Options" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Style="{ StaticResource TitlePolice}" />
+                </Grid>
+            </Button.Content>
+        </Button>
+
+        <Button x:Name="creditGameButton" Height="90" Grid.Row="4" Style="{StaticResource MenuButton}"  Width="300">
+            <Button.Content>
+                <Grid>
+                    <Image Source="Assets/Image/Bouton.png"/>
+                    <TextBlock Text="Crédits" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Style="{ StaticResource TitlePolice}" />
+                </Grid>
+            </Button.Content>
+        </Button>
+
+        <Button x:Name="QuitButton" Height="90" Grid.Row="5" Style="{StaticResource MenuButton}"  Width="300">
+            <Button.Content>
+                <Grid>
+                    <Image Source="Assets/Image/Bouton.png"/>
+                    <TextBlock Text="Quitter" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Style="{ StaticResource TitlePolice}" />
+                </Grid>
+            </Button.Content>
+        </Button>
+        
     </Grid>
 </Window>

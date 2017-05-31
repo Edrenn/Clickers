@@ -6,13 +6,18 @@
       xmlns:local="clr-namespace:Clickers.Views.SoldierView"
       mc:Ignorable="d" 
       d:DesignHeight="80" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../../Styles/BaseDictionary.xaml"/>
+    </UserControl.Resources>
 
-    <Grid Background="Gray">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="1.7*" />
         </Grid.ColumnDefinitions>
+        
         <Image Source="{Binding ImagePath}" />
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -36,6 +41,20 @@
                 </TextBlock.Text>
             </TextBlock>
         </Grid>
-        <Button x:Name="BuyButton" Content="Acheter" Grid.Column="2"/>
+
+        <StackPanel Grid.Column="2">
+            <TextBlock Text="Nombre par achat" HorizontalAlignment="Center"  Style="{ StaticResource TitlePolice}"/>
+            <Slider x:Name="Slider" VerticalAlignment="Center" Margin="0,40" Maximum="100" Minimum="1" TickFrequency="1" IsSnapToTickEnabled="True" />
+            <TextBox x:Name="SoldierNumberTBx" Width="30" HorizontalAlignment="Center" Text="1"/>
+        </StackPanel>
+        
+        <Button x:Name="BuyButton" Grid.Column="3"  Style="{StaticResource MenuButton}"  Width="Auto">
+            <Button.Content>
+                <Grid>
+                    <Image Source="../../Assets/Image/SquareButton.png"/>
+                    <TextBlock Text="Acheter" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Style="{ StaticResource TitlePolice}" />
+                </Grid>
+            </Button.Content>
+        </Button>
     </Grid>
 </UserControl>

@@ -118,7 +118,6 @@ namespace Clickers.ViewModel
                         this.View.EcurieButton.Click += Caserne3Button_Click;
                     }
                     break;
-                    break;
             }
 
         }

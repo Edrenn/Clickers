@@ -111,6 +111,7 @@
     <Compile Include="DataBaseManager\EntitiesLink\MySQLHealerHouse.cs" />
     <Compile Include="DataBaseManager\EntitiesLink\MySQLHero.cs" />
     <Compile Include="DataBaseManager\EntitiesLink\SoldierProducerMySQLManager.cs" />
+    <Compile Include="Images\ButtonProperties.cs" />
     <Compile Include="Models\Army.cs" />
     <Compile Include="Models\Battle.cs" />
     <Compile Include="Models\Buildings\Building.cs" />
@@ -216,6 +217,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\BaseDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ArmyView\ArmyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -377,10 +382,25 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Styles\" />
+    <Resource Include="Assets\Image\SmallHealingPotion.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Image\SmallHealingPotion.jpg" />
+    <Resource Include="Assets\Image\Bouton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\HomeBack1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\SquareButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\HomeBack2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\wallLargeTexture2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\locked.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

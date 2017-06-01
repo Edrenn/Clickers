@@ -10,6 +10,8 @@ namespace Clickers.ViewModel.SoldierProducer
 {
     public class SoldierViewModel
     {
+
+        #region Fields
         private SoldierView view;
         public SoldierView View
         {
@@ -23,33 +25,56 @@ namespace Clickers.ViewModel.SoldierProducer
             get { return soldier; }
             set { soldier = value; }
         }
+        #endregion
 
-
+        #region Constructor
         public SoldierViewModel(SoldierView view, Soldier soldier)
         {
             this.view = view;
             this.Soldier = soldier;
             this.View.DataContext = this.Soldier;
+            EventGenerator();
+        }
+        #endregion
+
+        #region Events
+        private void EventGenerator()
+        {
             this.View.BuyButton.Click += SoldierViewBuyButtonClick;
             this.view.Slider.ValueChanged += Slider_ValueChanged;
             this.view.SoldierNumberTBx.LostKeyboardFocus += SoldierNumberTBx_LostKeyboardFocus;
         }
 
+        /// <summary>
+        /// This event will change the slider Value when we change manually the number in the textBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SoldierNumberTBx_LostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
             int outSoldierNumber = 1;
-            if (!Int32.TryParse(this.view.SoldierNumberTBx.Text,out outSoldierNumber))
+            if (!Int32.TryParse(this.view.SoldierNumberTBx.Text, out outSoldierNumber))
             {
                 outSoldierNumber = 1;
             }
             this.view.Slider.Value = outSoldierNumber;
         }
 
+        /// <summary>
+        /// This event will change the value of the number in the textBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Slider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
         {
             this.view.SoldierNumberTBx.Text = this.view.Slider.Value.ToString();
         }
 
+        /// <summary>
+        /// This event will buy N Soldier 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SoldierViewBuyButtonClick(object sender, System.Windows.RoutedEventArgs e)
         {
             int SoldiersNumber = 0;
@@ -73,5 +98,6 @@ namespace Clickers.ViewModel.SoldierProducer
                 System.Windows.MessageBox.Show("Il vous manque " + ((this.Soldier.Price * SoldiersNumber) - GameViewModel.Instance.GoldCounter) + " d'Or");
             }
         }
+        #endregion
     }
 }

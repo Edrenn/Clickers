@@ -26,12 +26,18 @@ namespace Clickers.ViewModel
 
         private void EventGenerator()
         {
+            view.ThiefButton.Click += ThiefButton_Click;
             view.GoldFieldButton.Click += GoldFieldButton_Click;
             view.CaserneButton.Click += CaserneButton_Click;
             view.ArmyButton.Click += ArmyButton_Click;
             view.ToBattleButton.Click += ToBattleButton_Click;
             view.TaverneButton.Click += TaverneButton_Click;
             view.HealerHouseButton.Click += HealerHouse_Click;
+        }
+
+        private void ThiefButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameViewModel.Instance.GoldCounter += 100;
         }
 
         private void TaverneButton_Click(object sender, RoutedEventArgs e)

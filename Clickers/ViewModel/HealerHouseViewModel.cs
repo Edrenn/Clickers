@@ -44,7 +44,6 @@ namespace Clickers.ViewModel
 
         private void EventGenerator()
         {
-            this.View.ToCastleButton.Click += ToCastleButton_Click;
             this.View.HeroHealButton.Click += HeroHealButton_Click;
         }
 
@@ -56,11 +55,6 @@ namespace Clickers.ViewModel
             }
             else
                 popUpHeroChoiceGenerator();
-        }
-
-        private void ToCastleButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Switcher.Switch(new MainCastleView());
         }
 
         private void popUpHeroChoiceGenerator()

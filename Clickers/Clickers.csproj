@@ -144,6 +144,7 @@
     <Compile Include="ViewModel\SoldierProducer\SoldierViewModel.cs" />
     <Compile Include="ViewModel\Switcher.cs" />
     <Compile Include="ViewModel\TaverneViewModel.cs" />
+    <Compile Include="ViewModel\ToCastleButtonViewModel.cs" />
     <Compile Include="Views\ArmyView\ArmyView.xaml.cs">
       <DependentUpon>ArmyView.xaml</DependentUpon>
     </Compile>
@@ -197,6 +198,9 @@
     </Compile>
     <Compile Include="Views\TaverneView\TaverneView.xaml.cs">
       <DependentUpon>TaverneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToCastleButtonUserControl.xaml.cs">
+      <DependentUpon>ToCastleButtonUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UsernameRegister.xaml.cs">
       <DependentUpon>UsernameRegister.xaml</DependentUpon>
@@ -290,6 +294,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TaverneView\TaverneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ToCastleButtonUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -401,6 +409,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Image\locked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\BackToCastle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

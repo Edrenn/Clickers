@@ -65,12 +65,6 @@ namespace Clickers.ViewModel
             view.UsineTwoButton.Click += UsineTwoButton_Click;
             view.UsineThreeButton.Click += UsineThreeButton_Click;
             view.UsineFourButton.Click += UsineFourButton_Click;
-            view.MapButton.Click += MapButton_Click;
-        }
-
-        private void MapButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Switcher.Switch(new MainCastleView());
         }
 
         private void GoldButton_Click1(object sender, System.Windows.RoutedEventArgs e)

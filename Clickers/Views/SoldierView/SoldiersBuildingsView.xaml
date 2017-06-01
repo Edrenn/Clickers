@@ -7,16 +7,16 @@
       xmlns:allV="clr-namespace:Clickers.Views"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../../Styles/BaseDictionary.xaml"/>
+    </UserControl.Resources>
 
-    <Grid>
+    <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="10" />
+            <RowDefinition Height="0.9*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="10" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="10" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -26,11 +26,11 @@
         </Grid.ColumnDefinitions>
 
         <allV:InfoBarUserControl Grid.Row="0" Grid.ColumnSpan="3" />
-        <Button x:Name="CastleButton" Content="ToCastle" Grid.Row="1" Grid.Column="2" Height="50" Width="50"/>
+        <allV:ToCastleButtonUserControl  Grid.Row="1" Grid.Column="2"/>
 
-        <local:SoldierView x:Name="soldierView1" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Collapsed"/>
-        <StackPanel x:Name="CaserneSP" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"></StackPanel>
-        <Grid x:Name="CaserneGrid"  Grid.Row="3" Grid.Column="2" Visibility="Collapsed">
+        <local:SoldierView x:Name="soldierView1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Collapsed"/>
+        <StackPanel x:Name="CaserneSP" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"></StackPanel>
+        <Grid x:Name="CaserneGrid"  Grid.Row="2" Grid.Column="2" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="3*"/>
@@ -38,9 +38,9 @@
             <Button x:Name="Caserne1Button" Content="Caserne" Grid.Row="1"/>
         </Grid>
         
-        <local:SoldierView x:Name="soldierView2" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Collapsed"/>
-        <StackPanel x:Name="ArcherieSP" Grid.Row="5"  Grid.Column="0" Grid.ColumnSpan="3"></StackPanel>
-        <Grid x:Name="ArcherieGrid"  Grid.Row="5" Grid.Column="3" Visibility="Collapsed">
+        <local:SoldierView x:Name="soldierView2" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Collapsed"/>
+        <StackPanel x:Name="ArcherieSP" Grid.Row="3"  Grid.Column="0" Grid.ColumnSpan="3"></StackPanel>
+        <Grid x:Name="ArcherieGrid"  Grid.Row="3" Grid.Column="3" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="3*"/>
@@ -49,9 +49,9 @@
             <Button x:Name="Caserne2Button" Content="Caserne2" Grid.Row="1"/>
         </Grid>
         
-        <local:SoldierView x:Name="soldierView3" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Collapsed"/>
-        <StackPanel x:Name="EcurieSP" Grid.Row="7"  Grid.Column="0" Grid.ColumnSpan="3"></StackPanel>
-        <Grid x:Name="EcurieGrid"  Grid.Row="7" Grid.Column="3" Visibility="Collapsed">
+        <local:SoldierView x:Name="soldierView3" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Collapsed"/>
+        <StackPanel x:Name="EcurieSP" Grid.Row="4"  Grid.Column="0" Grid.ColumnSpan="3"></StackPanel>
+        <Grid x:Name="EcurieGrid"  Grid.Row="4" Grid.Column="3" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="3*"/>

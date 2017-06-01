@@ -73,8 +73,6 @@ namespace Clickers.ViewModel
                 NewHeroView(hero);
             }
 
-            EventGenerator();
-
         }
 
         private void NewHeroView(Hero hero)
@@ -83,19 +81,5 @@ namespace Clickers.ViewModel
             heroViewModel.View.DataContext = hero;
             View.AllHeroesSP.Children.Add(heroViewModel.View);
         }
-
-        #region Events
-        private void EventGenerator()
-        {
-            View.ToCastleButton.Click += ToCastleButton_Click;
-        }
-
-        private void ToCastleButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            MainCastleView castle = new MainCastleView();
-            Switcher.Switch(castle);
-        }
-
-        #endregion
     }
 }

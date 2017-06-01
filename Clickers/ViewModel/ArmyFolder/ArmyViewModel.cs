@@ -24,18 +24,6 @@ namespace Clickers.ViewModel.Army
             if (GameViewModel.Instance.MainCastle.Army.Hero != null) {
                 NewHeroView();
             }
-            EventGenerator();
-        }
-
-        private void EventGenerator()
-        {
-            view.ToCastleButton.Click += ToCastleButton_Click;
-        }
-
-        private void ToCastleButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            MainCastleView castleView = new MainCastleView();
-            Switcher.Switch(castleView);
         }
 
         private void NewSoldierViewCreation(string SoldierName, string ImagePath)

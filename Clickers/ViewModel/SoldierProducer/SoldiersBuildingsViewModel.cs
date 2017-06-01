@@ -35,17 +35,10 @@ namespace Clickers.ViewModel
         public SoldiersBuildingsViewModel(SoldiersBuildingsView view)
         {
             this.View = view;
-
-
-            //SoldierViewModel chevalier = new SoldierViewModel(this.View.soldierView1, this.RecupSoldiers(1).Result);
-            //SoldierViewModel archer = new SoldierViewModel(this.View.soldierView2, this.RecupSoldiers(2).Result);
-            //SoldierViewModel cavalier = new SoldierViewModel(this.View.soldierView3, this.RecupSoldiers(3).Result);
+            
             CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"],this.View.soldierView1);
             CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers["Archerie"], this.View.soldierView2);
             CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers["Ecurie"], this.View.soldierView3);
-
-
-            this.View.CastleButton.Click += CastleButton_Click;
         }
         #endregion
 
@@ -123,13 +116,6 @@ namespace Clickers.ViewModel
         }
 
         #region Events
-
-        private void CastleButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            MainCastleView castleView = new MainCastleView();
-            var test = RecupSoldiers(1);
-            Switcher.Switch(castleView);
-        }
 
         private void Caserne1Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {

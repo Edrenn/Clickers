@@ -157,6 +157,9 @@
     <Compile Include="Views\BattleReport.xaml.cs">
       <DependentUpon>BattleReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BlackSmith.xaml.cs">
+      <DependentUpon>BlackSmith.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HealerHouseView.xaml.cs">
       <DependentUpon>HealerHouseView.xaml</DependentUpon>
     </Compile>
@@ -238,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BattleReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BlackSmith.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

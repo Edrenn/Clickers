@@ -34,7 +34,7 @@ namespace Clickers.ViewModel
             this.View = view;
 
             this.View.BuyEquipmentListingUC.Controller.Blacksmith = this.Blacksmith;
-            this.View.BuyEquipmentListingUC.Controller.initBuyView();
+            this.View.BuyEquipmentListingUC.Controller.initBlacksmithView();
 
         }
 

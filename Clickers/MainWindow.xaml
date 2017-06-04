@@ -28,7 +28,7 @@
             <Button.Content>
                 <Grid>
                     <Image Source="Assets/Image/Bouton.png"/>
-                    <TextBlock Text="Nouvelle Partie" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Style="{ StaticResource TitlePolice}" />
+                    <TextBlock Text="Nouvelle Partie" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Style="{StaticResource TitlePolice}" />
                 </Grid>
             </Button.Content>
         </Button>

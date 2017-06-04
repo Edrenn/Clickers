@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Clickers.Views.UserControls
+namespace Clickers.Views.ElementViews
 {
     /// <summary>
-    /// Logique d'interaction pour ItemUC.xaml
+    /// Logique d'interaction pour InventoryUC.xaml
     /// </summary>
-    public partial class ItemUC : UserControl
+    public partial class InventoryUC : UserControl
     {
-        public ItemUC()
+        public InventoryUC()
         {
             InitializeComponent();
-        }
-
-        private void BuyPotionButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

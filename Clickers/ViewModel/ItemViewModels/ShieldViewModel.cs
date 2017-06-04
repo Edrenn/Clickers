@@ -33,6 +33,7 @@ namespace Clickers.ViewModel.ItemViewModels
             this.View = new EquipmentView();
             this.View.DataContext = this.Shield;
             this.View.DefenseSP.Visibility = System.Windows.Visibility.Visible;
+            initBuyView();
         }
 
         public void initRepairView()

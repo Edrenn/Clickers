@@ -1,13 +1,16 @@
 ﻿using Clickers.Models;
 using Clickers.Views;
+using Clickers.Views.ElementViews;
 using Clickers.Views.ArmyView;
 using Clickers.Views.TaverneView;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using System.Windows.Controls;
 
 namespace Clickers.ViewModel.Army
 {
@@ -48,8 +51,39 @@ namespace Clickers.ViewModel.Army
             HeroView newHeroView = new HeroView();
             newHeroView.DataContext = GameViewModel.Instance.MainCastle.Army.Hero;
             newHeroView.SelectHeroButton.Visibility = System.Windows.Visibility.Collapsed;
+            Button equipButton = new Button();
+            equipButton.Content = "Equiper";
+            equipButton.Height = 40;
+            newHeroView.ButtonSP.Children.Add(equipButton);
+            equipButton.Click += EquipButton_Click;
+
+            InventoryUC newIventoryUC = new InventoryUC();
+            newIventoryUC.DataContext = GameViewModel.Instance.MainCastle.Army.Hero;
+            newHeroView.HeroInfoSP.Children.Add(newIventoryUC);
+            
             view.Units.Children.Add(newHeroView);
 
+        }
+
+        private void EquipButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            System.Windows.Window popUp = new System.Windows.Window();
+            EquipmentListing EquipmentListing = new EquipmentListing();
+            EquipmentListing.Controller.initEquipView();
+            popUp.Content = EquipmentListing;
+            popUp.Show();
+            //if (GameViewModel.Instance.MainCastle.WeaponStock.Count > 0)
+            //{
+            //    GameViewModel.Instance.MainCastle.Army.Hero.Weapon = GameViewModel.Instance.MainCastle.WeaponStock[0];
+            //}
+            //if (GameViewModel.Instance.MainCastle.ShieldStock.Count > 0)
+            //{
+            //    GameViewModel.Instance.MainCastle.Army.Hero.Shield = GameViewModel.Instance.MainCastle.ShieldStock[0];
+            //}
+            //if (GameViewModel.Instance.MainCastle.PotionStock.Count > 0)
+            //{
+            //    GameViewModel.Instance.MainCastle.Army.Hero.Potion = GameViewModel.Instance.MainCastle.PotionStock[0];
+            //}
         }
     }
 }

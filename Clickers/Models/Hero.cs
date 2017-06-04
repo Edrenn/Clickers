@@ -114,17 +114,36 @@ namespace Clickers.Models
             set { type = value; }
         }
 
-        private List<Item> inventory;
-        public List<Item> Inventory
+        private Weapon weapon;
+        public Weapon Weapon
         {
-            get
-            {
-                return inventory;
-            }
-
+            get { return weapon; }
             set
             {
-                inventory = value;
+                weapon = value;
+                RaisePropertyChanged("Weapon");
+            }
+        }
+
+        private Shield shield;
+        public Shield Shield
+        {
+            get { return shield; }
+            set
+            {
+                shield = value;
+                RaisePropertyChanged("Shield");
+            }
+        }
+
+        private Potion potion;
+        public Potion Potion
+        {
+            get { return potion; }
+            set
+            {
+                potion = value;
+                RaisePropertyChanged("Potion");
             }
         }
 
@@ -158,7 +177,6 @@ namespace Clickers.Models
             this.Armor = armor;
             this.AttackValue = attackValue;
             this.Level = level;
-            this.Inventory = new List<Item>();
             this.Type = type;
             this.ImagePath = imagePath;
             this.Skills = new List<Skill>();

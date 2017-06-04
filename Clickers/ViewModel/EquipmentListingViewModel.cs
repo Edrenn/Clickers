@@ -31,14 +31,15 @@ namespace Clickers.ViewModel
         public EquipmentListingViewModel(EquipmentListing view)
         {
             this.View = view;
-            this.View.ToShieldBuyButton.Click += ToShieldBuyButton_Click;
-            this.View.ToWeaponBuyButton.Click += ToWeaponBuyButton_Click;
         }
 
-        #region Buy
+        #region Blacksmith
 
-        public void initBuyView()
+        public void initBlacksmithView()
         {
+            this.View.ToShieldButton.Click += ToShieldEquipButton_Click;
+            this.View.ToWeaponButton.Click += ToWeaponEquipButton_Click;
+            this.View.ToPotionButton.Visibility = System.Windows.Visibility.Collapsed;
             foreach (Shield shield in this.Blacksmith.ShieldList)
             {
                 ShieldViewModel newShieldViewModel = new ShieldViewModel(shield);
@@ -52,25 +53,29 @@ namespace Clickers.ViewModel
             }
         }
 
-        private void ToWeaponBuyButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ToShieldBlacksmithButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.View.BuyWeaponSV.Visibility = System.Windows.Visibility.Visible;
-            this.View.BuyShieldSV.Visibility = System.Windows.Visibility.Collapsed;
-            this.View.ToShieldBuyButton.Visibility = System.Windows.Visibility.Visible;
-            this.View.ToWeaponBuyButton.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.WeaponSV.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.ShieldSV.Visibility = System.Windows.Visibility.Visible;
+            this.View.ToShieldButton.Opacity = 1;
+            this.View.ToWeaponButton.Opacity = 0.2;
         }
 
-        private void ToShieldBuyButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ToWeaponBlacksmithButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.View.BuyWeaponSV.Visibility = System.Windows.Visibility.Collapsed;
-            this.View.BuyShieldSV.Visibility = System.Windows.Visibility.Visible;
-            this.View.ToShieldBuyButton.Visibility = System.Windows.Visibility.Collapsed;
-            this.View.ToWeaponBuyButton.Visibility = System.Windows.Visibility.Visible;
+            this.View.WeaponSV.Visibility = System.Windows.Visibility.Visible;
+            this.View.ShieldSV.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.ToShieldButton.Opacity = 0.2;
+            this.View.ToWeaponButton.Opacity = 1;
         }
         #endregion
 
-        public void initRepairView()
+        #region Equip
+        public void initEquipView()
         {
+            this.View.ToShieldButton.Click += ToShieldEquipButton_Click;
+            this.View.ToWeaponButton.Click += ToWeaponEquipButton_Click;
+            this.View.ToPotionButton.Click += ToPotionEquipButton_Click;
             foreach (Shield shield in GameViewModel.Instance.MainCastle.ShieldStock)
             {
                 ShieldViewModel newShieldViewModel = new ShieldViewModel(shield);
@@ -82,8 +87,43 @@ namespace Clickers.ViewModel
                 WeaponViewModel newWeaponViewModel = new WeaponViewModel(weapon);
                 this.View.BuyWeaponSP.Children.Add(newWeaponViewModel.View);
             }
+
+            foreach (Potion potion in GameViewModel.Instance.MainCastle.PotionStock)
+            {
+                PotionViewModel newPotionViewModel = new PotionViewModel(potion);
+                this.View.BuyPotionSP.Children.Add(newPotionViewModel.View);
+            }
+        }
+        
+        private void ToShieldEquipButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.View.WeaponSV.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.ShieldSV.Visibility = System.Windows.Visibility.Visible;
+            this.View.PotionSV.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.ToShieldButton.Opacity = 1;
+            this.View.ToWeaponButton.Opacity = 0.2;
+            this.View.ToPotionButton.Opacity = 0.2;
         }
 
-       
+        private void ToWeaponEquipButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.View.WeaponSV.Visibility = System.Windows.Visibility.Visible;
+            this.View.ShieldSV.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.PotionSV.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.ToShieldButton.Opacity = 0.2;
+            this.View.ToWeaponButton.Opacity = 1;
+            this.View.ToPotionButton.Opacity = 0.2;
+        }
+
+        private void ToPotionEquipButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.View.WeaponSV.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.ShieldSV.Visibility = System.Windows.Visibility.Collapsed;
+            this.View.PotionSV.Visibility = System.Windows.Visibility.Visible;
+            this.View.ToShieldButton.Opacity = 0.2;
+            this.View.ToWeaponButton.Opacity = 0.2;
+            this.View.ToPotionButton.Opacity = 1;
+        }
+        #endregion
     }
 }

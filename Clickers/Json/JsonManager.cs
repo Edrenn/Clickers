@@ -157,7 +157,7 @@ namespace Clickers.Json
                 string jSonContent = fileItem.ReadToEnd();
                 existingHealerHouse = JsonConvert.DeserializeObject<HealerHouse>(jSonContent, new JsonSerializerSettings());
             }
-            foreach (Item potion in existingHealerHouse.PotionList)
+            foreach (Potion potion in existingHealerHouse.PotionList)
             {
                 potion.Name = ConvertToUTF8(potion.Name);
                 potion.Description = ConvertToUTF8(potion.Description);
@@ -166,14 +166,65 @@ namespace Clickers.Json
             return existingHealerHouse;
         }
 
+        public List<Shield> GetShieldsFromJSon()
+        {
+            string path = "D:\\Workspaces\\Clickers\\Clickers\\JsonConfig\\";
+            string file = "Shields.Json";
+            List<Shield> existingShields = new List<Shield>();
+
+            using (StreamReader fileItem = File.OpenText(path + file))
+            using (JsonTextReader reader = new JsonTextReader(fileItem))
+            {
+                string jSonContent = fileItem.ReadToEnd();
+                existingShields = JsonConvert.DeserializeObject<List<Shield>>(jSonContent, new JsonSerializerSettings());
+            }
+            foreach (Shield shield in existingShields)
+            {
+                shield.Name = ConvertToUTF8(shield.Name);
+                shield.Description = ConvertToUTF8(shield.Description);
+
+            }
+            return existingShields;
+        }
+
+        public Blacksmith GetBlacksmithFromJSon()
+        {
+            string path = "D:\\Workspaces\\Clickers\\Clickers\\JsonConfig\\";
+            string file = "Blacksmith.Json";
+            Blacksmith existingBlacksmith = new Blacksmith();
+
+            using (StreamReader fileItem = File.OpenText(path + file))
+            using (JsonTextReader reader = new JsonTextReader(fileItem))
+            {
+                string jSonContent = fileItem.ReadToEnd();
+                existingBlacksmith = JsonConvert.DeserializeObject<Blacksmith>(jSonContent, new JsonSerializerSettings());
+            }
+            foreach (Shield equipment in existingBlacksmith.ShieldList)
+            {
+                equipment.Name = ConvertToUTF8(equipment.Name);
+                equipment.Description = ConvertToUTF8(equipment.Description);
+
+            }
+            foreach (Weapon equipment in existingBlacksmith.WeaponList)
+            {
+                equipment.Name = ConvertToUTF8(equipment.Name);
+                string toto = ConvertToUTF8(equipment.Name);
+                equipment.Description = ConvertToUTF8(equipment.Description);
+
+            }
+            return existingBlacksmith;
+        }
+
         public string ConvertToUTF8(string itemToConvert)
         {
-            byte[] utf8Bytes = new byte[itemToConvert.Length];
-            for (int i = 0; i < itemToConvert.Length; ++i)
-            {
-                utf8Bytes[i] = (byte)itemToConvert[i];
-            }
-            string itemToReturn = Encoding.UTF8.GetString(utf8Bytes, 0, utf8Bytes.Length);
+            //byte[] utf8Bytes = new byte[itemToConvert.Length];
+            //for (int i = 0; i < itemToConvert.Length; ++i)
+            //{
+            //    utf8Bytes[i] = (byte)itemToConvert[i];
+            //}
+            byte[] bytes = Encoding.Default.GetBytes(itemToConvert);
+            //string itemToReturn = Encoding.UTF8.GetString(utf8Bytes, 0, utf8Bytes.Length);
+            string itemToReturn = Encoding.UTF8.GetString(bytes);
             return itemToReturn;
         }
     }

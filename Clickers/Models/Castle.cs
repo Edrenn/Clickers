@@ -68,20 +68,49 @@ namespace Clickers.Models
             set { soldiersProducers = value; }
         }
 
-        private List<Item> itemStock;
-        public List<Item> ItemStock
+        private List<Shield> shieldStock;
+        public List<Shield> ShieldStock
         {
-            get { return itemStock; }
-            set { itemStock = value; }
+            get { return shieldStock; }
+            set { shieldStock = value; }
         }
 
+        private List<Weapon> weaponStock;
+        public List<Weapon> WeaponStock
+        {
+            get { return weaponStock; }
+            set { weaponStock = value; }
+        }
 
+        private List<Potion> potionStock;
+        public List<Potion> PotionStock
+        {
+            get { return potionStock; }
+            set { potionStock = value; }
+        }
+        
         private List<Hero> heroes;
         public List<Hero> Heroes
         {
             get { return heroes; }
             set { heroes = value; }
         }
+
+        private Blacksmith blacksmith;
+        public Blacksmith Blacksmith
+        {
+            get { return blacksmith; }
+            set { blacksmith = value; }
+        }
+
+        private HealerHouse healer;
+
+        public HealerHouse Healer
+        {
+            get { return healer; }
+            set { healer = value; }
+        }
+
 
         public Castle() { }
 
@@ -92,7 +121,9 @@ namespace Clickers.Models
             this.Army = new Army();
             this.GoldProducers = new List<RessourceProducer>();
             this.SoldiersProducers = new Dictionary<String, SoldiersProducer>();
-            this.ItemStock = new List<Item>();
+            this.ShieldStock = new List<Shield>();
+            this.WeaponStock = new List<Weapon>();
+            this.PotionStock = new List<Potion>();
         }
     }
 }

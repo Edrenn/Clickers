@@ -26,6 +26,7 @@ namespace Clickers.ViewModel
 
         private void EventGenerator()
         {
+            view.BlackSmithButton.Click += BlackSmithButton_Click;
             view.ThiefButton.Click += ThiefButton_Click;
             view.GoldFieldButton.Click += GoldFieldButton_Click;
             view.CaserneButton.Click += CaserneButton_Click;
@@ -33,6 +34,11 @@ namespace Clickers.ViewModel
             view.ToBattleButton.Click += ToBattleButton_Click;
             view.TaverneButton.Click += TaverneButton_Click;
             view.HealerHouseButton.Click += HealerHouse_Click;
+        }
+
+        private void BlackSmithButton_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new BlackSmithView());
         }
 
         private void ThiefButton_Click(object sender, RoutedEventArgs e)
@@ -95,8 +101,7 @@ namespace Clickers.ViewModel
 
         private void HealerHouse_Click(object sender, RoutedEventArgs e)
         {
-            HealerHouse healerHouse = Json.JsonManager.Instance.GetHealerHouseFromJSon();
-            HealerHouseView newHealerHouseView = new HealerHouseView(healerHouse);
+            HealerHouseView newHealerHouseView = new HealerHouseView(GameViewModel.Instance.MainCastle.Healer);
             Switcher.Switch(newHealerHouseView);
         }
     }

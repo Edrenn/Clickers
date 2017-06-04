@@ -7,11 +7,12 @@ using System.Windows;
 using System.Windows.Controls;
 
 using Clickers.Views;
-using Clickers.Views.ItemViews;
+using Clickers.Views.ElementViews;
 using Clickers.Views.TaverneView;
 using Clickers.Models;
 using Clickers.Models.Items;
 using Clickers.Models.Buildings;
+using Clickers.ViewModel.ItemViewModels;
 
 namespace Clickers.ViewModel
 {
@@ -102,8 +103,8 @@ namespace Clickers.ViewModel
         {
             foreach (Potion potion in this.HealerHouse.PotionList)
             {
-                PotionView newView = new PotionView(potion);
-                this.View.ItemsSP.Children.Add(newView);
+                PotionViewModel newPVM = new PotionViewModel(potion);
+                this.View.ItemsSP.Children.Add(newPVM.View);
 
             }
         }

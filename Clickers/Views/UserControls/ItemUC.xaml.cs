@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Clickers.Views
+namespace Clickers.Views.UserControls
 {
     /// <summary>
-    /// Logique d'interaction pour BlackSmith.xaml
+    /// Logique d'interaction pour ItemUC.xaml
     /// </summary>
-    public partial class BlackSmith : UserControl
+    public partial class ItemUC : UserControl
     {
-        public BlackSmith()
+        public ItemUC()
         {
             InitializeComponent();
+        }
+
+        private void BuyPotionButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

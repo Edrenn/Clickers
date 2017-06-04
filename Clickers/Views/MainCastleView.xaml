@@ -22,10 +22,10 @@
         </Grid.ColumnDefinitions>
         <local:InfoBarUserControl Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" />
 
+        <Button x:Name="ThiefButton" Content="Thief" Grid.Column="0" Grid.Row="1"/>
         <Button x:Name="ToBattleButton" Content="ToBattle" Grid.Column="2" Grid.Row="1"/>
 
-        <Button x:Name="IronFieldButton" Content="IronFields" Grid.Column="0" Grid.Row="2"/>
-        <Button x:Name="ThiefButton" Content="Thief" Grid.Column="1" Grid.Row="2"/>
+        <!--<Button x:Name="IronFieldButton" Content="IronFields" Grid.Column="0" Grid.Row="2"/>-->
         <Button x:Name="HealerHouseButton" Content="HealerHouse" Grid.Column="2" Grid.Row="2"/>
 
         <Button x:Name="CaserneButton" Content="Caserne" Grid.Column="0" Grid.Row="3"/>

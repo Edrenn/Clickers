@@ -23,5 +23,10 @@ namespace Clickers.Models.Buildings
             get { return priceToHeal; }
             set { priceToHeal = value; }
         }
+
+        public HealerHouse()
+        {
+            this.PotionList = new List<Potion>();
+        }
     }
 }

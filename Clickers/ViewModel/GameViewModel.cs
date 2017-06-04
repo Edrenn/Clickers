@@ -95,6 +95,16 @@ namespace Clickers
         private GameViewModel()
         {
             MainCastle = new Castle(castleName);
+            MySQLManager<HealerHouse> MyHealerHouseSQLManager = new MySQLManager<HealerHouse>();
+            MainCastle.Healer = MyHealerHouseSQLManager.Get(1).Result;
+            MySQLHealerHouse mySQLHealerHouse = new MySQLHealerHouse();
+            mySQLHealerHouse.GetHealerHouse(MainCastle.Healer);
+
+
+            MySQLManager<Blacksmith> MyBlacksmithSQLManager = new MySQLManager<Blacksmith>();
+            MainCastle.Blacksmith = MyBlacksmithSQLManager.Get(1).Result;
+            MySQLBlacksmith toto = new MySQLBlacksmith();
+            toto.SetItems(MainCastle.Blacksmith);
 
             getAllHero();
             GetAllSoldierProducer();

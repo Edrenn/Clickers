@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 using Clickers.Models.Items;
 
-namespace Clickers.Views.ItemViews
+namespace Clickers.Views.ElementViews
 {
     /// <summary>
     /// Logique d'interaction pour PotionView.xaml
@@ -28,27 +28,11 @@ namespace Clickers.Views.ItemViews
             get { return potion; }
             set { potion = value; }
         }
-
-
+        
         public PotionView(Potion potion)
         {
             InitializeComponent();
             this.Potion = potion;
-            this.DataContext = this.Potion;
-        }
-
-        private void BuyPotionButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (GameViewModel.Instance.GoldCounter >= potion.Price)
-            {
-                GameViewModel.Instance.GoldCounter -= this.potion.Price;
-                GameViewModel.Instance.MainCastle.ItemStock.Add(potion.DuplicatePotion());
-            }
-            else
-            {
-                int missingGold = potion.Price - GameViewModel.Instance.GoldCounter;
-                System.Windows.MessageBox.Show("Il vous manque " + missingGold + " d'or monseigneur");
-            }
         }
     }
 }

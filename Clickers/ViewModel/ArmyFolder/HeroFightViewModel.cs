@@ -236,17 +236,17 @@ namespace Clickers.ViewModel.Army
         {
             if (defendingHero.IsParing == false)
             {
-                if (defendingHero.Armor > attackingHero.AttackValue)
+                if (defendingHero.Armor > attackingHero.Attack)
                 {
-                    defendingHero.Armor -= attackingHero.AttackValue;
+                    defendingHero.Armor -= attackingHero.Attack;
                 }
                 else if (defendingHero.Armor == 0)
                 {
-                    defendingHero.Life -= attackingHero.AttackValue;
+                    defendingHero.Life -= attackingHero.Attack;
                 }
                 else
                 {
-                    defendingHero.Life -= (attackingHero.AttackValue - defendingHero.Armor);
+                    defendingHero.Life -= (attackingHero.Attack - defendingHero.Armor);
                     defendingHero.Armor = 0;
                 }
             }

@@ -1,10 +1,14 @@
 ﻿using Clickers.Models;
 using Clickers.Views.TaverneView;
+using Clickers.ViewModel.popUp;
+using Clickers.Views.ElementViews;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Clickers.ViewModel.SoldierProducer
 {
@@ -29,10 +33,34 @@ namespace Clickers.ViewModel.SoldierProducer
         {
             View = new HeroView();
             this.Hero = hero;
-            EventGenerator();
+            this.View.DataContext = this.Hero;
+            InventoryUC newIventoryUC = new InventoryUC();
+            newIventoryUC.DataContext = this.Hero;
+            this.View.HeroInfoSP.Children.Add(newIventoryUC);
+            InitEquipView();
         }
 
-        private void EventGenerator()
+        #region Equip
+        public void InitEquipView()
+        {
+            //this.View.SelectHeroButton.Visibility = System.Windows.Visibility.Collapsed;
+            //Button equipButton = new Button();
+            //equipButton.Content = "Equiper";
+            //equipButton.Height = 40;
+            //this.View.ButtonSP.Children.Add(equipButton);
+            this.View.InventoryHeroButton.Click += EquipButton_Click;
+        }
+
+        private void EquipButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            InventorySetViewModel newController = new InventorySetViewModel(this.Hero);
+            newController.View.Show();
+
+        }
+        #endregion
+
+        #region Select
+        public void InitSelectView()
         {
             View.SelectHeroButton.Click += SelectHeroButton_Click;
         }
@@ -41,5 +69,6 @@ namespace Clickers.ViewModel.SoldierProducer
         {
             GameViewModel.Instance.MainCastle.Army.Hero = this.Hero;
         }
+        #endregion
     }
 }

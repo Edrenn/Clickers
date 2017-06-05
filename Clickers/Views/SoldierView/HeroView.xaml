@@ -9,18 +9,30 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.6*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="HeroName" HorizontalAlignment="Center" Text="{Binding Name}"/>
         <Image x:Name="HeroImage" Source="{Binding ImagePath}" Grid.Row="1"/>
         <StackPanel x:Name="HeroInfoSP" Grid.Row="2">
-            <Label x:Name="HeroHealth" Content="{Binding AttackValue}"/>
-            <Label x:Name="HeroAttackValue" Content="{Binding Life}"/>
-            <Label x:Name="HeroArmor" Content="{Binding Armor}"/>
-            <Label x:Name="HeroLevel" Content="{Binding Level}"/>
-            <Label x:Name="HeroPrice" Content="{Binding Price}"/>
+            <Button x:Name="InventoryHeroButton" Content="Inv" HorizontalAlignment="Right" Width="70" Height="40" />
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Attaque : "/>
+                <Label x:Name="HeroHealth" Content="{Binding Attack,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Vie : "/>
+                <Label x:Name="HeroAttackValue" Content="{Binding Life,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Armure : "/>
+                <Label x:Name="HeroArmor" Content="{Binding Armor,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Niveau"/>
+                <Label x:Name="HeroLevel" Content="{Binding Level,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+            </StackPanel>
         </StackPanel>
         <StackPanel x:Name="ButtonSP" Grid.Row="3">
             <Button x:Name="SelectHeroButton" Content="Sélectionner" Width="70" Height="40" />

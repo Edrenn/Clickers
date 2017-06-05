@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
+using Clickers.Models;
 using Clickers.Models.Items;
 using Clickers.Views.ElementViews;
 
@@ -26,12 +27,32 @@ namespace Clickers.ViewModel.ItemViewModels
             set { potion = value; }
         }
 
+        private Hero hero;
+        public Hero Hero
+        {
+            get { return hero; }
+            set { hero = value; }
+        }
 
         public PotionViewModel(Potion potion)
         {
             this.Potion = potion;
             this.View = new PotionView(potion);
             this.View.DataContext = this.Potion;
+        }
+
+        public PotionViewModel(Potion potion,Hero hero)
+        {
+            this.Hero = hero;
+            this.Potion = potion;
+            this.View = new PotionView(potion);
+            this.View.DataContext = this.Potion;
+            this.View.BuyPotionButton.Click += BuyPotionButton_Click;
+        }
+
+        #region Buy
+        public void IniBuyView()
+        {
             this.View.BuyPotionButton.Click += BuyPotionButton_Click;
         }
 
@@ -48,5 +69,19 @@ namespace Clickers.ViewModel.ItemViewModels
                 System.Windows.MessageBox.Show("Il vous manque " + missingGold + " d'or monseigneur");
             }
         }
+        #endregion
+
+        #region Equip
+        public void InitEquipView()
+        {
+            this.View.BuyPotionButton.Content = "Équiper";
+            this.View.BuyPotionButton.Click += EquipEquipmentButton_Click1;
+        }
+
+        private void EquipEquipmentButton_Click1(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.Hero.Potion = this.Potion;
+        }
+        #endregion
     }
 }

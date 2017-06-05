@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
+using Clickers.Models;
 using Clickers.Models.Buildings;
 using Clickers.Models.Items;
 using Clickers.ViewModel.ItemViewModels;
@@ -43,12 +45,14 @@ namespace Clickers.ViewModel
             foreach (Shield shield in this.Blacksmith.ShieldList)
             {
                 ShieldViewModel newShieldViewModel = new ShieldViewModel(shield);
+                newShieldViewModel.InitBuyView();
                 this.View.BuyShieldSP.Children.Add(newShieldViewModel.View);
             }
 
             foreach (Weapon weapon in this.Blacksmith.WeaponList)
             {
                 WeaponViewModel newWeaponViewModel = new WeaponViewModel(weapon);
+                newWeaponViewModel.InitBuyView();
                 this.View.BuyWeaponSP.Children.Add(newWeaponViewModel.View);
             }
         }
@@ -71,30 +75,36 @@ namespace Clickers.ViewModel
         #endregion
 
         #region Equip
-        public void initEquipView()
+        public void initEquipView(Hero hero)
         {
+            this.View.PotionSV.Width = 450;
+            this.View.ShieldSV.Width = 450;
+            this.View.WeaponSV.Width = 450;
             this.View.ToShieldButton.Click += ToShieldEquipButton_Click;
             this.View.ToWeaponButton.Click += ToWeaponEquipButton_Click;
             this.View.ToPotionButton.Click += ToPotionEquipButton_Click;
             foreach (Shield shield in GameViewModel.Instance.MainCastle.ShieldStock)
             {
-                ShieldViewModel newShieldViewModel = new ShieldViewModel(shield);
+                ShieldViewModel newShieldViewModel = new ShieldViewModel(shield,hero);
+                newShieldViewModel.InitEquipView();
                 this.View.BuyShieldSP.Children.Add(newShieldViewModel.View);
             }
 
             foreach (Weapon weapon in GameViewModel.Instance.MainCastle.WeaponStock)
             {
-                WeaponViewModel newWeaponViewModel = new WeaponViewModel(weapon);
+                WeaponViewModel newWeaponViewModel = new WeaponViewModel(weapon,hero);
+                newWeaponViewModel.InitEquipView();
                 this.View.BuyWeaponSP.Children.Add(newWeaponViewModel.View);
             }
 
             foreach (Potion potion in GameViewModel.Instance.MainCastle.PotionStock)
             {
-                PotionViewModel newPotionViewModel = new PotionViewModel(potion);
+                PotionViewModel newPotionViewModel = new PotionViewModel(potion,hero);
+                newPotionViewModel.InitEquipView();
                 this.View.BuyPotionSP.Children.Add(newPotionViewModel.View);
             }
         }
-        
+
         private void ToShieldEquipButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             this.View.WeaponSV.Visibility = System.Windows.Visibility.Collapsed;

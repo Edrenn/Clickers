@@ -42,12 +42,29 @@ namespace Clickers.Models
             }
         }
 
-        private int maxLife;
-        public int MaxLife
+        #region Base
+        private int baseLife;
+        public int BaseLife
         {
-            get { return maxLife; }
-            set { maxLife = value; }
+            get { return baseLife; }
+            set { baseLife = value; }
         }
+
+        private int baseArmor;
+        public int BaseArmor
+        {
+            get { return baseArmor; }
+            set { baseArmor = value; }
+        }
+
+        private int baseAttack;
+        public int BaseAttack
+        {
+            get { return baseAttack; }
+            set { baseAttack = value; }
+        }
+
+        #endregion
 
 
         int armor;
@@ -65,17 +82,18 @@ namespace Clickers.Models
             }
         }
 
-        int attackValue;
-        public int AttackValue
+        int attack;
+        public int Attack
         {
             get
             {
-                return attackValue;
+                return attack;
             }
 
             set
             {
-                attackValue = value;
+                attack = value;
+                RaisePropertyChanged("Attack");
             }
         }
 
@@ -121,6 +139,10 @@ namespace Clickers.Models
             set
             {
                 weapon = value;
+                if (value != null)
+                {
+                    this.Attack = (this.BaseAttack + value.DamageValue);
+                }
                 RaisePropertyChanged("Weapon");
             }
         }
@@ -132,6 +154,10 @@ namespace Clickers.Models
             set
             {
                 shield = value;
+                if (value != null)
+                {
+                    this.Armor = (this.BaseArmor + value.ArmorValue);
+                }
                 RaisePropertyChanged("Shield");
             }
         }
@@ -168,14 +194,18 @@ namespace Clickers.Models
             set { isParing = value; }
         }
 
-        public Hero() { }
+        public Hero()
+        {
+            
+        }
+
 
         public Hero(string name, int life, int armor, int attackValue, int level, string type, string imagePath)
         {
             this.Name = name;
             this.Life = life;
             this.Armor = armor;
-            this.AttackValue = attackValue;
+            this.Attack = attackValue;
             this.Level = level;
             this.Type = type;
             this.ImagePath = imagePath;

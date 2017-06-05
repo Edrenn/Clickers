@@ -46,26 +46,8 @@ namespace Clickers.ViewModel
 
         public TaverneViewModel()
         {
-            //MySQLManager<Hero> mySQLHeroManager = new MySQLManager<Hero>();
             Heros = new Dictionary<string, Hero>();
             this.View = new TaverneView();
-            //int heroNumber = 1;
-            //bool isOk = true;
-            //List<Hero> herosList = new List<Hero>();
-            //while (isOk)
-            //{
-            //    Task<Hero> allHeros = mySQLHeroManager.Get(heroNumber);
-            //    if (allHeros.Result != null)
-            //    {
-            //        herosList.Add(allHeros.Result);
-            //        Hero test = allHeros.Result;
-            //        MySQLHero testReference = new MySQLHero();
-            //        test = testReference.GetSkills(test);
-            //        heroNumber += 1;
-            //    }
-            //    else
-            //        isOk = false;
-            //}
 
             foreach (Hero hero in GameViewModel.Instance.MainCastle.Heroes)
             {
@@ -78,6 +60,7 @@ namespace Clickers.ViewModel
         private void NewHeroView(Hero hero)
         {
             HeroViewModel heroViewModel = new HeroViewModel(hero);
+            heroViewModel.InitSelectView();
             heroViewModel.View.DataContext = hero;
             View.AllHeroesSP.Children.Add(heroViewModel.View);
         }

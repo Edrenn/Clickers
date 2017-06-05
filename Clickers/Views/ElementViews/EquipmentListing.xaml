@@ -11,7 +11,7 @@
             <RowDefinition Height="0.15*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="ToPotionButton" Content="ToPotionButton" HorizontalAlignment="Left" Margin="200,0,0,0" Width="100" Height="40" VerticalAlignment="Bottom" Opacity="0.2"/>
+        <Button x:Name="ToPotionButton" Content="Potion" HorizontalAlignment="Left" Margin="200,0,0,0" Width="100" Height="40" VerticalAlignment="Bottom" Opacity="0.2"/>
         <Button x:Name="ToShieldButton" Content="Shield" HorizontalAlignment="Left" Width="100" Margin="100,0,0,0" Height="40" VerticalAlignment="Bottom" Opacity="0.2"/>
         <Button x:Name="ToWeaponButton" Content="Weapon" HorizontalAlignment="Left"  Width="100" Height="40" VerticalAlignment="Bottom" />
 

@@ -51,6 +51,7 @@ namespace Clickers.Models.Items
             set { imagePath = value; }
 
         }
+
         private int damageValue;
         public int DamageValue
         {

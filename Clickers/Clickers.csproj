@@ -146,6 +146,7 @@
     <Compile Include="ViewModel\MainCastleViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\GoldProducer\GoldProducersViewModel.cs" />
+    <Compile Include="ViewModel\popUp\InventorySetViewModel.cs" />
     <Compile Include="ViewModel\SoldierProducer\HeroViewModel.cs" />
     <Compile Include="ViewModel\SoldierProducer\SoldierProducerViewModel.cs" />
     <Compile Include="ViewModel\SoldierProducer\SoldiersBuildingsViewModel.cs" />
@@ -191,6 +192,9 @@
     </Compile>
     <Compile Include="Views\ElementViews\PotionView.xaml.cs">
       <DependentUpon>PotionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\popUp\InventorySetPopUp.xaml.cs">
+      <DependentUpon>InventorySetPopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SoldierView\SoldierProducerView.xaml.cs">
       <DependentUpon>SoldierProducerView.xaml</DependentUpon>
@@ -295,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ElementViews\PotionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\popUp\InventorySetPopUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

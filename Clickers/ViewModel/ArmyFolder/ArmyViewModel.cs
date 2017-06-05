@@ -3,6 +3,7 @@ using Clickers.Views;
 using Clickers.Views.ElementViews;
 using Clickers.Views.ArmyView;
 using Clickers.Views.TaverneView;
+using Clickers.ViewModel.SoldierProducer;
 
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace Clickers.ViewModel.Army
             NewSoldierViewCreation("Archer", "../../Assets/Image/archer.jpg");
             NewSoldierViewCreation("Cavalier", "../../Assets/Image/cavalier.jpg");
             if (GameViewModel.Instance.MainCastle.Army.Hero != null) {
-                NewHeroView();
+                NewHeroView(GameViewModel.Instance.MainCastle.Army.Hero);
             }
         }
 
@@ -46,44 +47,15 @@ namespace Clickers.ViewModel.Army
             view.Units.Children.Add(newSoldier);
         }
 
-        private void NewHeroView()
+        private void NewHeroView(Hero hero)
         {
-            HeroView newHeroView = new HeroView();
-            newHeroView.DataContext = GameViewModel.Instance.MainCastle.Army.Hero;
-            newHeroView.SelectHeroButton.Visibility = System.Windows.Visibility.Collapsed;
-            Button equipButton = new Button();
-            equipButton.Content = "Equiper";
-            equipButton.Height = 40;
-            newHeroView.ButtonSP.Children.Add(equipButton);
-            equipButton.Click += EquipButton_Click;
+            HeroViewModel newHeroViewModel = new HeroViewModel(hero);
+            newHeroViewModel.InitEquipView();
 
-            InventoryUC newIventoryUC = new InventoryUC();
-            newIventoryUC.DataContext = GameViewModel.Instance.MainCastle.Army.Hero;
-            newHeroView.HeroInfoSP.Children.Add(newIventoryUC);
-            
-            view.Units.Children.Add(newHeroView);
+            view.Units.Children.Add(newHeroViewModel.View);
 
         }
 
-        private void EquipButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            System.Windows.Window popUp = new System.Windows.Window();
-            EquipmentListing EquipmentListing = new EquipmentListing();
-            EquipmentListing.Controller.initEquipView();
-            popUp.Content = EquipmentListing;
-            popUp.Show();
-            //if (GameViewModel.Instance.MainCastle.WeaponStock.Count > 0)
-            //{
-            //    GameViewModel.Instance.MainCastle.Army.Hero.Weapon = GameViewModel.Instance.MainCastle.WeaponStock[0];
-            //}
-            //if (GameViewModel.Instance.MainCastle.ShieldStock.Count > 0)
-            //{
-            //    GameViewModel.Instance.MainCastle.Army.Hero.Shield = GameViewModel.Instance.MainCastle.ShieldStock[0];
-            //}
-            //if (GameViewModel.Instance.MainCastle.PotionStock.Count > 0)
-            //{
-            //    GameViewModel.Instance.MainCastle.Army.Hero.Potion = GameViewModel.Instance.MainCastle.PotionStock[0];
-            //}
-        }
+
     }
 }

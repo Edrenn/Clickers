@@ -96,7 +96,7 @@ namespace Clickers.ViewModel
         {
             Button button = (Button)sender;
             HeroView heroView = (HeroView)button.Content;
-            heroView.HeroContext.Life = heroView.HeroContext.MaxLife;
+            heroView.HeroContext.Life = heroView.HeroContext.BaseLife;
         }
 
         private void PotionStockGenerator()
@@ -104,6 +104,7 @@ namespace Clickers.ViewModel
             foreach (Potion potion in this.HealerHouse.PotionList)
             {
                 PotionViewModel newPVM = new PotionViewModel(potion);
+                newPVM.IniBuyView();
                 this.View.ItemsSP.Children.Add(newPVM.View);
 
             }

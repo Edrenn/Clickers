@@ -227,41 +227,14 @@ namespace Clickers.ViewModel.ArmyFolder
             }
         }
 
-        private void DamageTest(Soldier soldier1, Soldier soldier2)
+        private void DamageTest(Soldier attackingSoldier, Soldier defendingSoldier)
         {
-            switch (soldier1.Name)
+            if (defendingSoldier.Type == attackingSoldier.StrongAgainst)
             {
-                case "Chevalier":
-                    if (soldier2.Name == "Archer")
-                    {
-                        soldier2.Health -= soldier1.AttackValue * 2;
-                    }
-                    else
-                    {
-                        soldier2.Health -= soldier1.AttackValue;
-                    }
-                    break;
-                case "Cavalier":
-                    if (soldier2.Name == "Chevalier")
-                    {
-                        soldier2.Health -= soldier1.AttackValue * 2;
-                    }
-                    else
-                    {
-                        soldier2.Health -= soldier1.AttackValue;
-                    }
-                    break;
-                case "Archer":
-                    if (soldier2.Name == "Cavalier")
-                    {
-                        soldier2.Health -= soldier1.AttackValue * 2;
-                    }
-                    else
-                    {
-                        soldier2.Health -= soldier1.AttackValue;
-                    }
-                    break;
+                defendingSoldier.Health -= attackingSoldier.AttackValue * 2;
             }
+            else
+                defendingSoldier.Health -= attackingSoldier.AttackValue;
         }
 
         private void ArmyCreation(Clickers.Models.Army Army, List<Soldier> listToFill)

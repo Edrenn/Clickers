@@ -79,7 +79,13 @@ namespace Clickers.Models
             set { type = value; }
         }
 
-
+        private Enums.SoldierType strongAgainst;
+        public Enums.SoldierType StrongAgainst
+        {
+            get { return strongAgainst; }
+            set { strongAgainst = value; }
+        }
+        
         public void InitializeSoldier(Soldier soldier)
         {
             this.ImagePath = soldier.ImagePath;
@@ -87,6 +93,8 @@ namespace Clickers.Models
             this.AttackValue = soldier.AttackValue;
             this.Price = soldier.Price;
             this.Health = soldier.Health;
+            this.Type = soldier.Type;
+            this.StrongAgainst = soldier.StrongAgainst;
         }
     }
 }

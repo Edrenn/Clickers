@@ -22,7 +22,7 @@ namespace Clickers.Views
     /// </summary>
     public partial class GoldProducerUserControl : Window
     {
-        GoldProducersViewModel controller;
+        GoldProducersViewModelOld controller;
         private const int GWL_STYLE = -16;
         private const int WS_SYSMENU = 0x80000;
 
@@ -32,7 +32,7 @@ namespace Clickers.Views
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
-        public GoldProducerUserControl(GoldProducersViewModel controller)
+        public GoldProducerUserControl(GoldProducersViewModelOld controller)
         {
             InitializeComponent();
             this.controller = controller;

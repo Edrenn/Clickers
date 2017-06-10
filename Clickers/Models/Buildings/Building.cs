@@ -35,6 +35,7 @@ namespace Clickers.Models.Buildings
             set
             {
                 price = value;
+                OnPropertyChanged("Price");
             }
         }
 
@@ -49,6 +50,7 @@ namespace Clickers.Models.Buildings
             set
             {
                 level = value;
+                OnPropertyChanged("Level");
             }
         }
 

@@ -30,6 +30,14 @@ namespace Clickers
             {
                 goldCounter = value;
                 RaisePropertyChanged("GoldCounter");
+                if (goldCounter == this.MainCastle.GoldProducers[2].Price)
+                {
+                    this.MainCastle.GoldProducers[2].IsVisible = true;
+                }
+                if (goldCounter == this.MainCastle.GoldProducers[3].Price)
+                {
+                    this.MainCastle.GoldProducers[3].IsVisible = true;
+                }
             }
         }
 
@@ -108,14 +116,16 @@ namespace Clickers
 
             getAllHero();
             GetAllSoldierProducer();
+            GetAllGoldProducer();
             ennemyCastle = new Castle("Méchant Chato");
         }
 
         public void UsineProduction(int delay, int quantityProduct,CancellationTokenSource CTS)
         {
+            int delayInMilliseconds = delay * 1000;
             if (CTS.IsCancellationRequested == false)
             {
-                Thread.Sleep(delay);
+                Thread.Sleep(delayInMilliseconds);
                 GoldCounter = GoldCounter + quantityProduct;
                 UsineProduction(delay, quantityProduct,CTS);
             }
@@ -149,6 +159,19 @@ namespace Clickers
             {
                 MainCastle.SoldiersProducers.Add(sp.Name, sp);
                 SPMySQLM.SetSoldiers(sp);
+            }
+        }
+
+        private void GetAllGoldProducer()
+        {
+            MySQLManager<RessourceProducer> mySQLRPManager = new MySQLManager<RessourceProducer>();
+            List<RessourceProducer> allGoldProducers = mySQLRPManager.GetAll();
+            int goldNumber = 0;
+            foreach (RessourceProducer RessourceProducer in allGoldProducers)
+            {
+                //this.MainCastle.GoldProducers.Add("GoldProducer" + goldNumber, RessourceProducer);
+                this.MainCastle.GoldProducers.Add(RessourceProducer);
+                goldNumber++;
             }
         }
 

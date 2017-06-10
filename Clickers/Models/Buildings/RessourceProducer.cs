@@ -49,8 +49,15 @@ namespace Clickers.Models.Buildings
             set
             {
                 quantityProduct = value;
-                RaisePropertyChanged("QuantityProduct");
+                OnPropertyChanged("QuantityProduct");
             }
+        }
+
+        private bool isVisible;
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set { isVisible = value; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -60,6 +67,13 @@ namespace Clickers.Models.Buildings
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        public void Upgrade()
+        {
+            this.Level += 1;
+            this.QuantityProduct *= 2;
+            this.Price *= 2;
         }
     }
 }

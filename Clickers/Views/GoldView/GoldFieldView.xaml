@@ -7,19 +7,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid Background="White">
+    <Grid Background="BurlyWood">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="0.2*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="1.107*" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
         <local:InfoBarUserControl x:Name="InfoBarUC" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" />
         <local:ToCastleButtonUserControl Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Left" />
@@ -28,14 +22,28 @@
 
         <Button x:Name="GoldButton" Content="Click" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Height="80" Width="80"/>
 
-        <Label x:Name="labelOne" Content="10" Grid.Row="3"  Grid.Column="0" HorizontalAlignment="Center"/>
-        <Button x:Name="UsineOneButton" Content="Usine 1" Height="100" Width="100" Grid.Row="3" Grid.Column="0"/>
-        <Label x:Name="labelTwo" Content="20" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"/>
-        <Button x:Name="UsineTwoButton" Content="Usine 2" Height="100" Width="100" Grid.Row="3" Grid.Column="1"/>
-        <Label x:Name="labelThree" Content="30" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center"/>
-        <Button x:Name="UsineThreeButton" Content="Usine 3" Height="100" Width="100" Grid.Row="3" Grid.Column="2"/>
-        <Label x:Name="labelFour" Content="40" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center"/>
-        <Button x:Name="UsineFourButton" Content="Usine 4" Height="100" Width="100" Grid.Row="3" Grid.Column="3"/>
+        <!--<Label x:Name="labelOne" Content="10" Grid.Row="3"  Grid.Column="0" HorizontalAlignment="Center"/>
+        <Button x:Name="UsineOneButton" Content="Usine 1" Height="100" Width="100" Grid.Row="3" Grid.Column="0"/>-->
+        <StackPanel x:Name="GoldProducer1SP" Grid.Row="3"  Grid.Column="0" HorizontalAlignment="Center" Visibility="Collapsed">
+        </StackPanel>
+        <!--<Label x:Name="labelTwo" Content="20" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"/>
+        <Button x:Name="UsineTwoButton" Content="Usine 2" Height="100" Width="100" Grid.Row="3" Grid.Column="1"/>-->
+        <StackPanel x:Name="GoldProducer2SP" Grid.Row="3"  Grid.Column="1" HorizontalAlignment="Center" Visibility="Collapsed">
+        </StackPanel>
+        <!--<Label x:Name="labelThree" Content="30" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center"/>
+        <Button x:Name="UsineThreeButton" Content="Usine 3" Height="100" Width="100" Grid.Row="3" Grid.Column="2"/>-->
+        <StackPanel x:Name="GoldProducer3SP" Grid.Row="3"  Grid.Column="2" HorizontalAlignment="Center" Visibility="Collapsed">
+        </StackPanel>
+        <!--<Label x:Name="labelFour" Content="40" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center"/>
+        <Button x:Name="UsineFourButton" Content="Usine 4" Height="100" Width="100" Grid.Row="3" Grid.Column="3"/>-->
+        <StackPanel x:Name="GoldProducer4SP" Grid.Row="3"  Grid.Column="3" HorizontalAlignment="Center" Visibility="Collapsed">
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+            <StackPanel  x:Name="AllGoldProducersSP">
+
+            </StackPanel>
+        </ScrollViewer>
 
     </Grid>
 </UserControl>

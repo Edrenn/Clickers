@@ -54,8 +54,15 @@ namespace Clickers.Models
             }
         }
 
+        //private Dictionary<String,RessourceProducer> goldProducers;
+        //public Dictionary<String,RessourceProducer> GoldProducers
+        //{
+        //    get { return goldProducers; }
+        //    set { goldProducers = value; }
+        //}
+
         private List<RessourceProducer> goldProducers;
-        public List<RessourceProducer> GoldProducers
+        public List< RessourceProducer> GoldProducers
         {
             get { return goldProducers; }
             set { goldProducers = value; }

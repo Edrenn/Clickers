@@ -138,6 +138,7 @@
     <Compile Include="ViewModel\BlackSmithViewModel.cs" />
     <Compile Include="ViewModel\EquipmentListingViewModel.cs" />
     <Compile Include="ViewModel\GoldProducer\GoldFieldViewModel.cs" />
+    <Compile Include="ViewModel\GoldProducer\GoldProducerViewModel.cs" />
     <Compile Include="ViewModel\HealerHouseViewModel.cs" />
     <Compile Include="ViewModel\InfoBarViewModel.cs" />
     <Compile Include="ViewModel\ItemViewModels\PotionViewModel.cs" />
@@ -145,7 +146,7 @@
     <Compile Include="ViewModel\ItemViewModels\WeaponViewModel.cs" />
     <Compile Include="ViewModel\MainCastleViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\GoldProducer\GoldProducersViewModel.cs" />
+    <Compile Include="ViewModel\GoldProducer\GoldProducersViewModelOld.cs" />
     <Compile Include="ViewModel\popUp\InventorySetViewModel.cs" />
     <Compile Include="ViewModel\SoldierProducer\HeroViewModel.cs" />
     <Compile Include="ViewModel\SoldierProducer\SoldierProducerViewModel.cs" />
@@ -177,6 +178,9 @@
     </Compile>
     <Compile Include="Views\ElementViews\InventoryUC.xaml.cs">
       <DependentUpon>InventoryUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GoldView\GoldProducerUC.xaml.cs">
+      <DependentUpon>GoldProducerUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HealerHouseView.xaml.cs">
       <DependentUpon>HealerHouseView.xaml</DependentUpon>
@@ -279,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ElementViews\InventoryUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GoldView\GoldProducerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

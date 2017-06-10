@@ -16,7 +16,7 @@ using Clickers.Views;
 
 namespace Clickers.ViewModel
 {
-    public class GoldProducersViewModel
+    public class GoldProducersViewModelOld
     {
         #region Properties
         private RessourceProducer ressourceProducer;
@@ -83,16 +83,16 @@ namespace Clickers.ViewModel
 
         public GoldProducerUserControl view;
 
-        private static Dictionary<RessourceProducer, GoldProducersViewModel> _instances = new Dictionary<RessourceProducer, GoldProducersViewModel>();
+        private static Dictionary<RessourceProducer, GoldProducersViewModelOld> _instances = new Dictionary<RessourceProducer, GoldProducersViewModelOld>();
         private static object _lock = new object();
 
-        public static GoldProducersViewModel GetProducersViewModelMultition(RessourceProducer Key)
+        public static GoldProducersViewModelOld GetProducersViewModelMultition(RessourceProducer Key)
         {
             lock (_lock)
             {
                 if (!_instances.ContainsKey(Key))
                 {
-                    _instances.Add(Key, new GoldProducersViewModel(Key));
+                    _instances.Add(Key, new GoldProducersViewModelOld(Key));
                 }
                 if (_instances[Key].RessourceProducer.IsActive == true)
                 {
@@ -102,7 +102,7 @@ namespace Clickers.ViewModel
             }
         }
 
-        private GoldProducersViewModel(RessourceProducer ressourceProducer)
+        private GoldProducersViewModelOld(RessourceProducer ressourceProducer)
         {
             view = new GoldProducerUserControl(this);
             RessourceProducer = ressourceProducer;

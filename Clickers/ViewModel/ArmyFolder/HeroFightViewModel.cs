@@ -128,7 +128,6 @@ namespace Clickers.ViewModel.Army
             EnnemyHeroView.HeroInfoSP.Visibility = System.Windows.Visibility.Collapsed;
             EnnemyHeroView.SelectHeroButton.Visibility = System.Windows.Visibility.Collapsed;
             EnnemyHeroView.DataContext = defendingHero;
-            this.View.ValidateButton.Click += ValidateButton_Click;
             this.View.EnnemyHeroSP.Children.Add(EnnemyHeroView);
             this.View.ItemsButton.Click += ItemsButton_Click;
         }
@@ -142,12 +141,6 @@ namespace Clickers.ViewModel.Army
             }
             else
                 System.Windows.MessageBox.Show("Vous n'avez pas de potion dans votre inventaire");
-        }
-
-        private void ValidateButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            //AITurn();
-            //DoAllActions();
         }
 
         private void FeinteButton_Click(object sender, System.Windows.RoutedEventArgs e)

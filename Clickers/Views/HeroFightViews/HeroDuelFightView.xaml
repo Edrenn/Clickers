@@ -97,11 +97,9 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
+
             <Button x:Name="ItemsButton" Grid.Column="3" Content="Objets" />
-            <Button x:Name="ValidateButton" Grid.Column="4" Content="Valider" />
 
         </Grid>
     </Grid>

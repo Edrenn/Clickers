@@ -17,6 +17,14 @@ namespace Clickers.ViewModel.Army
 {
     public class HeroFightViewModel : INotifyPropertyChanged
     {
+        private Random rand;
+        public Random Rand
+        {
+            get { return rand; }
+            set { rand = value; }
+        }
+
+
         private HeroDuelFightView view;
         public HeroDuelFightView View
         {
@@ -64,6 +72,7 @@ namespace Clickers.ViewModel.Army
 
         public HeroFightViewModel(Clickers.Models.Army attackingArmy, Clickers.Models.Army defendingArmy, Castle attackedCastle)
         {
+            this.Rand = new Random();
             this.View = new HeroDuelFightView();
             this.Actions = new Dictionary<Hero, string>();
             this.AllyHero = attackingArmy.Hero;
@@ -129,6 +138,7 @@ namespace Clickers.ViewModel.Army
             if (this.AllyHero.Potion != null)
             {
                 DoAllActions("Objet", AITurn());
+                this.View.AllyHeroSkillUsed.Text = "Objet";
             }
             else
                 System.Windows.MessageBox.Show("Vous n'avez pas de potion dans votre inventaire");
@@ -143,6 +153,7 @@ namespace Clickers.ViewModel.Army
         private void FeinteButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             DoAllActions("Feinte", AITurn());
+            this.View.AllyHeroSkillUsed.Text = "Feinte";
             //if (AllyHero.Skills[2].UseCounter == 0)
             //{
             //    System.Windows.MessageBox.Show("Vous avez utilisé toutes vos feintes");
@@ -169,6 +180,7 @@ namespace Clickers.ViewModel.Army
 
                 DoAllActions("Parade", AITurn());
                 AllyHero.Skills[1].UseCounter--;
+                this.View.AllyHeroSkillUsed.Text = "Parade";
                 //if (Actions.ContainsKey(AllyHero))
                 //{
                 //    Actions[AllyHero] = "Parade";
@@ -181,6 +193,7 @@ namespace Clickers.ViewModel.Army
         private void AttaqueButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             DoAllActions("Attaque", AITurn());
+            this.View.AllyHeroSkillUsed.Text = "Attaque";
             //if (Actions.ContainsKey(AllyHero))
             //{
             //    Actions[AllyHero] = "Attaque";
@@ -338,11 +351,11 @@ namespace Clickers.ViewModel.Army
              * 21 à 30 Parade
              * >30 Objet
             */
-            Random rand = new Random();
-            int actionNumber = rand.Next(0, 41);
+            int actionNumber = this.Rand.Next(0, 41);
             if (actionNumber <= 10)
             {
                 actionToReturn = "Attaque";
+                this.View.EnemyHeroSkillUsed.Text = actionToReturn;
                 //if (Actions.ContainsKey(EnemyHero))
                 //{
                 //    Actions[EnemyHero] = "Attaque";
@@ -353,6 +366,7 @@ namespace Clickers.ViewModel.Army
             else if (actionNumber > 10 && actionNumber <= 20)
             {
                 actionToReturn = "Feinte";
+                this.View.EnemyHeroSkillUsed.Text = actionToReturn;
                 //if (Actions.ContainsKey(EnemyHero))
                 //{
                 //    Actions[EnemyHero] = "Feinte";
@@ -371,6 +385,7 @@ namespace Clickers.ViewModel.Army
                 {
                     actionToReturn = "Parade";
                     EnemyHero.Skills[1].UseCounter--;
+                    this.View.EnemyHeroSkillUsed.Text = actionToReturn;
                 }
                 //if (EnemyHero.Skills[2].UseCounter == 0)
                 //{
@@ -391,6 +406,7 @@ namespace Clickers.ViewModel.Army
                 if (this.EnemyHero.Potion != null)
                 {
                     actionToReturn = "Potion";
+                    this.View.EnemyHeroSkillUsed.Text = actionToReturn;
                 }
                 else
                     AITurn();

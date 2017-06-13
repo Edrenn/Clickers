@@ -41,13 +41,27 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Attaque : " />
-                    <TextBlock Text="{Binding AttackValue,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{Binding Attack,UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Niveau : " />
                     <TextBlock Text="{Binding Level,UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </StackPanel>
+            
+            <Grid VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Compétence : " />
+                    <TextBlock x:Name="AllyHeroSkillUsed" />
+                </StackPanel>
+            </Grid>
+
+            <Grid VerticalAlignment="Center" Grid.Column="4">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Compétence : " />
+                    <TextBlock x:Name="EnemyHeroSkillUsed" />
+                </StackPanel>
+            </Grid>
 
             <StackPanel x:Name="AllyHeroSP" Grid.Column="1" />
 
@@ -67,7 +81,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Attaque : " />
-                    <TextBlock Text="{Binding AttackValue,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{Binding Attack,UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Niveau : " />

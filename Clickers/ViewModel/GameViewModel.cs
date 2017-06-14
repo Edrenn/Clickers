@@ -110,6 +110,7 @@ namespace Clickers
             this.MainCastle.WeaponStock = new List<Models.Items.Weapon>();
             this.MainCastle.PotionStock = new List<Models.Items.Potion>();
             this.MainCastle.Heroes = new List<Hero>();
+            this.MainCastle.Army = new Army();
             MySQLManager<HealerHouse> MyHealerHouseSQLManager = new MySQLManager<HealerHouse>();
             MainCastle.Healer = MyHealerHouseSQLManager.Get(1).Result;
             MySQLHealerHouse mySQLHealerHouse = new MySQLHealerHouse();

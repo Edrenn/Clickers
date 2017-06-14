@@ -97,7 +97,14 @@ namespace Clickers.ViewModel
             Button button = (Button)sender;
             StackPanel sp = (StackPanel)button.Parent;
             TextBox tb = (TextBox)sp.Children[1];
-            NormalGameGeneration(tb.Text);
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                System.Windows.MessageBox.Show("Veuillez donner un nom à votre château");
+            }
+            else
+                NormalGameGeneration(tb.Text);
+            Window window = (Window)sp.Parent;
+            window.Close();
         }
 
         private async void NormalGameGeneration(string CastleName)

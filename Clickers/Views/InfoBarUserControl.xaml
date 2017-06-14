@@ -6,8 +6,21 @@
       xmlns:local="clr-namespace:Clickers.Views"
       mc:Ignorable="d" 
       d:DesignHeight="30" d:DesignWidth="300">
-
-    <Grid Background="Blue">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Styles/BaseDictionary.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel>
+            <Image Source="/Assets/Image/WallTexture1.jpg"/>
+            <Image Source="/Assets/Image/WallTexture1.jpg"/>
+            <Image Source="/Assets/Image/WallTexture1.jpg"/>
+            <Image Source="/Assets/Image/WallTexture1.jpg"/>
+            <Image Source="/Assets/Image/WallTexture1.jpg"/>
+            <Image Source="/Assets/Image/WallTexture1.jpg"/>
+            <Image Source="/Assets/Image/WallTexture1.jpg"/>
+            <Image Source="/Assets/Image/WallTexture1.jpg"/>
+        </StackPanel>
+    <Grid Background="BurlyWood" Margin="0,3,0,3.4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -20,12 +33,13 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label x:Name="GoldLabel" Content="Golds : " Grid.Column="0"/>
-            <Label x:Name="GoldNumberLabel" Content="{Binding GoldCounter}" Grid.Column="1"/>
+            <TextBlock x:Name="GoldLabel" Text="Golds : " Grid.Column="0"  Style="{StaticResource TitlePolice}" VerticalAlignment="Center"/>
+                <TextBlock x:Name="GoldNumberLabel" Text="{Binding GoldCounter}" Grid.Column="1" VerticalAlignment="Center"  Style="{StaticResource TitlePolice}"/>
         </Grid>
 
-        <Label x:Name="PlayerNameLabel" Content="{Binding MainCastle.Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="PlayerNameLabel" Text="{Binding MainCastle.Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="1"  Style="{StaticResource TitlePolice}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
         <Button x:Name="AttackAlertButton" Background="Red" Content="!" Grid.Column="2" Width="50" HorizontalAlignment="Right" Visibility="Collapsed"/>
+    </Grid>
     </Grid>
 </UserControl>

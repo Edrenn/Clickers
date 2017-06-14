@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Clickers.Views"
              mc:Ignorable="d" 
              d:DesignHeight="1024" d:DesignWidth="1920">
-    <Grid Background="Green">
+    <Grid Background="BurlyWood">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -19,18 +19,22 @@
 
         <TextBlock Text="{Binding Name}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-        <Grid Grid.Row="2" Background="Red">
+        <Grid Grid.Row="2" Background="BurlyWood">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1171*"/>
+                <ColumnDefinition Width="749*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="HeroHealTB" Text="Soigner mes héros" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button x:Name="HeroHealButton" Grid.Row="1" Height="30" Width="200" Content="Sélectionner un héro"/>
+            <TextBlock x:Name="HeroHealTB" Text="Soigner mes héros" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="911,7,161.304,7.4"/>
+            <Button x:Name="HeroHealButton" Grid.Row="1" Height="30" Width="200" Content="Sélectionner un héro" Margin="860,126.6,111.304,127.4"/>
         </Grid>
 
         <local:ToCastleButtonUserControl Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        
-        <Grid Grid.Row="3" Background="Aqua">
+
+        <Grid Grid.Row="3" Background="BurlyWood">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>

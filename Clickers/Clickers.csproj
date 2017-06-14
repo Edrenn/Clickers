@@ -89,6 +89,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -102,12 +103,17 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFCustomMessageBox, Version=1.0.7.39267, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFCustomMessageBox.1.0.7\lib\WPFCustomMessageBox.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataBaseManager\AllPath.cs" />
     <Compile Include="DataBaseManager\EntitiesLink\MySQLBlacksmith.cs" />
     <Compile Include="DataBaseManager\EntitiesLink\MySQLHealerHouse.cs" />
     <Compile Include="DataBaseManager\EntitiesLink\MySQLHero.cs" />
@@ -147,6 +153,7 @@
     <Compile Include="ViewModel\MainCastleViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\GoldProducer\GoldProducersViewModelOld.cs" />
+    <Compile Include="ViewModel\OptionViewModel.cs" />
     <Compile Include="ViewModel\popUp\InventorySetViewModel.cs" />
     <Compile Include="ViewModel\SoldierProducer\HeroViewModel.cs" />
     <Compile Include="ViewModel\SoldierProducer\SoldierProducerViewModel.cs" />
@@ -197,8 +204,17 @@
     <Compile Include="Views\ElementViews\PotionView.xaml.cs">
       <DependentUpon>PotionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OptionView\HeroOptionUC.xaml.cs">
+      <DependentUpon>HeroOptionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OptionView\OptionUserControl.xaml.cs">
+      <DependentUpon>OptionUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\popUp\InventorySetPopUp.xaml.cs">
       <DependentUpon>InventorySetPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OptionView\SoldierOptionUC.xaml.cs">
+      <DependentUpon>SoldierOptionUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SoldierView\SoldierProducerView.xaml.cs">
       <DependentUpon>SoldierProducerView.xaml</DependentUpon>
@@ -310,7 +326,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\OptionView\HeroOptionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OptionView\OptionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\popUp\InventorySetPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OptionView\SoldierOptionUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -97,34 +97,6 @@ namespace Clickers.Models
             }
         }
 
-        int level;
-        public int Level
-        {
-            get
-            {
-                return level;
-            }
-
-            set
-            {
-                level = value;
-            }
-        }
-
-        int price;
-        public int Price
-        {
-            get
-            {
-                return price;
-            }
-
-            set
-            {
-                price = value;
-            }
-        }
-
         private string type;
         public string Type
         {
@@ -206,7 +178,6 @@ namespace Clickers.Models
             this.Life = life;
             this.Armor = armor;
             this.Attack = attackValue;
-            this.Level = level;
             this.Type = type;
             this.ImagePath = imagePath;
             this.Skills = new List<Skill>();

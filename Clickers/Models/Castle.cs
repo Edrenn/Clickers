@@ -40,6 +40,14 @@ namespace Clickers.Models
             }
         }
 
+        private int golds;
+        public int Golds
+        {
+            get { return golds; }
+            set { golds = value; }
+        }
+
+
         private Army army;
         public Army Army
         {

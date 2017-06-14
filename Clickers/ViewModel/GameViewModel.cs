@@ -102,7 +102,14 @@ namespace Clickers
 
         private GameViewModel()
         {
-            MainCastle = new Castle(castleName);
+            MySQLManager<Castle> MySQLCastle = new MySQLManager<Castle>();
+            this.MainCastle = MySQLCastle.Get(1).Result;
+            this.MainCastle.GoldProducers = new List<RessourceProducer>();
+            this.MainCastle.SoldiersProducers = new Dictionary<string, SoldiersProducer>();
+            this.MainCastle.ShieldStock = new List<Models.Items.Shield>();
+            this.MainCastle.WeaponStock = new List<Models.Items.Weapon>();
+            this.MainCastle.PotionStock = new List<Models.Items.Potion>();
+            this.MainCastle.Heroes = new List<Hero>();
             MySQLManager<HealerHouse> MyHealerHouseSQLManager = new MySQLManager<HealerHouse>();
             MainCastle.Healer = MyHealerHouseSQLManager.Get(1).Result;
             MySQLHealerHouse mySQLHealerHouse = new MySQLHealerHouse();
@@ -118,6 +125,7 @@ namespace Clickers
             GetAllSoldierProducer();
             GetAllGoldProducer();
             ennemyCastle = new Castle("Méchant Chato");
+            this.goldCounter = this.MainCastle.Golds;
         }
 
         public void UsineProduction(int delay, int quantityProduct,CancellationTokenSource CTS)
@@ -169,7 +177,6 @@ namespace Clickers
             int goldNumber = 0;
             foreach (RessourceProducer RessourceProducer in allGoldProducers)
             {
-                //this.MainCastle.GoldProducers.Add("GoldProducer" + goldNumber, RessourceProducer);
                 this.MainCastle.GoldProducers.Add(RessourceProducer);
                 goldNumber++;
             }

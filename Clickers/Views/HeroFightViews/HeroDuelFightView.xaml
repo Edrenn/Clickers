@@ -43,10 +43,6 @@
                     <TextBlock Text="Attaque : " />
                     <TextBlock Text="{Binding Attack,UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Niveau : " />
-                    <TextBlock Text="{Binding Level,UpdateSourceTrigger=PropertyChanged}" />
-                </StackPanel>
             </StackPanel>
             
             <Grid VerticalAlignment="Center">
@@ -82,10 +78,6 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Attaque : " />
                     <TextBlock Text="{Binding Attack,UpdateSourceTrigger=PropertyChanged}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Niveau : " />
-                    <TextBlock Text="{Binding Level,UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </StackPanel>
 

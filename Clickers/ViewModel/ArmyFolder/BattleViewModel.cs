@@ -146,7 +146,7 @@ namespace Clickers.ViewModel.ArmyFolder
                 view.WinOrLoseLabel.Content = "DÉFAITE..";
             if (this.AttackedCastle.Life <= 0)
             {
-                System.Windows.MessageBox.Show("Fin du Game");
+                System.Windows.MessageBox.Show("Bravo vous avez gagné !");
             }
             else
             {

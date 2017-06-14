@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 using Clickers.Models;
 using Clickers.Models.Items;
@@ -65,6 +66,24 @@ namespace Clickers.Json
             return toReturn;
         }
 
+
+        public Castle GetCastleFromJSon(string path)
+        {
+            Castle existingCastle = new Castle();
+
+            using (StreamReader fileItem = File.OpenText(path))
+            using (JsonTextReader reader = new JsonTextReader(fileItem))
+            {
+                string jSonContent = fileItem.ReadToEnd();
+                existingCastle = JsonConvert.DeserializeObject<Castle>(jSonContent, new JsonSerializerSettings());
+            }
+            if (String.IsNullOrEmpty(existingCastle.Name))
+            {
+                existingCastle.Name = ConvertToUTF8(existingCastle.Name);
+            }
+            return existingCastle;
+        }
+
         public List<RessourceProducer> GetAllGoldProducersFromJSon()
         {
             string path = "D:\\Workspaces\\Clickers\\Clickers\\JsonConfig\\";
@@ -85,13 +104,11 @@ namespace Clickers.Json
             return existingProducer;
         }
 
-        public List<SoldiersProducer> GetAllSoldierProducersFromJSon()
+        public List<SoldiersProducer> GetAllSoldierProducersFromJSon(string path)
         {
-            string path = "D:\\Workspaces\\Clickers\\Clickers\\JsonConfig\\";
-            string file = "SoldiersProducer.Json";
             List<SoldiersProducer> existingProducer = new List<SoldiersProducer>();
 
-            using (StreamReader fileItem = File.OpenText(path + file))
+            using (StreamReader fileItem = File.OpenText(path))
             using (JsonTextReader reader = new JsonTextReader(fileItem))
             {
                 string jSonContent = fileItem.ReadToEnd();
@@ -100,7 +117,6 @@ namespace Clickers.Json
             foreach (SoldiersProducer producer in existingProducer)
             {
                 producer.Name = ConvertToUTF8(producer.Name);
-                //producer.AllUnitsType.Name = ConvertToUTF8(producer.AllUnitsType.Name);
             }
             return existingProducer;
         }
@@ -125,13 +141,11 @@ namespace Clickers.Json
             return existingSoldier;
         }
 
-        public List<Hero> GetAllHerosFromJSon()
+        public List<Hero> GetAllHerosFromJSon(string path)
         {
-            string path = "D:\\Workspaces\\Clickers\\Clickers\\JsonConfig\\";
-            string file = "Heros.Json";
             List<Hero> existingHero = new List<Hero>();
 
-            using (StreamReader fileItem = File.OpenText(path + file))
+            using (StreamReader fileItem = File.OpenText(path))
             using (JsonTextReader reader = new JsonTextReader(fileItem))
             {
                 string jSonContent = fileItem.ReadToEnd();
@@ -222,10 +236,38 @@ namespace Clickers.Json
             //{
             //    utf8Bytes[i] = (byte)itemToConvert[i];
             //}
-            byte[] bytes = Encoding.Default.GetBytes(itemToConvert);
+            if (!String.IsNullOrEmpty(itemToConvert))
+            {
+                byte[] bytes = Encoding.Default.GetBytes(itemToConvert);
+                string itemToReturn = Encoding.UTF8.GetString(bytes);
+                return itemToReturn;
+            }
             //string itemToReturn = Encoding.UTF8.GetString(utf8Bytes, 0, utf8Bytes.Length);
-            string itemToReturn = Encoding.UTF8.GetString(bytes);
-            return itemToReturn;
+            return null;
+        }
+
+        public String SerializeHeroJson(Hero hero)
+        {
+            String newHero ="";
+                newHero = new JavaScriptSerializer().Serialize(hero);
+                Console.WriteLine(newHero);
+            return newHero;
+        }
+
+        public String SerializeSoldierProducerJson(SoldiersProducer soldiersProducer)
+        {
+            String newSoldiersProducer = "";
+            newSoldiersProducer = new JavaScriptSerializer().Serialize(soldiersProducer);
+            Console.WriteLine(newSoldiersProducer);
+            return newSoldiersProducer;
+        }
+
+        public String SerializeCastleJson(Castle castle)
+        {
+            String newCastle = "";
+            newCastle = new JavaScriptSerializer().Serialize(castle);
+            Console.WriteLine(newCastle);
+            return newCastle;
         }
     }
 }

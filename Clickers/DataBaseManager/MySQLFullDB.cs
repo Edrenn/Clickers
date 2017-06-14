@@ -39,12 +39,46 @@ namespace Clickers.DataBaseManager
                 {
                     DbSetRessourceProducer.Add(item);
                 }
-                List<SoldiersProducer> allSoldierProducer = JsonManager.Instance.GetAllSoldierProducersFromJSon();
+                List<SoldiersProducer> allSoldierProducer = JsonManager.Instance.GetAllSoldierProducersFromJSon(AllPath.Instance.JsonFolder + AllPath.Instance.BaseSoldierProducer);
                 foreach (SoldiersProducer item in allSoldierProducer)
                 {
                     DbSetSoldiersProducer.Add(item);
                 }
-                List<Hero> allHeros = JsonManager.Instance.GetAllHerosFromJSon();
+                List<Hero> allHeros = JsonManager.Instance.GetAllHerosFromJSon(AllPath.Instance.JsonFolder + AllPath.Instance.BaseHero);
+                foreach (Hero hero in allHeros)
+                {
+                    DbSetHeros.Add(hero);
+                }
+
+                List<Shield> allShield = JsonManager.Instance.GetShieldsFromJSon();
+                foreach (Shield shield in allShield)
+                {
+                    DbSetShield.Add(shield);
+                }
+                HealerHouse HealerHouse = JsonManager.Instance.GetHealerHouseFromJSon();
+                DbSetHealerHouse.Add(HealerHouse);
+
+                Blacksmith Blacksmith = JsonManager.Instance.GetBlacksmithFromJSon();
+                DbSetBlacksmith.Add(Blacksmith);
+                this.SaveChangesAsync();
+            }
+        }
+
+        public async void InitCustomLocalMySQL(string customFolder)
+        {
+            if (this.Database.CreateIfNotExists())
+            {
+                List<RessourceProducer> allGoldProducer = JsonManager.Instance.GetAllGoldProducersFromJSon();
+                foreach (RessourceProducer item in allGoldProducer)
+                {
+                    DbSetRessourceProducer.Add(item);
+                }
+                List<SoldiersProducer> allSoldierProducer = JsonManager.Instance.GetAllSoldierProducersFromJSon(AllPath.Instance.JsonCustomFolder + customFolder + AllPath.Instance.CustomSoldierProducer);
+                foreach (SoldiersProducer item in allSoldierProducer)
+                {
+                    DbSetSoldiersProducer.Add(item);
+                }
+                List<Hero> allHeros = JsonManager.Instance.GetAllHerosFromJSon(AllPath.Instance.JsonCustomFolder + customFolder + AllPath.Instance.CustomHero);
                 foreach (Hero hero in allHeros)
                 {
                     DbSetHeros.Add(hero);

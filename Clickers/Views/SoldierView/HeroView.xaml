@@ -29,10 +29,6 @@
                 <Label Content="Armure : "/>
                 <Label x:Name="HeroArmor" Content="{Binding Armor,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Niveau"/>
-                <Label x:Name="HeroLevel" Content="{Binding Level,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-            </StackPanel>
         </StackPanel>
         <StackPanel x:Name="ButtonSP" Grid.Row="3">
             <Button x:Name="SelectHeroButton" Content="Sélectionner" Width="70" Height="40" />

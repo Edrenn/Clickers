@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Clickers.Models;
+
 namespace Clickers.Views
 {
     /// <summary>
@@ -20,8 +22,25 @@ namespace Clickers.Views
     /// </summary>
     public partial class BattleReport : UserControl
     {
+        private Castle mainCastle;
+        public Castle MainCastle
+        {
+            get { return mainCastle; }
+            set { mainCastle = value; }
+        }
+
+        private Castle enemyCastle;
+        public Castle EnemyCastle
+        {
+            get { return enemyCastle; }
+            set { enemyCastle = value; }
+        }
+
         public BattleReport()
         {
+            this.MainCastle = GameViewModel.Instance.MainCastle;
+            this.EnemyCastle = GameViewModel.Instance.EnnemyCastle;
+            this.DataContext = this;
             InitializeComponent();
         }
     }

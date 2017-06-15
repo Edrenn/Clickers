@@ -111,8 +111,10 @@ namespace Clickers.ViewModel
         {
             MySQLFullDB mySQLFullDB = new MySQLFullDB();
             mySQLFullDB.InitLocalMySQL();
-            Castle newCastle = new Castle() { Name = CastleName };
+            Castle newCastle = new Castle() { Name = CastleName, Life = 100 };
             await myCastleManager.Insert(newCastle);
+            Castle enemyCastle = new Castle() { Name = "Méchant chato", Life = 100 };
+            await myCastleManager.Insert(enemyCastle);
             MainCastleView newPage = new MainCastleView();
             Switcher.Switch(newPage);
         }
@@ -195,6 +197,8 @@ namespace Clickers.ViewModel
             Castle newCastle = Json.JsonManager.Instance.GetCastleFromJSon(AllPath.Instance.JsonCustomFolder + customFolder + "//" + AllPath.Instance.CustomCastle);
             newCastle.Name = CastleName;
             await myCastleManager.Insert(newCastle);
+            Castle enemyCastle = new Castle() { Name = "Méchant chato", Life = 100 };
+            await myCastleManager.Insert(enemyCastle);
             MainCastleView newPage = new MainCastleView();
             Switcher.Switch(newPage);
         }

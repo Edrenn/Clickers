@@ -129,6 +129,16 @@ namespace Clickers
             this.goldCounter = this.MainCastle.Golds;
         }
 
+        public async void Save()
+        {
+            MySQLManager<Castle> CastleManager = new MySQLManager<Castle>();
+            await CastleManager.Update(MainCastle);
+
+            //await CastleManager.Update(EnnemyCastle);
+            //await CastleManager.DbSetT.SqlQuery("UPDATE castles SET Life = " + EnnemyCastle.Life.ToString() + " WHERE Name = \"" + EnnemyCastle.Name + "\";").ToListAsync();
+            //await CastleManager.DbSetT.SqlQuery("UPDATE castles SET Life = " + EnnemyCastle.Life.ToString() + " WHERE Id = 2;").ToListAsync();
+        }
+
         public void UsineProduction(int delay, int quantityProduct,CancellationTokenSource CTS)
         {
             int delayInMilliseconds = delay * 1000;

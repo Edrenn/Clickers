@@ -26,6 +26,7 @@ namespace Clickers.ViewModel
 
         private void EventGenerator()
         {
+            view.SaveButton.Click += SaveButton_Click;
             view.BlackSmithButton.Click += BlackSmithButton_Click;
             view.ThiefButton.Click += ThiefButton_Click;
             view.GoldFieldButton.Click += GoldFieldButton_Click;
@@ -34,6 +35,11 @@ namespace Clickers.ViewModel
             view.ToBattleButton.Click += ToBattleButton_Click;
             view.TaverneButton.Click += TaverneButton_Click;
             view.HealerHouseButton.Click += HealerHouse_Click;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameViewModel.Instance.Save();
         }
 
         private void BlackSmithButton_Click(object sender, RoutedEventArgs e)
@@ -67,12 +73,12 @@ namespace Clickers.ViewModel
                 {
                     if (!(GameViewModel.Instance.MainCastle.Army.Hero.Life <= 0) || !(GameViewModel.Instance.EnnemyCastle.Army.Hero.Life <= 0))
                     {
-                        HeroFightViewModel newDuel = new HeroFightViewModel(GameViewModel.Instance.MainCastle.Army, GameViewModel.Instance.EnnemyCastle.Army, GameViewModel.Instance.EnnemyCastle);
+                        HeroFightViewModel newDuel = new HeroFightViewModel(GameViewModel.Instance.MainCastle.Army, GameViewModel.Instance.EnnemyCastle.Army, GameViewModel.Instance.EnnemyCastle, GameViewModel.Instance.MainCastle);
                     }
                 }
                 else
                 {
-                    Battle newBattle = new Battle(GameViewModel.Instance.MainCastle.Army, GameViewModel.Instance.EnnemyCastle.Army, GameViewModel.Instance.EnnemyCastle);
+                    Battle newBattle = new Battle(GameViewModel.Instance.MainCastle.Army, GameViewModel.Instance.EnnemyCastle.Army, GameViewModel.Instance.EnnemyCastle, GameViewModel.Instance.MainCastle);
                 }
             }
             else

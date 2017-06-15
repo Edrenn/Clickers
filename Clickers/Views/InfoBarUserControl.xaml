@@ -5,22 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Clickers.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="30" d:DesignWidth="300">
+      d:DesignHeight="30" d:DesignWidth="1920">
     <UserControl.Resources>
         <ResourceDictionary Source="/Styles/BaseDictionary.xaml"/>
     </UserControl.Resources>
     <Grid>
         <StackPanel>
             <Image Source="/Assets/Image/WallTexture1.jpg"/>
-            <Image Source="/Assets/Image/WallTexture1.jpg"/>
-            <Image Source="/Assets/Image/WallTexture1.jpg"/>
-            <Image Source="/Assets/Image/WallTexture1.jpg"/>
-            <Image Source="/Assets/Image/WallTexture1.jpg"/>
-            <Image Source="/Assets/Image/WallTexture1.jpg"/>
-            <Image Source="/Assets/Image/WallTexture1.jpg"/>
-            <Image Source="/Assets/Image/WallTexture1.jpg"/>
         </StackPanel>
-    <Grid Background="BurlyWood" Margin="0,3,0,3.4">
+    <Grid Background="BurlyWood" Margin="0,5,0,5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -30,16 +23,22 @@
 
         <Grid Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="GoldLabel" Text="Golds : " Grid.Column="0"  Style="{StaticResource TitlePolice}" VerticalAlignment="Center"/>
                 <TextBlock x:Name="GoldNumberLabel" Text="{Binding GoldCounter}" Grid.Column="1" VerticalAlignment="Center"  Style="{StaticResource TitlePolice}"/>
         </Grid>
 
-        <TextBlock x:Name="PlayerNameLabel" Text="{Binding MainCastle.Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="1"  Style="{StaticResource TitlePolice}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Grid Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="PlayerNameLabel" Text="{Binding MainCastle.Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{StaticResource TitlePolice}" VerticalAlignment="Center"/>
+                    <TextBlock Text="   " Style="{StaticResource TitlePolice}" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="CastleLifeTB" Text="{Binding MainCastle.Life,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{StaticResource TitlePolice}" VerticalAlignment="Center"/>
+                    <TextBlock Text="  Hp" Style="{StaticResource TitlePolice}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
 
-        <Button x:Name="AttackAlertButton" Background="Red" Content="!" Grid.Column="2" Width="50" HorizontalAlignment="Right" Visibility="Collapsed"/>
     </Grid>
     </Grid>
 </UserControl>

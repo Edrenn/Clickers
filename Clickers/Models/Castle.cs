@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using Clickers.Models.Items;
 using Clickers.Models.Base;
 using Clickers.Models.Buildings;
+using System.ComponentModel;
 
 namespace Clickers.Models
 {
-    public class Castle : BaseDBEntity
+    public class Castle : BaseDBEntity, INotifyPropertyChanged
     {
         private string name;
         public string Name
@@ -37,6 +38,7 @@ namespace Clickers.Models
             set
             {
                 life = value;
+                RaisePropertyChanged("Life");
             }
         }
 
@@ -119,7 +121,6 @@ namespace Clickers.Models
         }
 
         private HealerHouse healer;
-
         public HealerHouse Healer
         {
             get { return healer; }
@@ -139,6 +140,15 @@ namespace Clickers.Models
             this.ShieldStock = new List<Shield>();
             this.WeaponStock = new List<Weapon>();
             this.PotionStock = new List<Potion>();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

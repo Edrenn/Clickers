@@ -105,14 +105,22 @@ namespace Clickers.ViewModel.ArmyFolder
             }
         }
 
+        private Castle attackingCastle;
+        public Castle AttackingCastle
+        {
+            get { return attackingCastle; }
+            set { attackingCastle = value; }
+        }
 
-        public BattleViewModel(Clickers.Models.Army attackingArmy, Clickers.Models.Army defenseArmy, Castle attackedCastle)
+
+        public BattleViewModel(Clickers.Models.Army attackingArmy, Clickers.Models.Army defenseArmy, Castle attackedCastle, Castle attackingCastle)
         {
             this.AttackSoldiers = new List<Soldier>();
             this.DefenseSoldiers = new List<Soldier>();
             this.AttackDeaths = new List<Soldier>();
             this.DefenseDeaths = new List<Soldier>();
             this.AttackedCastle = attackedCastle;
+            this.AttackingCastle = attackingCastle;
             this.rng = new Random();
             this.View = new BattleReport();
 
@@ -143,10 +151,17 @@ namespace Clickers.ViewModel.ArmyFolder
                 this.AttackedCastle.Life -= 25;
             }
             else
+            {
                 view.WinOrLoseLabel.Content = "DÉFAITE..";
+                this.AttackingCastle.Life -= 25;
+            }
             if (this.AttackedCastle.Life <= 0)
             {
-                System.Windows.MessageBox.Show("Bravo vous avez gagné !");
+                System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("Bravo vous avez gagné !");
+                if (result == System.Windows.MessageBoxResult.OK)
+                {
+                    System.Windows.Application.Current.Shutdown();
+                }
             }
             else
             {

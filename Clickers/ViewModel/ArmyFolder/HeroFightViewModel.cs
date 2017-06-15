@@ -51,6 +51,7 @@ namespace Clickers.ViewModel.Army
         private Clickers.Models.Army defendingArmy;
 
         private Castle attackedCastle;
+        private Castle attackingCastle;
 
         private Dictionary<Hero, string> actions;
         public Dictionary<Hero, string> Actions
@@ -70,7 +71,7 @@ namespace Clickers.ViewModel.Army
             }
         }
 
-        public HeroFightViewModel(Clickers.Models.Army attackingArmy, Clickers.Models.Army defendingArmy, Castle attackedCastle)
+        public HeroFightViewModel(Clickers.Models.Army attackingArmy, Clickers.Models.Army defendingArmy, Castle attackedCastle, Castle attackingCastle)
         {
             this.Rand = new Random();
             this.View = new HeroDuelFightView();
@@ -80,6 +81,7 @@ namespace Clickers.ViewModel.Army
             this.attackingArmy = attackingArmy;
             this.defendingArmy = defendingArmy;
             this.attackedCastle = attackedCastle;
+            this.attackingCastle = attackingCastle;
             GenerateUI(AllyHero, EnemyHero);
             View.TurnTB.DataContext = this;
             Switcher.Switch(this.View);
@@ -187,17 +189,11 @@ namespace Clickers.ViewModel.Army
         {
             DoAllActions("Attaque", AITurn());
             this.View.AllyHeroSkillUsed.Text = "Attaque";
-            //if (Actions.ContainsKey(AllyHero))
-            //{
-            //    Actions[AllyHero] = "Attaque";
-            //}
-            //else
-            //    Actions.Add(AllyHero, "Attaque");
         }
 
         /// <summary>
         /// Méthode permettant de jouer toutes les actions d'un tour
-        /// On récupère l'action sélectionnée par chaque héro et on l'éxecute avec l'ordre suivant :
+        /// On récupère l'action sélectionnée par chaque héros et on l'éxecute avec l'ordre suivant :
         /// 1°) Parade 2°) Feinte 3°) Attaque
         /// On remet ensuite toutes les parades à false
         /// </summary>
@@ -247,46 +243,6 @@ namespace Clickers.ViewModel.Army
                     EndFight();
                 }
             }
-            //foreach (KeyValuePair<Hero, string> heroWithAction in Actions)
-            //{
-            //    if (heroWithAction.Value == "Parade")
-            //    {
-            //        heroWithAction.Key.IsParing = true;
-            //    }
-            //}
-            //foreach (KeyValuePair<Hero, string> heroWithAction in Actions)
-            //{
-            //    if (heroWithAction.Value == "Feinte")
-            //    {
-            //        if (heroWithAction.Key == AttackingHero)
-            //        {
-            //            Feinte(AttackingHero, DefendingHero);
-            //        }
-            //        else
-            //        {
-            //            Feinte(DefendingHero, AttackingHero);
-            //        }
-            //    }
-            //}
-            //foreach (KeyValuePair<Hero, string> heroWithAction in Actions)
-            //{
-            //    if (heroWithAction.Value == "Attaque")
-            //    {
-            //        if (heroWithAction.Key == AttackingHero)
-            //        {
-            //            Attack(AttackingHero, DefendingHero);
-            //        }
-            //        else
-            //        {
-            //            Attack(DefendingHero, AttackingHero);
-            //        }
-            //    }
-            //    if (AttackingHero.Life <= 0 ||DefendingHero.Life <= 0)
-            //    {
-            //        EndFight();
-            //        break;
-            //    }
-            //}
             this.AllyHero.IsParing = false;
             this.EnemyHero.IsParing = false;
             Turn++;
@@ -349,23 +305,11 @@ namespace Clickers.ViewModel.Army
             {
                 actionToReturn = "Attaque";
                 this.View.EnemyHeroSkillUsed.Text = actionToReturn;
-                //if (Actions.ContainsKey(EnemyHero))
-                //{
-                //    Actions[EnemyHero] = "Attaque";
-                //}
-                //else
-                //    Actions.Add(EnemyHero, "Attaque");
             }
             else if (actionNumber > 10 && actionNumber <= 20)
             {
                 actionToReturn = "Feinte";
                 this.View.EnemyHeroSkillUsed.Text = actionToReturn;
-                //if (Actions.ContainsKey(EnemyHero))
-                //{
-                //    Actions[EnemyHero] = "Feinte";
-                //}
-                //else
-                //    Actions.Add(EnemyHero, "Feinte");
             }
             else if (actionNumber > 20 && actionNumber <= 30)
             {
@@ -380,19 +324,6 @@ namespace Clickers.ViewModel.Army
                     EnemyHero.Skills[1].UseCounter--;
                     this.View.EnemyHeroSkillUsed.Text = actionToReturn;
                 }
-                //if (EnemyHero.Skills[2].UseCounter == 0)
-                //{
-                //    AITurn();
-                //}
-                //else
-                //{
-                //    if (Actions.ContainsKey(EnemyHero))
-                //    {
-                //        Actions[EnemyHero] = "Parade";
-                //    }
-                //    else
-                //        Actions.Add(EnemyHero, "Parade");
-                //}
             }
             else
             {
@@ -403,12 +334,6 @@ namespace Clickers.ViewModel.Army
                 }
                 else
                     AITurn();
-                //if (Actions.ContainsKey(EnemyHero))
-                //{
-                //    Actions[EnemyHero] = "Object";
-                //}
-                //else
-                //    Actions.Add(EnemyHero, "Object");
             }
 
             return actionToReturn;
@@ -416,6 +341,8 @@ namespace Clickers.ViewModel.Army
 
         private void EndFight()
         {
+            EnemyHero.Skills[1].UseCounter = 3;
+            AllyHero.Skills[1].UseCounter = 3;
             MessageBoxResult msgBxResult;
             if (EnemyHero.Life <= 0)
             {
@@ -434,7 +361,7 @@ namespace Clickers.ViewModel.Army
         private void launchBattle()
         {
             GameViewModel.Instance.EnnemyCastle.Army.GenerateEnnemyArmy();
-            Battle newBattle = new Battle(attackingArmy, defendingArmy, attackedCastle);
+            Battle newBattle = new Battle(attackingArmy, defendingArmy, attackedCastle,attackingCastle);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

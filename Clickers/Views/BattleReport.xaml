@@ -22,13 +22,25 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock x:Name="AllyUnitslose" />
             <TextBlock x:Name="AllyUnitsRest" Grid.Row="1" />
             <TextBlock x:Name="EnnemyUnitslose" Grid.Row="2"/>
             <TextBlock x:Name="EnnemyUnitsRest" Grid.Row="3"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="4">
+                <TextBlock Text="Votre château a "/>
+                <TextBlock Text="{Binding MainCastle.Life,UpdateSourceTrigger=PropertyChanged ,Mode=TwoWay}"/>
+                <TextBlock Text=" HP" Grid.Row="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Grid.Row="5">
+                <TextBlock Text="Le château ennemi a "/>
+                <TextBlock Text="{Binding EnemyCastle.Life,UpdateSourceTrigger=PropertyChanged ,Mode=TwoWay}"/>
+                <TextBlock Text=" HP" Grid.Row="2"/>
+            </StackPanel>
         </Grid>
-        <Button x:Name="ToCastle" Style="{StaticResource MenuButton}" Grid.Row="2" Width="274" HorizontalAlignment="Left" Margin="0,155,0,101">
+        <Button x:Name="ToCastle" Style="{StaticResource MenuButton}" Grid.Row="2" Width="414" HorizontalAlignment="Left" Margin="0,125,0,101">
             <Button.Content>
                 <Grid>
                     <Image Source="/Assets/Image/Bouton.png"/>

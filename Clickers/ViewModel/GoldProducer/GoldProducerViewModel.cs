@@ -124,13 +124,13 @@ namespace Clickers.ViewModel.GoldProducer
             toto.VerticalAlignment = VerticalAlignment.Center;
             toto.Show();
 
-            if (this.UsineTask.IsCompleted == false)
-            {
-                while (this.UsineTask.IsCompleted == false)
-                {
-                }
+            //if (this.UsineTask.IsCompleted == false)
+            //{
+            //    while (this.UsineTask.IsCompleted == false)
+            //    {
+            //    }
 
-            }
+            //}
             if (toto.ShowActivated)
             {
                 toto.Close();

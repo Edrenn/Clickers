@@ -17,7 +17,7 @@
             <Button x:Name="BackButton" Content="X" Height="50" Width="90" HorizontalAlignment="Left"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="CastleButton" Height="50" Width="90" Content="Château"/>
-                <Button x:Name="HeroButton" Height="50" Width="90" Content="Héros" Opacity="0.3"/>
+                <Button x:Name="HeroButton" Height="50" Width="90" Content="héros" Opacity="0.3"/>
                 <Button x:Name="SoldierButton" Height="50" Width="90" Content="Soldats" Opacity="0.3"/>
             </StackPanel>
             

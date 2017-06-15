@@ -51,16 +51,7 @@
             </Button.Content>
         </Button>
 
-        <Button x:Name="creditGameButton" Height="90" Grid.Row="4" Style="{StaticResource MenuButton}"  Width="300">
-            <Button.Content>
-                <Grid>
-                    <Image Source="Assets/Image/Bouton.png"/>
-                    <TextBlock Text="Crédits" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Style="{ StaticResource TitlePolice}" />
-                </Grid>
-            </Button.Content>
-        </Button>
-
-        <Button x:Name="QuitButton" Height="90" Grid.Row="5" Style="{StaticResource MenuButton}"  Width="300">
+        <Button x:Name="QuitButton" Height="90" Grid.Row="4" Style="{StaticResource MenuButton}"  Width="300">
             <Button.Content>
                 <Grid>
                     <Image Source="Assets/Image/Bouton.png"/>

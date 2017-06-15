@@ -42,6 +42,10 @@ namespace Clickers.DataBaseManager
         {
             await Task.Factory.StartNew(() =>
             {
+                if (this.Entry<TEntity>(item).State == EntityState.Detached)
+                {
+                    DbSetT.Add(item);
+                }
                 this.Entry<TEntity>(item).State = EntityState.Modified;
             });
             await this.SaveChangesAsync();
@@ -54,6 +58,10 @@ namespace Clickers.DataBaseManager
             {
                 foreach (var item in items)
                 {
+                    if (this.Entry<TEntity>(item).State == EntityState.Detached)
+                    {
+                        DbSetT.Add(item);
+                    }
                     this.Entry<TEntity>(item).State = EntityState.Modified;
                 }
             });

@@ -10,6 +10,14 @@ namespace Clickers.Models.Buildings
 {
     public class RessourceProducer : Building
     {
+        private int ressourceProducerId;
+        public int RessourceProducerId
+        {
+            get { return ressourceProducerId; }
+            set { ressourceProducerId = value; }
+        }
+
+
         private string typeRessource;
         public string TypeRessource
         {

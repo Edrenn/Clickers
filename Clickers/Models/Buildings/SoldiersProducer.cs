@@ -12,6 +12,14 @@ namespace Clickers.Models.Buildings
 {
     public class SoldiersProducer : Building
     {
+        private int soldiersProducerId;
+        public int SoldiersProducerId
+        {
+            get { return soldiersProducerId; }
+            set { soldiersProducerId = value; }
+        }
+
+
         private Soldier soldierType;
         public Soldier SoldierType
         {

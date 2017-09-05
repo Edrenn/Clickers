@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace Clickers.Models
 {
-    public class Battle : BaseDBEntity
+    public class Battle : BaseEntity
     {
+        private int battleId;
+
+        public int BattleId
+        {
+            get { return battleId; }
+            set { battleId = value; }
+        }
+
         private BattleViewModel controller;
         public BattleViewModel Controller
         {

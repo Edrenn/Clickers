@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 using Clickers.Models.Items;
 using Clickers.Models.Base;
@@ -11,8 +13,17 @@ using Clickers.Models.Skills;
 
 namespace Clickers.Models
 {
-    public class Hero : BaseDBEntity, INotifyPropertyChanged
+    public class Hero : BaseEntity, INotifyPropertyChanged
     {
+        private int heroId;
+        [Key]
+        public int HeroId
+        {
+            get { return heroId; }
+            set { heroId = value; }
+        }
+        
+
         string name;
         public string Name
         {
@@ -160,11 +171,13 @@ namespace Clickers.Models
         }
 
         private bool isParing;
+        [NotMapped]
         public bool IsParing
         {
             get { return isParing; }
             set { isParing = value; }
-        }
+        } 
+
 
         public Hero()
         {

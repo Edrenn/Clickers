@@ -8,7 +8,7 @@ using Clickers.Models.Base;
 
 namespace Clickers.Models.Buildings
 {
-    public class Building : BaseDBEntity
+    public class Building : BaseEntity
     {
         private string name;
         public string Name

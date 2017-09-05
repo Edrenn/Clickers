@@ -34,6 +34,12 @@ namespace Clickers.ViewModel
             view.ToBattleButton.Click += ToBattleButton_Click;
             view.TaverneButton.Click += TaverneButton_Click;
             view.HealerHouseButton.Click += HealerHouse_Click;
+            view.SaveButton.Click += SaveButton_Click;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameViewModel.Instance.Save();
         }
 
         private void BlackSmithButton_Click(object sender, RoutedEventArgs e)

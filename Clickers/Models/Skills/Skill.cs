@@ -8,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace Clickers.Models.Skills
 {
-    public class Skill : BaseDBEntity, INotifyPropertyChanged
+    public class Skill : BaseEntity, INotifyPropertyChanged
     {
+        private int skillId;
+
+        public int SkillId
+        {
+            get { return skillId; }
+            set { skillId = value; }
+        }
+
+
         private string name;
         public string Name
         {

@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace Clickers.Models
 {
-    public class Soldier : BaseDBEntity
+    public class Soldier : BaseEntity
     {
+        private int soldierId;
+
+        public int SoldierId
+        {
+            get { return soldierId; }
+            set { soldierId = value; }
+        }
+
+
         int health;
         public int Health
         {

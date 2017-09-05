@@ -102,30 +102,11 @@ namespace Clickers
 
         private GameViewModel()
         {
-            MySQLManager<Castle> MySQLCastle = new MySQLManager<Castle>();
+            MySQLCastle MySQLCastle = new MySQLCastle();
             this.MainCastle = MySQLCastle.Get(1).Result;
-            this.MainCastle.GoldProducers = new List<RessourceProducer>();
-            this.MainCastle.SoldiersProducers = new Dictionary<string, SoldiersProducer>();
-            this.MainCastle.ShieldStock = new List<Models.Items.Shield>();
-            this.MainCastle.WeaponStock = new List<Models.Items.Weapon>();
-            this.MainCastle.PotionStock = new List<Models.Items.Potion>();
-            this.MainCastle.Heroes = new List<Hero>();
-            this.MainCastle.Army = new Army();
-            MySQLManager<HealerHouse> MyHealerHouseSQLManager = new MySQLManager<HealerHouse>();
-            MainCastle.Healer = MyHealerHouseSQLManager.Get(1).Result;
-            MySQLHealerHouse mySQLHealerHouse = new MySQLHealerHouse();
-            mySQLHealerHouse.GetHealerHouse(MainCastle.Healer);
+            MySQLCastle.GetProperties(this.MainCastle);
 
-
-            MySQLManager<Blacksmith> MyBlacksmithSQLManager = new MySQLManager<Blacksmith>();
-            MainCastle.Blacksmith = MyBlacksmithSQLManager.Get(1).Result;
-            MySQLBlacksmith toto = new MySQLBlacksmith();
-            toto.SetItems(MainCastle.Blacksmith);
-
-            getAllHero();
-            GetAllSoldierProducer();
-            GetAllGoldProducer();
-            ennemyCastle = new Castle("Méchant Chato");
+            ennemyCastle = new Castle("Château ennemi");
             this.goldCounter = this.MainCastle.Golds;
         }
 
@@ -166,7 +147,7 @@ namespace Clickers
             SoldierProducerMySQLManager SPMySQLM = new SoldierProducerMySQLManager();
             foreach (SoldiersProducer sp in allSoldierProducers)
             {
-                MainCastle.SoldiersProducers.Add(sp.Name, sp);
+                MainCastle.SoldiersProducers.Add(sp);
                 SPMySQLM.SetSoldiers(sp);
             }
         }
@@ -183,6 +164,30 @@ namespace Clickers
             }
         }
 
+        public async void Save()
+        {
+            MySQLManager<Castle> newManager = new MySQLManager<Castle>();
+            this.mainCastle.Golds = this.GoldCounter;
+            await newManager.Update(this.MainCastle);
+            await newManager.SaveChangesAsync();
 
+            MySQLManager<Army> newArmyManager = new MySQLManager<Army>();
+            if (this.MainCastle.Army.Hero != null)
+            {
+                await newArmyManager.Database.ExecuteSqlCommandAsync("Update armies set Hero_HeroId = '" + this.MainCastle.Army.Hero.HeroId + "' where ArmyId =" + this.MainCastle.Army.ArmyId);
+            }
+
+            MySQLManager<RessourceProducer> RPManager = new MySQLManager<RessourceProducer>();
+            foreach (RessourceProducer RP in this.MainCastle.GoldProducers)
+            {
+                await RPManager.Update(RP);
+            }
+
+            MySQLManager<Hero> HeroManager = new MySQLManager<Hero>();
+            foreach (Hero hero in this.MainCastle.Heroes)
+            {
+                await HeroManager.Update(hero);
+            }
+        }
     }
 }

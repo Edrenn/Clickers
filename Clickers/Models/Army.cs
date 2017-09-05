@@ -2,6 +2,7 @@
 using Clickers.Models.Base;
 using Clickers.DataBaseManager.EntitiesLink;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,16 @@ using System.Threading.Tasks;
 
 namespace Clickers.Models
 {
-    public class Army : BaseDBEntity
+    public class Army : BaseEntity
     {
+        private int armyId;
+
+        public int ArmyId
+        {
+            get { return armyId; }
+            set { armyId = value; }
+        }
+
         private Hero hero;
         public Hero Hero
         {
@@ -18,7 +27,7 @@ namespace Clickers.Models
             set { hero = value; }
         }
 
-        List<Soldier> allSoldiers;
+        private List<Soldier> allSoldiers;
         public List<Soldier> AllSoldiers
         {
             get

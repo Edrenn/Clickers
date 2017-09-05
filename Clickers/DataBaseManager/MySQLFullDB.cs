@@ -25,12 +25,15 @@ namespace Clickers.DataBaseManager
         public DbSet<Blacksmith> DbSetBlacksmith { get; set; }
         public DbSet<Potion> DbSetPotion { get; set; }
         public DbSet<Shield> DbSetShield { get; set; }
+        public DbSet<Army> DbSetArmy { get; set; }
 
         public MySQLFullDB()
             : base(JsonManager.Instance.ReadFile<ConnectionString>(@"D:\Workspaces\Clickers\Clickers\JsonConfig\", @"MysqlConfig.json").ToString())
-        {        }
+        {
 
-        public async void InitLocalMySQL()
+        }
+
+        public async void InitLocalMySQL(string CastleName)
         {
             if (this.Database.CreateIfNotExists())
             {
@@ -44,8 +47,8 @@ namespace Clickers.DataBaseManager
                 {
                     DbSetSoldiersProducer.Add(item);
                 }
-                List<Hero> allHeros = JsonManager.Instance.GetAllHerosFromJSon(AllPath.Instance.JsonFolder + AllPath.Instance.BaseHero);
-                foreach (Hero hero in allHeros)
+                List<Hero> allHeroes = JsonManager.Instance.GetAllHerosFromJSon(AllPath.Instance.JsonFolder + AllPath.Instance.BaseHero);
+                foreach (Hero hero in allHeroes)
                 {
                     DbSetHeros.Add(hero);
                 }
@@ -60,7 +63,22 @@ namespace Clickers.DataBaseManager
 
                 Blacksmith Blacksmith = JsonManager.Instance.GetBlacksmithFromJSon();
                 DbSetBlacksmith.Add(Blacksmith);
-                this.SaveChangesAsync();
+
+                Army newArmy = new Army();
+                DbSetArmy.Add(newArmy);
+
+                await this.SaveChangesAsync();
+
+                Castle newCastle = new Castle(CastleName);
+                newCastle.Blacksmith = Blacksmith;
+                newCastle.GoldProducers = allGoldProducer;
+                newCastle.SoldiersProducers = allSoldierProducer;
+                newCastle.Heroes = allHeroes;
+                newCastle.Healer = HealerHouse;
+                newCastle.Army = newArmy;
+                DbSetCastle.Add(newCastle);
+                await this.SaveChangesAsync();
+
             }
         }
 

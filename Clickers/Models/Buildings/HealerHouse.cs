@@ -10,6 +10,14 @@ namespace Clickers.Models.Buildings
 {
     public class HealerHouse : Building
     {
+
+        private int healerHouseId;
+        public int HealerHouseId
+        {
+            get { return healerHouseId; }
+            set { healerHouseId = value; }
+        }
+
         private List<Potion> potionList;
         public List<Potion> PotionList
         {

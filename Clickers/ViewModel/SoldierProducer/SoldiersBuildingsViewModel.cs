@@ -36,9 +36,9 @@ namespace Clickers.ViewModel
         {
             this.View = view;
             
-            CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"],this.View.soldierView1);
-            CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers["Archerie"], this.View.soldierView2);
-            CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers["Ecurie"], this.View.soldierView3);
+            CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers[0],this.View.soldierView1);
+            CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers[1], this.View.soldierView2);
+            CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers[2], this.View.soldierView3);
         }
         #endregion
 
@@ -73,9 +73,9 @@ namespace Clickers.ViewModel
                     else
                     {
                         // This dataContext allows us to see the price and the name of the SoldierProducer
-                        SoldierProducerViewModel caserneView = new SoldierProducerViewModel(GameViewModel.Instance.MainCastle.SoldiersProducers[soldierProducer.Name], soldierView);
+                        SoldierProducerViewModel caserneView = new SoldierProducerViewModel(GameViewModel.Instance.MainCastle.SoldiersProducers[0], soldierView);
                         this.View.CaserneSP.Children.Add(caserneView.View);
-                        this.View.CaserneGrid.DataContext = GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"];
+                        this.View.CaserneGrid.DataContext = GameViewModel.Instance.MainCastle.SoldiersProducers[0];
                         this.View.Caserne1Button.Click += Caserne1Button_Click;
                     }
                     break;
@@ -89,9 +89,9 @@ namespace Clickers.ViewModel
                     else
                     {
                         // This dataContext allows us to see the price and the name of the SoldierProducer
-                        SoldierProducerViewModel archerieView = new SoldierProducerViewModel(GameViewModel.Instance.MainCastle.SoldiersProducers[soldierProducer.Name], soldierView);
+                        SoldierProducerViewModel archerieView = new SoldierProducerViewModel(GameViewModel.Instance.MainCastle.SoldiersProducers[1], soldierView);
                         this.View.ArcherieSP.Children.Add(archerieView.View);
-                        this.View.ArcherieGrid.DataContext = GameViewModel.Instance.MainCastle.SoldiersProducers["Archerie"];
+                        this.View.ArcherieGrid.DataContext = GameViewModel.Instance.MainCastle.SoldiersProducers[1];
                         this.View.Caserne2Button.Click += Caserne2Button_Click;
                     }
                     break;
@@ -105,9 +105,9 @@ namespace Clickers.ViewModel
                     else
                     {
                         // This dataContext allows us to see the price and the name of the SoldierProducer
-                        SoldierProducerViewModel archerieView = new SoldierProducerViewModel(GameViewModel.Instance.MainCastle.SoldiersProducers[soldierProducer.Name], soldierView);
+                        SoldierProducerViewModel archerieView = new SoldierProducerViewModel(GameViewModel.Instance.MainCastle.SoldiersProducers[2], soldierView);
                         this.View.EcurieSP.Children.Add(archerieView.View);
-                        this.View.EcurieGrid.DataContext = GameViewModel.Instance.MainCastle.SoldiersProducers["Ecurie"];
+                        this.View.EcurieGrid.DataContext = GameViewModel.Instance.MainCastle.SoldiersProducers[2];
                         this.View.EcurieButton.Click += Caserne3Button_Click;
                     }
                     break;
@@ -119,24 +119,24 @@ namespace Clickers.ViewModel
 
         private void Caserne1Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"].IsActive = true;
-            GameViewModel.Instance.GoldCounter -= GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"].Price;
+            GameViewModel.Instance.MainCastle.SoldiersProducers[0].IsActive = true;
+            GameViewModel.Instance.GoldCounter -= GameViewModel.Instance.MainCastle.SoldiersProducers[0].Price;
             this.View.CaserneGrid.Visibility = System.Windows.Visibility.Collapsed;
             this.View.soldierView1.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void Caserne2Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            GameViewModel.Instance.MainCastle.SoldiersProducers["Archerie"].IsActive = true;
-            GameViewModel.Instance.GoldCounter -= GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"].Price;
+            GameViewModel.Instance.MainCastle.SoldiersProducers[1].IsActive = true;
+            GameViewModel.Instance.GoldCounter -= GameViewModel.Instance.MainCastle.SoldiersProducers[1].Price;
             this.View.ArcherieGrid.Visibility = System.Windows.Visibility.Collapsed;
             this.View.soldierView2.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void Caserne3Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            GameViewModel.Instance.MainCastle.SoldiersProducers["Ecurie"].IsActive = true;
-            GameViewModel.Instance.GoldCounter -= GameViewModel.Instance.MainCastle.SoldiersProducers["Caserne"].Price;
+            GameViewModel.Instance.MainCastle.SoldiersProducers[2].IsActive = true;
+            GameViewModel.Instance.GoldCounter -= GameViewModel.Instance.MainCastle.SoldiersProducers[2].Price;
             this.View.EcurieGrid.Visibility = System.Windows.Visibility.Collapsed;
             this.View.soldierView3.Visibility = System.Windows.Visibility.Visible;
         }

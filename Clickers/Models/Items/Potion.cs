@@ -9,8 +9,16 @@ using Clickers.Models.Base;
 
 namespace Clickers.Models.Items
 {
-    public class Potion : BaseDBEntity
+    public class Potion : BaseEntity
     {
+        private int potionId;
+
+        public int PotionId
+        {
+            get { return potionId; }
+            set { potionId = value; }
+        }
+
 
         private string name;
         public string Name

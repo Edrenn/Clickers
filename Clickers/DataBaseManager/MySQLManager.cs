@@ -40,6 +40,11 @@ namespace Clickers.DataBaseManager
 
         public async Task<TEntity> Update(TEntity item)
         {
+            if (this.Entry<TEntity>(item).State == EntityState.Detached)
+            {
+                this.DbSetT.Attach(item);
+            }
+
             await Task.Factory.StartNew(() =>
             {
                 this.Entry<TEntity>(item).State = EntityState.Modified;
@@ -141,11 +146,6 @@ namespace Clickers.DataBaseManager
                 });
             
             return item;
-        }
-
-        public void initDatabase()
-        {
-            initDBIfNotExist.InitLocalMySQL();
         }
     }
 }

@@ -10,6 +10,14 @@ namespace Clickers.Models.Buildings
 {
     public class Blacksmith : Building
     {
+        private int blacksmithId;
+        public int BlacksmithId
+        {
+            get { return blacksmithId; }
+            set { blacksmithId = value; }
+        }
+
+
         private int repairPrice;
         public int RepairPrice
         {

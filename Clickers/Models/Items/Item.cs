@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clickers.Models.Items
 {
-    public class Item : BaseDBEntity
+    public class Item : BaseEntity
     {
 
         private string name;

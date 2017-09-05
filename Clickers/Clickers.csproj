@@ -114,7 +114,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataBaseManager\AllPath.cs" />
+    <Compile Include="DataBaseManager\EntitiesLink\MySQLArmy.cs" />
     <Compile Include="DataBaseManager\EntitiesLink\MySQLBlacksmith.cs" />
+    <Compile Include="DataBaseManager\EntitiesLink\MySQLCastle.cs" />
     <Compile Include="DataBaseManager\EntitiesLink\MySQLHealerHouse.cs" />
     <Compile Include="DataBaseManager\EntitiesLink\MySQLHero.cs" />
     <Compile Include="DataBaseManager\EntitiesLink\SoldierProducerMySQLManager.cs" />
@@ -388,7 +390,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Base\BaseDBEntity.cs" />
     <Compile Include="Models\Base\BaseEntity.cs" />
     <Compile Include="Models\ConnectionString.cs" />
     <Compile Include="Models\Generators\EntityGenerator.cs" />

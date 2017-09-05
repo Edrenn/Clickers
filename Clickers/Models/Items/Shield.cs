@@ -7,8 +7,17 @@ using Clickers.Models.Base;
 
 namespace Clickers.Models.Items
 {
-    public class Shield : BaseDBEntity
+    public class Shield : BaseEntity
     {
+        private int shieldId;
+
+        public int ShieldId
+        {
+            get { return shieldId; }
+            set { shieldId = value; }
+        }
+
+
         private string name;
         public string Name
         {

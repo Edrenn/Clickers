@@ -10,8 +10,17 @@ using Clickers.Models.Buildings;
 
 namespace Clickers.Models
 {
-    public class Castle : BaseDBEntity
+    public class Castle : BaseEntity
     {
+        private int castleId;
+
+        public int CastleId
+        {
+            get { return castleId; }
+            set { castleId = value; }
+        }
+
+
         private string name;
         public string Name
         {
@@ -76,8 +85,8 @@ namespace Clickers.Models
             set { goldProducers = value; }
         }
 
-        private Dictionary<String, SoldiersProducer> soldiersProducers;
-        public Dictionary<String,SoldiersProducer> SoldiersProducers
+        private List<SoldiersProducer> soldiersProducers;
+        public List<SoldiersProducer> SoldiersProducers
         {
             get { return soldiersProducers; }
             set { soldiersProducers = value; }
@@ -119,7 +128,6 @@ namespace Clickers.Models
         }
 
         private HealerHouse healer;
-
         public HealerHouse Healer
         {
             get { return healer; }
@@ -127,7 +135,15 @@ namespace Clickers.Models
         }
 
 
-        public Castle() { }
+        public Castle()
+        {
+            this.Life = 100;
+            this.GoldProducers = new List<RessourceProducer>();
+            this.SoldiersProducers= new List<SoldiersProducer>();
+            this.ShieldStock = new List<Shield>();
+            this.WeaponStock = new List<Weapon>();
+            this.PotionStock = new List<Potion>();
+        }
 
         public Castle(string Name)
         {
@@ -135,7 +151,7 @@ namespace Clickers.Models
             this.Life = 100;
             this.Army = new Army();
             this.GoldProducers = new List<RessourceProducer>();
-            this.SoldiersProducers = new Dictionary<String, SoldiersProducer>();
+            this.SoldiersProducers = new List<SoldiersProducer>();
             this.ShieldStock = new List<Shield>();
             this.WeaponStock = new List<Weapon>();
             this.PotionStock = new List<Potion>();

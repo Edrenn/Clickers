@@ -110,9 +110,7 @@ namespace Clickers.ViewModel
         private async void NormalGameGeneration(string CastleName)
         {
             MySQLFullDB mySQLFullDB = new MySQLFullDB();
-            mySQLFullDB.InitLocalMySQL();
-            Castle newCastle = new Castle() { Name = CastleName };
-            await myCastleManager.Insert(newCastle);
+            mySQLFullDB.InitLocalMySQL(CastleName);
             MainCastleView newPage = new MainCastleView();
             Switcher.Switch(newPage);
         }
@@ -221,17 +219,14 @@ namespace Clickers.ViewModel
             Switcher.Switch(newPage);
         }
 
-        private void OkButton_Click(object sender, RoutedEventArgs e)
-        {
-            myCastleManager.initDatabase();
-            MainCastleView newPage = new MainCastleView();
-            Switcher.Switch(newPage);
-        }
-
         private async void LoadCastle()
         {
-            Task<Castle> castleToLoad = myCastleManager.Get(1);
-            GameViewModel.Instance.MainCastle = castleToLoad.Result;
+            DataBaseManager.EntitiesLink.MySQLCastle castleEntitiesManager = new DataBaseManager.EntitiesLink.MySQLCastle();
+            Castle castleToLoad = myCastleManager.Get(1).Result;
+            castleEntitiesManager.GetProperties(castleToLoad);
+            DataBaseManager.EntitiesLink.MySQLArmy armyEntities = new DataBaseManager.EntitiesLink.MySQLArmy();
+            armyEntities.GetHero(castleToLoad.Army);
+            GameViewModel.Instance.MainCastle = castleToLoad;
         }
         #endregion
     }

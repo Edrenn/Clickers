@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clickers.Views.popUp"
         mc:Ignorable="d"
-        Title="InventorySetPopUp" Height="500" Width="1000">
-    <Grid x:Name="Grid" Width="800" Height="600">
+        Title="InventorySetPopUp" Height="500" Width="1500">
+    <Grid x:Name="Grid" Width="1400" Height="500">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.2*" />
             <ColumnDefinition Width="0.8*" />

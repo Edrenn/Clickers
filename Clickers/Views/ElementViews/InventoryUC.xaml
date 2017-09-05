@@ -21,6 +21,5 @@
         <Border BorderBrush="Black" BorderThickness="2" Width="80" Grid.Column="2" Height="80">
             <Image x:Name="PotionImage" Source="{Binding Potion.ImagePath,UpdateSourceTrigger=PropertyChanged}" />
         </Border>
-
     </Grid>
 </UserControl>

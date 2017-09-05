@@ -5,33 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Clickers.Views.TaverneView"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="200">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.6*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="0.5*"/>
-        </Grid.RowDefinitions>
-        <TextBlock x:Name="HeroName" HorizontalAlignment="Center" Text="{Binding Name}"/>
-        <Image x:Name="HeroImage" Source="{Binding ImagePath}" Grid.Row="1"/>
-        <StackPanel x:Name="HeroInfoSP" Grid.Row="2">
-            <Button x:Name="InventoryHeroButton" Content="Inv" HorizontalAlignment="Right" Width="70" Height="40" />
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Attaque : "/>
-                <Label x:Name="HeroHealth" Content="{Binding Attack,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+             d:DesignHeight="250" d:DesignWidth="450">
+    <Border BorderBrush="Black" BorderThickness="5" Width="450">
+        <Grid Background="BlanchedAlmond" Width="450">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="HeroName" HorizontalAlignment="Center" Text="{Binding Name}"/>
+            <Image x:Name="HeroImage" Source="{Binding ImagePath}"   Width="125" Height="200" Grid.Row="1"/>
+            <StackPanel x:Name="HeroInfoSP" Grid.Row="2">
+                <Button x:Name="InventoryHeroButton"  Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Width="54" Height="62" Margin="0,0,34.6,0">
+                    <Button.Content>
+                        <Grid>
+                            <Image Source="/Assets/Image/Sac.png"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Attaque : "/>
+                    <Label x:Name="HeroHealth" Content="{Binding Attack,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Vie : "/>
+                    <Label x:Name="HeroAttackValue" Content="{Binding Life,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Armure : "/>
+                    <Label x:Name="HeroArmor" Content="{Binding Armor,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Vie : "/>
-                <Label x:Name="HeroAttackValue" Content="{Binding Life,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+            <StackPanel x:Name="ButtonSP" Grid.Row="3">
+                <Button x:Name="SelectHeroButton" Content="Sélectionner" Width="70" Height="40" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Armure : "/>
-                <Label x:Name="HeroArmor" Content="{Binding Armor,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel x:Name="ButtonSP" Grid.Row="3">
-            <Button x:Name="SelectHeroButton" Content="Sélectionner" Width="70" Height="40" />
-        </StackPanel>
-    </Grid>
+        </Grid>
+
+    </Border>
 </UserControl>

@@ -35,6 +35,7 @@ namespace Clickers.ViewModel.SoldierProducer
             this.Hero = hero;
             this.View.DataContext = this.Hero;
             InventoryUC newIventoryUC = new InventoryUC();
+            newIventoryUC.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             newIventoryUC.DataContext = this.Hero;
             this.View.HeroInfoSP.Children.Add(newIventoryUC);
             InitEquipView();

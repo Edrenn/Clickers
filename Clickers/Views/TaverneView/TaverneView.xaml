@@ -10,13 +10,18 @@
     <Grid Background="BurlyWood">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.4*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="TAVERNE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <allV:ToCastleButtonUserControl  HorizontalAlignment="Left" Grid.Row="1" />
-        <StackPanel x:Name="AllHeroesSP" Orientation="Horizontal" Grid.Row="2">
-            
-        </StackPanel>
+
+        <Image Source="/Assets/Image/taverne.jpg" Grid.RowSpan="3" VerticalAlignment="Top" Margin="-40,-43,-17,0" />
+        <allV:ToCastleButtonUserControl  HorizontalAlignment="Left" Grid.Row="0" Margin="0,0,0,74.8" Grid.RowSpan="2" Width="200" />
+        <Border BorderBrush="Brown" Grid.Row="2">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Background="Chocolate">
+            <StackPanel x:Name="AllHeroesSP"  Orientation="Horizontal">
+
+            </StackPanel>
+        </ScrollViewer>
+        </Border>
     </Grid>
 </UserControl>

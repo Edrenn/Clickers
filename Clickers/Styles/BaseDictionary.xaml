@@ -5,6 +5,7 @@
 
     <Style x:Key="TitlePolice" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Cooper Black"/>
+        
     </Style>
 
     <Style x:Key="MenuButton" TargetType="Button">

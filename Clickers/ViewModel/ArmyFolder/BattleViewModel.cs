@@ -147,12 +147,12 @@ namespace Clickers.ViewModel.ArmyFolder
 
             if (AttackWin == true)
             {
-                view.WinOrLoseLabel.Content = "VICTOIRE";
+                view.WinOrLoseLabel.Text = "VICTOIRE";
                 this.AttackedCastle.Life -= 25;
             }
             else
             {
-                view.WinOrLoseLabel.Content = "DÉFAITE..";
+                view.WinOrLoseLabel.Text = "DÉFAITE..";
                 this.AttackingCastle.Life -= 25;
             }
             if (this.AttackedCastle.Life <= 0)

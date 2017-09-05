@@ -43,7 +43,8 @@ namespace Clickers.ViewModel.popUp
             HeroViewModel newHeroViewModel = new HeroViewModel(this.Hero);
             newHeroViewModel.View.InventoryHeroButton.Visibility = System.Windows.Visibility.Collapsed;
             this.HeroView = newHeroViewModel.View;
-            this.HeroView.Height = this.View.Grid.Height;
+            this.HeroView.Height = this.View.Grid.Height - 100;
+            this.HeroView.HeroImage.Height = 150;
             this.HeroView.ButtonSP.Visibility = System.Windows.Visibility.Collapsed;
             this.View.HeroViewSP.Children.Add(HeroView);
 

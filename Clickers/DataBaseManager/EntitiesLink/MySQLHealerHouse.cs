@@ -18,9 +18,9 @@ namespace Clickers.DataBaseManager.EntitiesLink
 
         public HealerHouse GetHealerHouse(HealerHouse healerHouse)
         {
-            this.DbSetT.Attach(healerHouse);
-            this.Entry(healerHouse).Collection<Potion>(x => x.PotionList).Load();
-            return healerHouse;
+            //this.DbSetT.Attach(healerHouse);
+            //this.Entry(healerHouse).Collection<Potion>(x => x.PotionList).Load();
+            return new HealerHouse() ;
         }
     }
 }

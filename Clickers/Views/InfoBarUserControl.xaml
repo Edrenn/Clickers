@@ -39,7 +39,7 @@
 
         <TextBlock x:Name="PlayerNameLabel" Text="{Binding MainCastle.Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="1"  Style="{StaticResource TitlePolice}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <Button x:Name="AttackAlertButton" Background="Red" Content="!" Grid.Column="2" Width="50" HorizontalAlignment="Right" Visibility="Collapsed"/>
+        <Button x:Name="AttackAlertButton" Background="Red" Content="!" Grid.Column="3" Width="80" HorizontalAlignment="Right" Visibility="Collapsed"/>
     </Grid>
     </Grid>
 </UserControl>

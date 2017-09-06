@@ -169,12 +169,11 @@ namespace Clickers
             MySQLManager<Castle> newManager = new MySQLManager<Castle>();
             this.mainCastle.Golds = this.GoldCounter;
             await newManager.Update(this.MainCastle);
-            await newManager.SaveChangesAsync();
 
             MySQLManager<Army> newArmyManager = new MySQLManager<Army>();
             if (this.MainCastle.Army.Hero != null)
             {
-                await newArmyManager.Database.ExecuteSqlCommandAsync("Update armies set Hero_HeroId = '" + this.MainCastle.Army.Hero.HeroId + "' where ArmyId =" + this.MainCastle.Army.ArmyId);
+               await newArmyManager.Database.ExecuteSqlCommandAsync("Update armies set Hero_HeroId = '" + this.MainCastle.Army.Hero.HeroId + "' where ArmyId =" + this.MainCastle.Army.ArmyId);
             }
 
             MySQLManager<RessourceProducer> RPManager = new MySQLManager<RessourceProducer>();
@@ -186,8 +185,42 @@ namespace Clickers
             MySQLManager<Hero> HeroManager = new MySQLManager<Hero>();
             foreach (Hero hero in this.MainCastle.Heroes)
             {
-                await HeroManager.Update(hero);
+                this.UpdateHero(hero);
+                //await HeroManager.Update(hero);
             }
+            await newManager.SaveChangesAsync();
+        }
+
+        private async void UpdateHero(Hero hero)
+        {
+            MySQLManager<Hero> HeroManager = new MySQLManager<Hero>();
+            string table = "Update heroes set ";
+            string setArmor = " Armor = '" + hero.Armor + "' ";
+            string setAttack= " Attack = '" + hero.Attack + "' ";
+            string setLife = " Life = '" + hero.Life + "' ";
+            string setWeapon = "";
+            if (hero.Potion != null)
+            {
+                string setPotion = " Potion_PotionId = '" + hero.Potion.PotionId + "' ";
+            }
+            MySQLManager<Clickers.Models.Items.Weapon> WManager = new MySQLManager<Models.Items.Weapon>();
+            if (hero.Weapon != null)
+            {
+                if (HeroManager.Entry(hero.Weapon).State == System.Data.Entity.EntityState.Detached)
+                {
+                    WManager.DbSetT.Add(hero.Weapon);
+                    await WManager.SaveChangesAsync();
+                }
+                setWeapon = ", Weapon_WeaponId = '" + hero.Weapon.WeaponId + "' ";
+            }
+            if (hero.Shield != null)
+            {
+                string setShield = " Shield_ShieldId = '" + hero.Shield.ShieldId + "' ";
+            }
+            string whereHero = "where HeroId = " + hero.HeroId;
+            string wholeString = table + setArmor + ", " + setLife + setWeapon + whereHero;
+            await HeroManager.Database.ExecuteSqlCommandAsync(wholeString);
+            await WManager.SaveChangesAsync();
         }
     }
 }

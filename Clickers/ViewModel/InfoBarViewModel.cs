@@ -57,17 +57,24 @@ namespace Clickers.ViewModel
             }
         }
 
+        private AttackAlertCounterView alertPopUp;
+        public AttackAlertCounterView AlertPopUp
+        {
+            get { return alertPopUp; }
+            set { alertPopUp = value; }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public InfoBarViewModel(InfoBarUserControl view)
         {
+            this.AlertPopUp = new AttackAlertCounterView();
             this.View = view;
             EventGenerator();
             Token = TokenSource.Token;
             Task ennemyAttack = new Task(() =>
             {
-                PreparingEnemyAttack();
+                NextAttack();
             }, Token);
             ennemyAttack.Start();
         }
@@ -77,26 +84,47 @@ namespace Clickers.ViewModel
             View.AttackAlertButton.Click += AttackAlertButton_Click;
         }
 
+        public void NextAttack()
+        {
+            Random randomizer = new Random();
+            int timeToCount = randomizer.Next(120, 240);
+            Thread.Sleep(new TimeSpan(0, 0, 10));
+            for (int i = 0; i <= 4; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() => {
+                        this.View.AttackAlertButton.Visibility = System.Windows.Visibility.Visible;
+                    }));
+                }
+                else
+                {
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() => {
+                        this.View.AttackAlertButton.Visibility = System.Windows.Visibility.Collapsed;
+                    }));
+                }
+
+                Thread.Sleep(600);
+            }
+
+
+        }
+
         private void AttackAlertButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            AttackAlertCounterView altertCounter = new AttackAlertCounterView();
-            altertCounter.Show();
+            this.AlertPopUp.Show();
+
+            Task countdown = new Task(() =>
+            {
+                for (int i = 60; i < 0; i--)
+                {
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() => {
+                        this.AlertPopUp.TimeCounterTB.Text = i + " secondes";
+                    }));
+                }
+            });
         }
-
-        private void PreparingEnemyAttack()
-        {
-            Random rd = new Random();
-            Double timeBeforeNextAttack = rd.Next(3, 5);
-            Thread.Sleep(TimeSpan.FromSeconds(5));
-            AttackingSoon = true;
-
-        }
-
-        void StartCalc()
-        {
-            var calc = new InfoBarUserControl();
-        }
-
+        
         protected void RaisePropertyChanged(string name)
         {
             if (PropertyChanged != null)

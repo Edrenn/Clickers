@@ -42,15 +42,16 @@ namespace Clickers.ViewModel.SoldierProducer
         {
             this.View.BuyButton.Click += SoldierViewBuyButtonClick;
             this.view.Slider.ValueChanged += Slider_ValueChanged;
-            this.view.SoldierNumberTBx.LostKeyboardFocus += SoldierNumberTBx_LostKeyboardFocus;
+            this.view.SoldierNumberTBx.TextChanged += SoldierNumberTBx_TextChanged;
         }
+
 
         /// <summary>
         /// This event will change the slider Value when we change manually the number in the textBox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SoldierNumberTBx_LostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        private void SoldierNumberTBx_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             int outSoldierNumber = 1;
             if (!Int32.TryParse(this.view.SoldierNumberTBx.Text, out outSoldierNumber))
@@ -58,6 +59,7 @@ namespace Clickers.ViewModel.SoldierProducer
                 outSoldierNumber = 1;
             }
             this.view.Slider.Value = outSoldierNumber;
+            this.View.TotalPriceTB.Text = (outSoldierNumber * this.Soldier.Price).ToString();
         }
 
         /// <summary>
@@ -68,6 +70,7 @@ namespace Clickers.ViewModel.SoldierProducer
         private void Slider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
         {
             this.view.SoldierNumberTBx.Text = this.view.Slider.Value.ToString();
+            this.View.TotalPriceTB.Text = (this.view.Slider.Value * this.Soldier.Price).ToString();
         }
 
         /// <summary>

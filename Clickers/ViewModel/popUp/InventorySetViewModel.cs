@@ -43,23 +43,13 @@ namespace Clickers.ViewModel.popUp
             HeroViewModel newHeroViewModel = new HeroViewModel(this.Hero);
             this.HeroView = newHeroViewModel.View;
             this.HeroView.Height = this.View.Grid.Height;
+            this.HeroView.InventoryHeroButton.Visibility = System.Windows.Visibility.Collapsed;
             this.HeroView.ButtonSP.Visibility = System.Windows.Visibility.Collapsed;
             this.View.HeroViewSP.Children.Add(HeroView);
 
             EquipmentListing EquipmentListing = new EquipmentListing();
             EquipmentListing.Controller.initEquipView(hero);
             this.view.allObjectSP.Children.Add(EquipmentListing);
-            //.Children.Add(equipButton);
-
-            //EquipmentListing EquipmentListing = new EquipmentListing();
-            //EquipmentListing.Controller.initEquipView();
-            //Button equipButton = new Button();
-            //equipButton.Content = "Equiper";
-            //equipButton.Height = 40;
-            ////.Children.Add(equipButton);
-
-            //popUp.Content = EquipmentListing;
-            //popUp.Show()
         }
     }
 }

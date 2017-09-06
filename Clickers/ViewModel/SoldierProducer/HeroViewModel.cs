@@ -43,11 +43,6 @@ namespace Clickers.ViewModel.SoldierProducer
         #region Equip
         public void InitEquipView()
         {
-            //this.View.SelectHeroButton.Visibility = System.Windows.Visibility.Collapsed;
-            //Button equipButton = new Button();
-            //equipButton.Content = "Equiper";
-            //equipButton.Height = 40;
-            //this.View.ButtonSP.Children.Add(equipButton);
             this.View.InventoryHeroButton.Click += EquipButton_Click;
         }
 

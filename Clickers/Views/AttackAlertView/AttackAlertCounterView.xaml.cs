@@ -25,7 +25,7 @@ namespace Clickers.Views.AttackAlertView
         public AttackAlertCounterView()
         {
             InitializeComponent();
-            this.Controller = new AttackAlertViewModel(this);
+            //this.Controller = new AttackAlertViewModel(this);
         }
     }
 }

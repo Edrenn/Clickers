@@ -52,12 +52,6 @@ namespace Clickers.DataBaseManager
                 {
                     DbSetHeros.Add(hero);
                 }
-
-                List<Shield> allShield = JsonManager.Instance.GetShieldsFromJSon();
-                foreach (Shield shield in allShield)
-                {
-                    DbSetShield.Add(shield);
-                }
                 HealerHouse HealerHouse = JsonManager.Instance.GetHealerHouseFromJSon();
                 DbSetHealerHouse.Add(HealerHouse);
 

@@ -102,9 +102,11 @@ namespace Clickers.ViewModel
                 System.Windows.MessageBox.Show("Veuillez donner un nom à votre château");
             }
             else
+            {
                 NormalGameGeneration(tb.Text);
-            Window window = (Window)sp.Parent;
-            window.Close();
+                Window window = (Window)sp.Parent;
+                window.Close();
+            }
         }
 
         private async void NormalGameGeneration(string CastleName)

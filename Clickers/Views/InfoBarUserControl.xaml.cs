@@ -28,19 +28,6 @@ namespace Clickers.Views
             set { controller = value; }
         }
 
-        //private int goldCounter = 0;
-        //public int GoldCounter
-        //{
-        //    get
-        //    {
-        //        return goldCounter;
-        //    }
-        //    set
-        //    {
-        //        goldCounter = value;
-        //        base.RaisePropertyChanged("GoldCounter");
-        //    }
-        //}
         public InfoBarUserControl()
         {
             InitializeComponent();

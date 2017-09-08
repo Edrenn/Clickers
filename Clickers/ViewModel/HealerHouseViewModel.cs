@@ -38,6 +38,7 @@ namespace Clickers.ViewModel
         {
             this.HealerHouse = healerHouse;
             this.View = view;
+            this.View.InfoBarUC.Content = InfoBarViewModel._Instance.View;
             this.View.DataContext = HealerHouse;
             PotionStockGenerator();
             EventGenerator();

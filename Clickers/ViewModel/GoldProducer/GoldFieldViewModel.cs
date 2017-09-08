@@ -29,6 +29,7 @@ namespace Clickers.ViewModel
         public GoldFieldViewModel(GoldFieldView view)
         {
             this.view = view;
+            this.view.InfoBarUC.Content = InfoBarViewModel._Instance.View;
             EventGenerator();
             view.DataContext = GameViewModel.Instance;
 

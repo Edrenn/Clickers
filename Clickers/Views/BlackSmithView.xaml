@@ -14,7 +14,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <local:InfoBarUserControl />
+        <local:InfoBarUserControl x:Name="InfoBarUC" />
         <local:ToCastleButtonUserControl Margin="108,0,-108,0.4" />
         
         <UCs:EquipmentListing x:Name="BuyEquipmentListingUC" Grid.Row="2" />

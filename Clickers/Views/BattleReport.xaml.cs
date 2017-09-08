@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Clickers.ViewModel;
+
 namespace Clickers.Views
 {
     /// <summary>
@@ -23,6 +25,22 @@ namespace Clickers.Views
         public BattleReport()
         {
             InitializeComponent();
+            this.ToCastle.Click += ToCastle_Click;
+
+        }
+
+        private void ToCastle_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MainCastleView castleView = new MainCastleView();
+            Task newAttack = new Task(new Action(() =>
+            {
+                if (GameViewModel.Instance.MainCastle.Life > 0 && GameViewModel.Instance.EnnemyCastle.Life > 0)
+                {
+                    InfoBarViewModel._Instance.NextAttack();
+                }
+            }));
+            newAttack.Start();
+            Switcher.Switch(castleView);
         }
     }
 }

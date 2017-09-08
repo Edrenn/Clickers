@@ -25,9 +25,9 @@ namespace Clickers.Models
             set { controller = value; }
         }
 
-        public Battle(Army attackingArmy, Army defenseArmy, Castle attackedCastle)
+        public Battle( Castle defendingCastle, Castle attackingCastle, bool isEnnemyAttack)
         {
-            this.Controller = new BattleViewModel(attackingArmy, defenseArmy,attackedCastle);
+            this.Controller = new BattleViewModel(attackingCastle, defendingCastle, isEnnemyAttack);
         }
 
         

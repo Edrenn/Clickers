@@ -32,7 +32,7 @@ namespace Clickers.ViewModel
         {
             this.Blacksmith = GameViewModel.Instance.MainCastle.Blacksmith;
             this.View = view;
-
+            this.View.InfoBarUC.Content = InfoBarViewModel._Instance.View;
             this.View.BuyEquipmentListingUC.Controller.Blacksmith = this.Blacksmith;
             this.View.BuyEquipmentListingUC.Controller.initBlacksmithView();
 

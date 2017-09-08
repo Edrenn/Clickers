@@ -14,7 +14,7 @@
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <CV:InfoBarUserControl Grid.Row="0" />
+        <CV:InfoBarUserControl x:Name="InfoBarUC" Grid.Row="0" />
         <local:ToCastleButtonUserControl Grid.Row="1" HorizontalAlignment="Left" />
         <StackPanel x:Name="Units" Grid.Row="2" Orientation="Horizontal"/>
     </Grid>

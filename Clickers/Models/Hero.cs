@@ -195,6 +195,28 @@ namespace Clickers.Models
             this.ImagePath = imagePath;
             this.Skills = new List<Skill>();
         }
+
+        public Hero InitializeHero(Hero heroToDuplicate)
+        {
+            this.Name = heroToDuplicate.Name;
+            this.Life = heroToDuplicate.Life;
+            this.BaseArmor = heroToDuplicate.BaseArmor;
+            this.BaseAttack = heroToDuplicate.BaseAttack;
+            this.BaseLife = heroToDuplicate.BaseLife;
+            this.Armor = heroToDuplicate.Armor;
+            this.Attack = heroToDuplicate.Attack;
+            if (heroToDuplicate.Weapon != null)
+            {
+                this.Weapon = heroToDuplicate.Weapon;
+            }
+            if (heroToDuplicate.Shield != null)
+            {
+                this.Shield = heroToDuplicate.Shield;
+            }
+            this.Skills = heroToDuplicate.Skills;
+            this.ImagePath = heroToDuplicate.ImagePath;
+            return this;
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string name)
         {

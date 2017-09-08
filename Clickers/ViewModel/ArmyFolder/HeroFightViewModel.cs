@@ -32,25 +32,26 @@ namespace Clickers.ViewModel.Army
             set { view = value; }
         }
 
-        private Hero allyHero;
-        public Hero AllyHero
+        private Hero leftHero;
+        public Hero LeftHero
         {
-            get { return allyHero; }
-            set { allyHero = value; }
+            get { return leftHero; }
+            set { leftHero = value; }
         }
 
-        private Hero enemyHero;
-        public Hero EnemyHero
+        private Hero rightHero;
+        public Hero RightHero
         {
-            get { return enemyHero; }
-            set { enemyHero = value; }
+            get { return rightHero; }
+            set { rightHero = value; }
         }
 
         private Clickers.Models.Army attackingArmy;
 
         private Clickers.Models.Army defendingArmy;
 
-        private Castle attackedCastle;
+        private Castle attackingCastle;
+        private Castle defendingCastle;
 
         private Dictionary<Hero, string> actions;
         public Dictionary<Hero, string> Actions
@@ -70,28 +71,57 @@ namespace Clickers.ViewModel.Army
             }
         }
 
-        public HeroFightViewModel(Clickers.Models.Army attackingArmy, Clickers.Models.Army defendingArmy, Castle attackedCastle)
+        private bool isFightOver = false;
+
+        private bool isEnnemyAttack = false;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HeroFightViewModel"/> class.
+        /// </summary>
+        /// <param name="attackingCastle">The attacking castle.</param>
+        /// <param name="defendingCastle">The defending castle.</param>
+        /// <param name="isEnnemyAttack">if set to <c>true</c> [it is an ennemy attack].</param>
+        public HeroFightViewModel(Castle attackingCastle, Castle defendingCastle, bool isEnnemyAttack)
         {
             this.Rand = new Random();
             this.View = new HeroDuelFightView();
             this.Actions = new Dictionary<Hero, string>();
-            this.AllyHero = attackingArmy.Hero;
-            this.EnemyHero = defendingArmy.Hero;
-            this.attackingArmy = attackingArmy;
-            this.defendingArmy = defendingArmy;
-            this.attackedCastle = attackedCastle;
-            GenerateUI(AllyHero, EnemyHero);
+
+            this.defendingCastle = defendingCastle;
+            this.attackingCastle = attackingCastle;
+            this.attackingArmy = attackingCastle.Army;
+            this.defendingArmy = defendingCastle.Army;
+            this.isEnnemyAttack = isEnnemyAttack;
+
+            // Visual change to be sure that our hero will be on the left side
+            if (isEnnemyAttack)
+            {
+                this.LeftHero = defendingArmy.Hero;
+                this.RightHero = attackingArmy.Hero;
+            }
+            else
+            {
+                this.LeftHero = attackingArmy.Hero;
+                this.RightHero = defendingArmy.Hero;
+            }
+
+            GenerateUI(LeftHero, RightHero);
+
             View.TurnTB.DataContext = this;
             Switcher.Switch(this.View);
         }
 
-        private void GenerateUI(Hero attackingHero, Hero defendingHero)
+        /// <summary>
+        /// Generates the UI of the Duel for each hero.
+        /// </summary>
+        /// <param name="LeftHero">The left hero.</param>
+        /// <param name="RightHero">The right hero.</param>
+        private void GenerateUI(Hero LeftHero, Hero RightHero)
         {
             HeroView AllyHeroView = new HeroView();
             AllyHeroView.HeroInfoSP.Visibility = System.Windows.Visibility.Collapsed;
             AllyHeroView.SelectHeroButton.Visibility = System.Windows.Visibility.Collapsed;
-            AllyHeroView.DataContext = attackingHero;
-            foreach (Skill skill in attackingHero.Skills)
+            AllyHeroView.DataContext = LeftHero;
+            foreach (Skill skill in LeftHero.Skills)
             {
                 SkillViewModel newSkill;
                 switch (skill.Type)
@@ -121,20 +151,20 @@ namespace Clickers.ViewModel.Army
 
             }
             this.View.AllyHeroSP.Children.Add(AllyHeroView);
-            this.View.AllyHeroAttributesSP.DataContext = this.AllyHero;
-            this.View.EnnemyHeroAttributesSP.DataContext = this.EnemyHero;
+            this.View.AllyHeroAttributesSP.DataContext = this.LeftHero;
+            this.View.EnnemyHeroAttributesSP.DataContext = this.RightHero;
 
             HeroView EnnemyHeroView = new HeroView();
             EnnemyHeroView.HeroInfoSP.Visibility = System.Windows.Visibility.Collapsed;
             EnnemyHeroView.SelectHeroButton.Visibility = System.Windows.Visibility.Collapsed;
-            EnnemyHeroView.DataContext = defendingHero;
+            EnnemyHeroView.DataContext = RightHero;
             this.View.EnnemyHeroSP.Children.Add(EnnemyHeroView);
             this.View.ItemsButton.Click += ItemsButton_Click;
         }
 
         private void ItemsButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.AllyHero.Potion != null)
+            if (this.LeftHero.Potion != null)
             {
                 DoAllActions("Objet", AITurn());
                 this.View.AllyHeroSkillUsed.Text = "Objet";
@@ -147,24 +177,11 @@ namespace Clickers.ViewModel.Army
         {
             DoAllActions("Feinte", AITurn());
             this.View.AllyHeroSkillUsed.Text = "Feinte";
-            //if (AllyHero.Skills[2].UseCounter == 0)
-            //{
-            //    System.Windows.MessageBox.Show("Vous avez utilisé toutes vos feintes");
-            //}
-            //else
-            //{
-            //    if (Actions.ContainsKey(AllyHero))
-            //    {
-            //        Actions[AllyHero] = "Feinte";
-            //    }
-            //    else
-            //        Actions.Add(AllyHero, "Feinte");
-            //}
         }
 
         private void ParadeButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (AllyHero.Skills[1].UseCounter == 0)
+            if (LeftHero.Skills[1].UseCounter == 0)
             {
                 System.Windows.MessageBox.Show("Vous avez utilisé toutes vos parades");
             }
@@ -172,14 +189,8 @@ namespace Clickers.ViewModel.Army
             {
 
                 DoAllActions("Parade", AITurn());
-                AllyHero.Skills[1].UseCounter--;
+                LeftHero.Skills[1].UseCounter--;
                 this.View.AllyHeroSkillUsed.Text = "Parade";
-                //if (Actions.ContainsKey(AllyHero))
-                //{
-                //    Actions[AllyHero] = "Parade";
-                //}
-                //else
-                //    Actions.Add(AllyHero, "Parade");
             }
         }
 
@@ -187,108 +198,70 @@ namespace Clickers.ViewModel.Army
         {
             DoAllActions("Attaque", AITurn());
             this.View.AllyHeroSkillUsed.Text = "Attaque";
-            //if (Actions.ContainsKey(AllyHero))
-            //{
-            //    Actions[AllyHero] = "Attaque";
-            //}
-            //else
-            //    Actions.Add(AllyHero, "Attaque");
         }
 
         /// <summary>
-        /// Méthode permettant de jouer toutes les actions d'un tour
-        /// On récupère l'action sélectionnée par chaque héro et on l'éxecute avec l'ordre suivant :
+        /// this method will play all action of a round
+        /// it gets each heroes's action :
         /// 1°) Parade 2°) Feinte 3°) Attaque
-        /// On remet ensuite toutes les parades à false
+        /// each parade properties will be set to false at the end
         /// </summary>
         private void DoAllActions(String allyHeroAction, String enemyHeroAction)
         {
             if (allyHeroAction == "Objet")
             {
-                if (this.AllyHero.Potion != null)
+                if (this.LeftHero.Potion != null)
                 {
-                    this.Heal(this.AllyHero);
+                    this.Heal(this.LeftHero);
                 }
             }
             if (enemyHeroAction == "Objet")
             {
-                this.Heal(this.EnemyHero);
+                this.Heal(this.RightHero);
             }
             if (allyHeroAction == "Parade")
             {
-                this.AllyHero.IsParing = true;
+                this.LeftHero.IsParing = true;
             }
             if (enemyHeroAction == "Parade")
             {
-                this.EnemyHero.IsParing = true;
+                this.RightHero.IsParing = true;
             }
             if (allyHeroAction == "Feinte")
             {
-                this.Feinte(this.AllyHero, this.EnemyHero);
+                this.Feinte(this.LeftHero, this.RightHero);
             }
             if (enemyHeroAction == "Feinte")
             {
-                this.Feinte(this.EnemyHero, this.AllyHero);
+                this.Feinte(this.RightHero, this.LeftHero);
             }
             if (allyHeroAction == "Attaque")
             {
-                this.Attack(this.AllyHero, this.EnemyHero);
-                if (this.AllyHero.Life <= 0 || this.EnemyHero.Life <= 0)
+                this.Attack(this.LeftHero, this.RightHero);
+                if (this.LeftHero.Life <= 0 || this.RightHero.Life <= 0)
                 {
-                    EndFight();
+                    if (!isFightOver)
+                    {
+                        isFightOver = true;
+                        EndFight();
+                    }
                 }
             }
             if (enemyHeroAction == "Attaque")
             {
-                this.Attack(this.EnemyHero, this.AllyHero);
+                this.Attack(this.RightHero, this.LeftHero);
 
-                if (this.AllyHero.Life <= 0 || this.EnemyHero.Life <= 0)
+                if (this.LeftHero.Life <= 0 || this.RightHero.Life <= 0)
                 {
-                    EndFight();
+                    if (!isFightOver)
+                    {
+                        isFightOver = true;
+                        EndFight();
+                    }
                 }
             }
-            //foreach (KeyValuePair<Hero, string> heroWithAction in Actions)
-            //{
-            //    if (heroWithAction.Value == "Parade")
-            //    {
-            //        heroWithAction.Key.IsParing = true;
-            //    }
-            //}
-            //foreach (KeyValuePair<Hero, string> heroWithAction in Actions)
-            //{
-            //    if (heroWithAction.Value == "Feinte")
-            //    {
-            //        if (heroWithAction.Key == AttackingHero)
-            //        {
-            //            Feinte(AttackingHero, DefendingHero);
-            //        }
-            //        else
-            //        {
-            //            Feinte(DefendingHero, AttackingHero);
-            //        }
-            //    }
-            //}
-            //foreach (KeyValuePair<Hero, string> heroWithAction in Actions)
-            //{
-            //    if (heroWithAction.Value == "Attaque")
-            //    {
-            //        if (heroWithAction.Key == AttackingHero)
-            //        {
-            //            Attack(AttackingHero, DefendingHero);
-            //        }
-            //        else
-            //        {
-            //            Attack(DefendingHero, AttackingHero);
-            //        }
-            //    }
-            //    if (AttackingHero.Life <= 0 ||DefendingHero.Life <= 0)
-            //    {
-            //        EndFight();
-            //        break;
-            //    }
-            //}
-            this.AllyHero.IsParing = false;
-            this.EnemyHero.IsParing = false;
+            this.LeftHero.IsParing = false;
+            this.RightHero.IsParing = false;
             Turn++;
         }
 
@@ -370,14 +343,14 @@ namespace Clickers.ViewModel.Army
             else if (actionNumber > 20 && actionNumber <= 30)
             {
 
-                if (EnemyHero.Skills[1].UseCounter == 0)
+                if (RightHero.Skills[1].UseCounter == 0)
                 {
                     AITurn();
                 }
                 else
                 {
                     actionToReturn = "Parade";
-                    EnemyHero.Skills[1].UseCounter--;
+                    RightHero.Skills[1].UseCounter--;
                     this.View.EnemyHeroSkillUsed.Text = actionToReturn;
                 }
                 //if (EnemyHero.Skills[2].UseCounter == 0)
@@ -396,7 +369,7 @@ namespace Clickers.ViewModel.Army
             }
             else
             {
-                if (this.EnemyHero.Potion != null)
+                if (this.RightHero.Potion != null)
                 {
                     actionToReturn = "Potion";
                     this.View.EnemyHeroSkillUsed.Text = actionToReturn;
@@ -417,12 +390,33 @@ namespace Clickers.ViewModel.Army
         private void EndFight()
         {
             MessageBoxResult msgBxResult;
-            if (EnemyHero.Life <= 0)
+
+            if (RightHero.Life <= 0)
             {
                 msgBxResult = System.Windows.MessageBox.Show("You win");
+                if (!this.isEnnemyAttack)
+                {
+                    this.attackingCastle.Army.BoostArmy();
+                }
+                else
+                {
+                    this.defendingCastle.Army.BoostArmy();
+                }
             }
             else
+            {
                 msgBxResult = System.Windows.MessageBox.Show("You lose");
+                if (!this.isEnnemyAttack)
+                {
+                    this.defendingCastle.Army.BoostArmy();
+                }
+                else
+                {
+                    this.attackingCastle.Army.BoostArmy();
+                }
+            }
+
+
 
             if (msgBxResult == MessageBoxResult.OK)
             {
@@ -434,7 +428,7 @@ namespace Clickers.ViewModel.Army
         private void launchBattle()
         {
             GameViewModel.Instance.EnnemyCastle.Army.GenerateEnnemyArmy();
-            Battle newBattle = new Battle(attackingArmy, defendingArmy, attackedCastle);
+            Battle newBattle = new Battle(attackingArmy, defendingArmy, defendingCastle, attackingCastle,this.isEnnemyAttack);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -99,7 +99,7 @@ namespace Clickers.Models
         {
             this.ImagePath = soldier.ImagePath;
             this.Name = soldier.Name;
-            this.AttackValue = soldier.AttackValue;
+            this.AttackValue = 5;
             this.Price = soldier.Price;
             this.Health = soldier.Health;
             this.Type = soldier.Type;

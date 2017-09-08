@@ -91,90 +91,93 @@ namespace Clickers.ViewModel.ArmyFolder
             }
         }
 
-        private Castle attackedCastle;
-        public Castle AttackedCastle
+        private Castle defendingCastle;
+        public Castle DefendingCastle
         {
             get
             {
-                return attackedCastle;
+                return defendingCastle;
             }
 
             set
             {
-                attackedCastle = value;
+                defendingCastle = value;
             }
         }
 
-
-        public BattleViewModel(Clickers.Models.Army attackingArmy, Clickers.Models.Army defenseArmy, Castle attackedCastle)
+        private Castle attackingCastke;
+        public Castle AttackingCastle
         {
-            this.AttackSoldiers = new List<Soldier>();
-            this.DefenseSoldiers = new List<Soldier>();
+            get { return attackingCastke; }
+            set { attackingCastke = value; }
+        }
+
+        private bool isEnnemyAttack;
+
+        public BattleViewModel(Castle attackingCastle, Castle defendingCastle, bool isEnnemyAttack)
+        {
+            this.AttackSoldiers = attackingCastle.Army.AllSoldiers;
+            this.DefenseSoldiers = defendingCastle.Army.AllSoldiers;
             this.AttackDeaths = new List<Soldier>();
             this.DefenseDeaths = new List<Soldier>();
-            this.AttackedCastle = attackedCastle;
+            this.DefendingCastle = defendingCastle;
+            this.AttackingCastle = attackingCastle;
             this.rng = new Random();
-            this.View = new BattleReport();
+            this.isEnnemyAttack = isEnnemyAttack;
 
-            if ((attackingArmy.Hero == null || attackingArmy.Hero.Life <= 0) && (defenseArmy.Hero != null || defenseArmy.Hero.Life > 0))
+            System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                ArmyCreation(attackingArmy, AttackSoldiers);
-                ArmyCreationWithHero(defenseArmy, DefenseSoldiers);
-            }
-            else if ((defenseArmy.Hero == null || defenseArmy.Hero.Life <= 0) && (attackingArmy.Hero != null || attackingArmy.Hero.Life > 0))
-            {
-                ArmyCreation(defenseArmy, DefenseSoldiers);
-                ArmyCreationWithHero(attackingArmy, AttackSoldiers);
-            }
-            else
-            {
-                ArmyCreation(attackingArmy, AttackSoldiers);
-                ArmyCreation(defenseArmy, DefenseSoldiers);
-            }
+                this.View = new BattleReport();
 
-            Randomizer(AttackSoldiers);
-            Randomizer(DefenseSoldiers);
-            Fight();
+                Randomizer(AttackSoldiers);
+                Randomizer(DefenseSoldiers);
+                Fight();
 
+                if (isEnnemyAttack)
+                {
+                    if (AttackWin == true)
+                    {
+                        view.WinOrLoseLabel.Content = "DÉFAITE...";
+                        this.DefendingCastle.Life -= 25;
+                    }
+                    else
+                    {
+                        view.WinOrLoseLabel.Content = "VICTOIRE";
+                    }
+                }
+                else
+                {
+                    if (AttackWin == true)
+                    {
+                        view.WinOrLoseLabel.Content = "VICTOIRE";
+                        this.DefendingCastle.Life -= 25;
+                    }
+                    else
+                    {
+                        view.WinOrLoseLabel.Content = "DÉFAITE...";
+                    }
+                }
 
-            if (AttackWin == true)
-            {
-                view.WinOrLoseLabel.Content = "VICTOIRE";
-                this.AttackedCastle.Life -= 25;
-            }
-            else
-                view.WinOrLoseLabel.Content = "DÉFAITE..";
-            if (this.AttackedCastle.Life <= 0)
-            {
-                System.Windows.MessageBox.Show("Bravo vous avez gagné !");
-            }
-            else
-            {
-                view.AllyUnitslose.Text = "Unités attaquantes perdue : " + AttackDeaths.Count;
-                view.AllyUnitsRest.Text = "Unités attaquantes restantes : " + (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count - AttackDeaths.Count);
-                view.EnnemyUnitslose.Text = "Unités défendantes perdue : " + DefenseDeaths.Count;
-                view.EnnemyUnitsRest.Text = "Unités défendantes restantes : " + (GameViewModel.Instance.EnnemyCastle.Army.AllSoldiers.Count - DefenseDeaths.Count);
+                if (isEnnemyAttack)
+                {
+                    view.AllyUnitsloseTB.Text = "Unités alliées détruites : " + DefenseDeaths.Count;
+                    view.AllyUnitsRestTB.Text = "Unités restantes : " + (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count - DefenseDeaths.Count);
+                    view.EnnemyUnitsloseTB.Text = "Unités ennemies détruites : " + AttackDeaths.Count;
+                    view.EnnemyUnitsRestTB.Text = "Unités ennemies restantes : " + (GameViewModel.Instance.EnnemyCastle.Army.AllSoldiers.Count - AttackDeaths.Count);
+                }
+                else
+                {
+                    view.AllyUnitsloseTB.Text = "Unités alliées détruites : " + AttackDeaths.Count;
+                    view.AllyUnitsRestTB.Text = "Unités restantes : " + (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count - AttackDeaths.Count);
+                    view.EnnemyUnitsloseTB.Text = "Unités ennemies détruites : " + DefenseDeaths.Count;
+                    view.EnnemyUnitsRestTB.Text = "Unités ennemies restantes : " + (GameViewModel.Instance.EnnemyCastle.Army.AllSoldiers.Count - DefenseDeaths.Count);
+                }
                 Switcher.Switch(view);
-                EventGenerator();
-            }
+                WashingBodies();
+            }));
         }
 
-        private void EventGenerator()
-        {
-            view.ToCastle.Click += ToCastle_Click;
-        }
 
-        private void ToCastle_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            WashingBodies();
-            foreach (Hero hero in GameViewModel.Instance.MainCastle.Heroes)
-            {
-
-            }
-            MainCastleView castleView = new MainCastleView();
-            Switcher.Switch(castleView);
-        }
-        
         /// <summary>
         /// Refresh the Army
         /// </summary>
@@ -187,34 +190,56 @@ namespace Clickers.ViewModel.ArmyFolder
                     AttackSoldiers.Remove(soldier);
                 }
             }
-            GameViewModel.Instance.MainCastle.Army.AllSoldiers.Clear();
-            foreach (Soldier soldier in AttackSoldiers)
+            if (this.isEnnemyAttack)
             {
-                Soldier newSoldier = new Soldier();
-                newSoldier.InitializeSoldier(soldier);
-                GameViewModel.Instance.MainCastle.Army.AllSoldiers.Add(newSoldier);
+                foreach (Soldier soldier in this.DefenseDeaths)
+                {
+                    if (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Contains(soldier))
+                    {
+                        GameViewModel.Instance.MainCastle.Army.AllSoldiers.Remove(soldier);
+                    }
+                }
+            }
+            else
+            {
+                foreach (Soldier soldier in this.AttackDeaths)
+                {
+                    if (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Contains(soldier))
+                    {
+                        GameViewModel.Instance.MainCastle.Army.AllSoldiers.Remove(soldier);
+                    }
+                }
+            }
+            
+            if (GameViewModel.Instance.EnnemyCastle.Army.Hero.Life <= 0)
+            {
+                GameViewModel.Instance.EnnemyCastle.Army.Hero = null;
             }
         }
 
         private void Fight()
         {
-            int ennemySoldier = 0;
+            int defendingSoldierCounter = 0;
             foreach (Soldier soldier in AttackSoldiers)
             {
                 while (soldier.Health > 0)
                 {
-                    DamageTest(soldier, DefenseSoldiers[ennemySoldier]);
-                    if (DefenseSoldiers[ennemySoldier].Health <= 0)
+                    DamageTest(soldier, DefenseSoldiers[defendingSoldierCounter]);
+
+                    // If the attacking soldier kill his opponent
+                    if (DefenseSoldiers[defendingSoldierCounter].Health <= 0)
                     {
-                        DefenseDeaths.Add(DefenseSoldiers[ennemySoldier]);
-                        ennemySoldier++;
-                        if (ennemySoldier == DefenseSoldiers.Count)
+                        DefenseDeaths.Add(DefenseSoldiers[defendingSoldierCounter]);
+                        defendingSoldierCounter++;
+                        if (defendingSoldierCounter == DefenseSoldiers.Count)
                         {
                             AttackWin = true;
                             break;
                         }
                     }
-                    DamageTest(DefenseSoldiers[ennemySoldier], soldier);
+
+                    DamageTest(DefenseSoldiers[defendingSoldierCounter], soldier);
+                    // If the defending soldier kill his opponent
                     if (soldier.Health <= 0)
                     {
                         AttackDeaths.Add(soldier);
@@ -237,37 +262,7 @@ namespace Clickers.ViewModel.ArmyFolder
                 defendingSoldier.Health -= attackingSoldier.AttackValue;
         }
 
-        private void ArmyCreation(Clickers.Models.Army Army, List<Soldier> listToFill)
-        {
-            foreach (Soldier soldier in Army.AllSoldiers)
-            {
-                Soldier newSoldier = new Soldier();
-                newSoldier.InitializeSoldier(soldier);
-                listToFill.Add(newSoldier);
-            }
 
-        }
-
-        private void ArmyCreationWithHero(Clickers.Models.Army Army, List<Soldier> listToFill)
-        {
-            foreach (Soldier soldier in Army.AllSoldiers)
-            {
-                Soldier newSoldier;
-                if (Army.Hero != null && soldier.Name == Army.Hero.Type)
-                {
-                    newSoldier = new Soldier();
-                    newSoldier.InitializeSoldier(soldier);
-                    newSoldier.AttackValue += 5;
-                }
-                else
-                {
-                    newSoldier = new Soldier();
-                    newSoldier.InitializeSoldier(soldier);
-                }
-                listToFill.Add(newSoldier);
-            }
-
-        }
 
         private void Randomizer(List<Soldier> list)
         {

@@ -21,6 +21,7 @@ namespace Clickers.ViewModel
         public MainCastleViewModel(MainCastleView view)
         {
             this.view = view;
+            this.view.InfoBarUC.Content = InfoBarViewModel._Instance.View;
             EventGenerator();
         }
 
@@ -60,8 +61,47 @@ namespace Clickers.ViewModel
 
         private void ToBattleButton_Click(object sender, RoutedEventArgs e)
         {
-            if (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count >= 2)
+            if (GameViewModel.Instance.MainCastle.Army.Hero != null)
             {
+                if (GameViewModel.Instance.MainCastle.Army.Hero.Life > 0)
+                {
+
+                    if (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count >= 5)
+                    {
+                        InfoBarViewModel._Instance.TokenSource.Cancel();
+                        GameViewModel.Instance.EnnemyCastle.Army.GenerateEnnemyArmy();
+                        Random rng = new Random();
+                        rng.Next(0, 100);
+                        if (rng.Next(0, 100) > 30)
+                        {
+                            GameViewModel.Instance.EnnemyCastle.Army.GenerateHero();
+                        }
+                        if (GameViewModel.Instance.MainCastle.Army.Hero != null && GameViewModel.Instance.EnnemyCastle.Army.Hero != null)
+                        {
+                            if (!(GameViewModel.Instance.MainCastle.Army.Hero.Life <= 0) || !(GameViewModel.Instance.EnnemyCastle.Army.Hero.Life <= 0))
+                            {
+                                HeroFightViewModel newDuel = new HeroFightViewModel(GameViewModel.Instance.MainCastle, GameViewModel.Instance.EnnemyCastle, false);
+                            }
+                        }
+                        else
+                        {
+                            Battle newBattle = new Battle(GameViewModel.Instance.EnnemyCastle, GameViewModel.Instance.MainCastle, false);
+                        }
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Il vous faut au minimum 5 soldats");
+                    }
+
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Attention votre héros n'a plus de points de vie. Soignez-le ou choisissez en un autre.");
+                }
+            }
+            else
+            {
+                InfoBarViewModel._Instance.TokenSource.Cancel();
                 GameViewModel.Instance.EnnemyCastle.Army.GenerateEnnemyArmy();
                 Random rng = new Random();
                 rng.Next(0, 100);
@@ -69,21 +109,15 @@ namespace Clickers.ViewModel
                 {
                     GameViewModel.Instance.EnnemyCastle.Army.GenerateHero();
                 }
-                if (GameViewModel.Instance.MainCastle.Army.Hero != null && GameViewModel.Instance.EnnemyCastle.Army.Hero != null)
+                if (GameViewModel.Instance.EnnemyCastle.Army.Hero != null)
                 {
-                    if (!(GameViewModel.Instance.MainCastle.Army.Hero.Life <= 0) || !(GameViewModel.Instance.EnnemyCastle.Army.Hero.Life <= 0))
-                    {
-                        HeroFightViewModel newDuel = new HeroFightViewModel(GameViewModel.Instance.MainCastle.Army, GameViewModel.Instance.EnnemyCastle.Army, GameViewModel.Instance.EnnemyCastle);
-                    }
+                    GameViewModel.Instance.EnnemyCastle.Army.BoostArmy();
+                    Battle newBattle = new Battle( GameViewModel.Instance.EnnemyCastle, GameViewModel.Instance.MainCastle, false);
                 }
                 else
                 {
-                    Battle newBattle = new Battle(GameViewModel.Instance.MainCastle.Army, GameViewModel.Instance.EnnemyCastle.Army, GameViewModel.Instance.EnnemyCastle);
+                    Battle newBattle = new Battle(GameViewModel.Instance.EnnemyCastle, GameViewModel.Instance.MainCastle, false);
                 }
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("Il vous faut au minimum 2 soldats");
             }
         }
 

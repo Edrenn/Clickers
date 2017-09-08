@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <ResourceDictionary Source="/Styles/BaseDictionary.xaml"/>
     </UserControl.Resources>
-    <Grid  Background="BurlyWood">
+    <Grid x:Name="MainGrid"  Background="BurlyWood">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -23,12 +23,12 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="AllyUnitslose" />
-            <TextBlock x:Name="AllyUnitsRest" Grid.Row="1" />
-            <TextBlock x:Name="EnnemyUnitslose" Grid.Row="2"/>
-            <TextBlock x:Name="EnnemyUnitsRest" Grid.Row="3"/>
+            <TextBlock x:Name="AllyUnitsloseTB" />
+            <TextBlock x:Name="AllyUnitsRestTB" Grid.Row="1" />
+            <TextBlock x:Name="EnnemyUnitsloseTB" Grid.Row="2"/>
+            <TextBlock x:Name="EnnemyUnitsRestTB" Grid.Row="3"/>
         </Grid>
-        <Button x:Name="ToCastle" Style="{StaticResource MenuButton}" Grid.Row="2" Width="274" HorizontalAlignment="Left" Margin="0,155,0,101">
+        <Button x:Name="ToCastle" Style="{StaticResource MenuButton}" Grid.Row="2" Width="350" HorizontalAlignment="Left">
             <Button.Content>
                 <Grid>
                     <Image Source="/Assets/Image/Bouton.png"/>

@@ -20,26 +20,31 @@
             <Image Source="/Assets/Image/WallTexture1.jpg"/>
             <Image Source="/Assets/Image/WallTexture1.jpg"/>
         </StackPanel>
-    <Grid Background="BurlyWood" Margin="0,3,0,3.4">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="0.5*" />
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Column="0">
+        <Grid Background="BurlyWood" Margin="0,3,0,3.4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="GoldLabel" Text="Golds : " Grid.Column="0"  Style="{StaticResource TitlePolice}" VerticalAlignment="Center"/>
-                <TextBlock x:Name="GoldNumberLabel" Text="{Binding GoldCounter}" Grid.Column="1" VerticalAlignment="Center"  Style="{StaticResource TitlePolice}"/>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock x:Name="GoldTB" Text="Golds : " Grid.Column="0"  Style="{StaticResource TitlePolice}" VerticalAlignment="Center"/>
+                <TextBlock x:Name="GoldNumberTB" Text="{Binding GoldCounter}" Grid.Column="1" VerticalAlignment="Center"  Style="{StaticResource TitlePolice}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Château : "   Style="{StaticResource TitlePolice}" />
+                <TextBlock x:Name="PlayerNameTB" Text="{Binding MainCastle.Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"   Style="{StaticResource TitlePolice}" />
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text=" Points de vie : "   Style="{StaticResource TitlePolice}" />
+                <TextBlock x:Name="PlayerHPTB" Text="{Binding MainCastle.Life,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"   Style="{StaticResource TitlePolice}" />
+            </StackPanel>
+
+            <Button x:Name="AttackAlertButton" Background="Red" Content="!" Grid.Column="3" Width="80" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Visibility="Collapsed"/>
         </Grid>
-
-        <TextBlock x:Name="PlayerNameLabel" Text="{Binding MainCastle.Name,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="1"  Style="{StaticResource TitlePolice}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-        <Button x:Name="AttackAlertButton" Background="Red" Content="!" Grid.Column="3" Width="80" HorizontalAlignment="Right" Visibility="Collapsed"/>
-    </Grid>
     </Grid>
 </UserControl>

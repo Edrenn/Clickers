@@ -49,21 +49,26 @@ namespace Clickers.Models
         public void GenerateHero()
         {
             Random random = new Random();
+
             MySQLManager<Hero> MyHeroSQLManager = new MySQLManager<Hero>();
-            Hero newHero = null;
             MySQLHero heroSQL = new MySQLHero();
+
+            Hero hero1 = MyHeroSQLManager.Get(1).Result;
+            hero1 = heroSQL.GetSkills(hero1);
+            Hero hero2 = MyHeroSQLManager.Get(2).Result;
+            hero2 = heroSQL.GetSkills(hero2);
+            Hero hero3 = MyHeroSQLManager.Get(3).Result;
+            hero3 = heroSQL.GetSkills(hero3);
+
+            Hero newHero = new Hero();
             int testTypeHero = random.Next(0, 40);
             if (testTypeHero <= 10)
             {
-                Task<Hero> TaskHero = MyHeroSQLManager.Get(1);
-                newHero = TaskHero.Result;
-                newHero = heroSQL.GetSkills(newHero);
+                newHero.InitializeHero(hero1);
             }
             else if (testTypeHero >= 20 && testTypeHero < 30)
             {
-                Task<Hero> TaskHero = MyHeroSQLManager.Get(2);
-                newHero = TaskHero.Result;
-                newHero = heroSQL.GetSkills(newHero);
+                newHero.InitializeHero(hero2);
             }
             else if (testTypeHero > 40)
             {
@@ -71,9 +76,7 @@ namespace Clickers.Models
             }
             else
             {
-                Task<Hero> TaskHero = MyHeroSQLManager.Get(3);
-                newHero = TaskHero.Result;
-                newHero = heroSQL.GetSkills(newHero);
+                newHero.InitializeHero(hero3);
             }
             GameViewModel.Instance.EnnemyCastle.Army.Hero = newHero;
         }
@@ -82,6 +85,11 @@ namespace Clickers.Models
         {
             GameViewModel.Instance.EnnemyCastle.Army.AllSoldiers.Clear();
             MySQLManager<Soldier> MySoldierSQLManager = new MySQLManager<Soldier>();
+            Soldier chevalier = MySoldierSQLManager.Get(1).Result;
+            Soldier archer = MySoldierSQLManager.Get(2).Result;
+            Soldier cavalier = MySoldierSQLManager.Get(3).Result;
+
+
             Random random = new Random();
             int soldierNumber;
             if (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count <= 5)
@@ -93,25 +101,36 @@ namespace Clickers.Models
                 soldierNumber = random.Next(GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count - 5, GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count + 5);
             for (int counter = 0; counter < soldierNumber; counter++)
             {
-                Soldier newSoldier;
+                Soldier newSoldier = new Soldier(); ;
+
                 int testType = random.Next(0, 30);
                 if (testType <= 10)
                 {
-                    Task<Soldier> TaskSoldier = MySoldierSQLManager.Get(1);
-                    newSoldier = TaskSoldier.Result;
+                    newSoldier.InitializeSoldier(chevalier);
                 }
                 else if (testType > 20)
                 {
-                    Task<Soldier> TaskSoldier = MySoldierSQLManager.Get(2);
-                    newSoldier = TaskSoldier.Result;
+                    newSoldier.InitializeSoldier(archer);
                 }
                 else
                 {
-                    Task<Soldier> TaskSoldier = MySoldierSQLManager.Get(3);
-                    newSoldier = TaskSoldier.Result;
+                    newSoldier.InitializeSoldier(cavalier);
                 }
                 GameViewModel.Instance.EnnemyCastle.Army.AllSoldiers.Add(newSoldier);
             }
+        }
+
+        public Army BoostArmy()
+        {
+            foreach (Soldier soldier in this.AllSoldiers)
+            {
+                Soldier newSoldier;
+                if (this.Hero != null && soldier.Name == this.Hero.Type)
+                { 
+                    soldier.AttackValue += 5;
+                } 
+            }
+            return this;
         }
     }
 }

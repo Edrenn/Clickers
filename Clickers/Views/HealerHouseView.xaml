@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:Clickers.Views"
              mc:Ignorable="d" 
              d:DesignHeight="1024" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Styles/BaseDictionary.xaml"/>
+    </UserControl.Resources>
     <Grid Background="BurlyWood">
 
         <Grid.RowDefinitions>
@@ -15,7 +18,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <local:InfoBarUserControl />
+        <local:InfoBarUserControl x:Name="InfoBarUC" />
 
         <TextBlock Text="{Binding Name}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
 

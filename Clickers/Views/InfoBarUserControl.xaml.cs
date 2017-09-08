@@ -19,20 +19,13 @@ namespace Clickers.Views
     /// <summary>
     /// Logique d'interaction pour InfoBarUserControl.xaml
     /// </summary>
-    public partial class InfoBarUserControl
+    public partial class InfoBarUserControl : UserControl
     {
-        private InfoBarViewModel controller;
-        public InfoBarViewModel Controller
-        {
-            get { return controller; }
-            set { controller = value; }
-        }
 
         public InfoBarUserControl()
         {
             InitializeComponent();
-            base.DataContext = GameViewModel.Instance;
-            this.controller = new InfoBarViewModel(this);
+            this.DataContext = GameViewModel.Instance;
         }
 
     }

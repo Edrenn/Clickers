@@ -35,6 +35,7 @@ namespace Clickers.ViewModel
         public SoldiersBuildingsViewModel(SoldiersBuildingsView view)
         {
             this.View = view;
+            this.View.InfoBarUC.Content = InfoBarViewModel._Instance.View;
             
             CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers[0],this.View.soldierView1);
             CaserneCheck(GameViewModel.Instance.MainCastle.SoldiersProducers[1], this.View.soldierView2);

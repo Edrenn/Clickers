@@ -22,6 +22,7 @@ namespace Clickers.ViewModel.Army
         public ArmyViewModel(ArmyView view)
         {
             this.view = view;
+            this.view.InfoBarUC.Content = InfoBarViewModel._Instance.View;
             NewSoldierViewCreation("Chevalier", "../../Assets/Image/chevalier.jpg");
             NewSoldierViewCreation("Archer", "../../Assets/Image/archer.jpg");
             NewSoldierViewCreation("Cavalier", "../../Assets/Image/cavalier.jpg");

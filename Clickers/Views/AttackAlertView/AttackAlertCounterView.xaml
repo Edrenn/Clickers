@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clickers.Views.AttackAlertView"
         mc:Ignorable="d"
-        Title="AttackAlertCounterView" Height="300" Width="300">
+        ShowInTaskbar="False"
+        Loaded="Window_Loaded"
+        Title="ALERTE !" Height="300" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Button x:Name="ClosePopUpButton" Content="x" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Width="30"/>
         <TextBlock x:Name="StaticTB" HorizontalAlignment="Center" Margin="0,0,0,10" Text="Des troupes ennemies arriveront dans :" VerticalAlignment="Bottom"/>
-        <TextBlock x:Name="TimeCounterTB" Text="" Grid.Row="1" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TimeCounterTB" Grid.Row="1" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

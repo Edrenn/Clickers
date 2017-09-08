@@ -13,13 +13,11 @@ namespace Clickers.Models
     public class Castle : BaseEntity
     {
         private int castleId;
-
         public int CastleId
         {
             get { return castleId; }
             set { castleId = value; }
         }
-
 
         private string name;
         public string Name
@@ -46,6 +44,7 @@ namespace Clickers.Models
             set
             {
                 life = value;
+                RaisePropertyChanged("Life");
             }
         }
 
@@ -54,8 +53,7 @@ namespace Clickers.Models
         {
             get { return golds; }
             set { golds = value; }
-        }
-
+        } 
 
         private Army army;
         public Army Army

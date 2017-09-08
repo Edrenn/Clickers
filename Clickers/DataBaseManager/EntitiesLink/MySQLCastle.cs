@@ -16,7 +16,13 @@ namespace Clickers.DataBaseManager.EntitiesLink
             this.DbSetT.Attach(castle);
 
             this.Entry(castle).Reference(c => c.Army).Load();
-            this.Entry(castle.Army).Reference(a => a.Hero).Load();
+            try
+            {
+                this.Entry(castle.Army).Reference(a => a.Hero).Load();
+            }
+            catch (Exception)
+            {
+            }
 
             this.Entry(castle).Collection(c => c.GoldProducers).Load();
 

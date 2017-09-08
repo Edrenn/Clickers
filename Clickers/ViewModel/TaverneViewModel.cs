@@ -48,6 +48,7 @@ namespace Clickers.ViewModel
         {
             Heros = new Dictionary<string, Hero>();
             this.View = new TaverneView();
+            this.View.InfoBarUC.Content = InfoBarViewModel._Instance.View;
 
             foreach (Hero hero in GameViewModel.Instance.MainCastle.Heroes)
             {

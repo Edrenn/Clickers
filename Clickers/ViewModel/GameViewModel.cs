@@ -11,8 +11,10 @@ using System.Windows.Threading;
 using Clickers.DataBaseManager.EntitiesLink;
 using Clickers.DataBaseManager;
 using Clickers.Models;
+using Clickers.Models.Items;
 using Clickers.Models.Buildings;
 using Clickers.Views;
+using Clickers.ViewModel.GoldProducer;
 
 namespace Clickers
 {
@@ -97,6 +99,14 @@ namespace Clickers
             }
         }
 
+        private List<GoldProducerViewModel> allGoldProducerVM;
+        public List<GoldProducerViewModel> AllGoldProducerVM
+        {
+            get { return allGoldProducerVM; }
+            set { allGoldProducerVM = value; }
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
@@ -105,8 +115,16 @@ namespace Clickers
             MySQLCastle MySQLCastle = new MySQLCastle();
             this.MainCastle = MySQLCastle.Get(1).Result;
             MySQLCastle.GetProperties(this.MainCastle);
+            
+            this.AllGoldProducerVM = new List<GoldProducerViewModel>();
+            foreach (RessourceProducer RP in MainCastle.GoldProducers)
+            {
+                GoldProducerViewModel newGPVM = new GoldProducerViewModel(RP);
+                this.AllGoldProducerVM.Add(newGPVM);
+            }
 
-            ennemyCastle = new Castle("Château ennemi");
+            this.EnnemyCastle = MySQLCastle.Get(2).Result;
+            MySQLCastle.GetArmy(this.EnnemyCastle);
             this.goldCounter = this.MainCastle.Golds;
         }
 
@@ -169,8 +187,29 @@ namespace Clickers
             MySQLManager<Castle> newManager = new MySQLManager<Castle>();
             this.mainCastle.Golds = this.GoldCounter;
             await newManager.Update(this.MainCastle);
+            await newManager.Update(this.EnnemyCastle);
 
             MySQLManager<Army> newArmyManager = new MySQLManager<Army>();
+            MainCastle.Army.chevCounter = 0;
+            MainCastle.Army.archCounter = 0;
+            MainCastle.Army.cavCounter = 0;
+            foreach (Soldier soldier in this.MainCastle.Army.AllSoldiers)
+            {
+                switch (soldier.Type)
+                {
+                    case Enums.SoldierType.Chevalier:
+                        MainCastle.Army.chevCounter++;
+                        break;
+                    case Enums.SoldierType.Archer:
+                        MainCastle.Army.archCounter++;
+                        break;
+                    case Enums.SoldierType.Cavalier:
+                        MainCastle.Army.cavCounter++;
+                        break;
+                    default:
+                        break;
+                }
+            }
             if (this.MainCastle.Army.Hero != null)
             {
                await newArmyManager.Database.ExecuteSqlCommandAsync("Update armies set Hero_HeroId = '" + this.MainCastle.Army.Hero.HeroId + "' where ArmyId =" + this.MainCastle.Army.ArmyId);
@@ -182,12 +221,33 @@ namespace Clickers
                 await RPManager.Update(RP);
             }
 
+            MySQLManager<SoldiersProducer> SPManager = new MySQLManager<SoldiersProducer>();
+            foreach (SoldiersProducer sp in this.MainCastle.SoldiersProducers)
+            {
+                await SPManager.Update(sp);
+            }
+
             MySQLManager<Hero> HeroManager = new MySQLManager<Hero>();
             foreach (Hero hero in this.MainCastle.Heroes)
             {
                 this.UpdateHero(hero);
-                //await HeroManager.Update(hero);
             }
+
+            MySQLManager<Weapon> WeaponManager = new MySQLManager<Weapon>();
+            foreach (Weapon weapon in this.MainCastle.WeaponStock)
+            {
+                await WeaponManager.Database.ExecuteSqlCommandAsync("Update weapons set Castle_CastleId = '" + this.MainCastle.CastleId + "' where WeaponId =" + weapon.WeaponId);
+            }
+            foreach (Shield shield in this.MainCastle.ShieldStock)
+            {
+                await WeaponManager.Database.ExecuteSqlCommandAsync("Update shields set Castle_CastleId = '" + this.MainCastle.CastleId + "' where ShieldId =" + shield.ShieldId);
+            }
+            foreach (Potion potion in this.MainCastle.PotionStock)
+            {
+                await WeaponManager.Database.ExecuteSqlCommandAsync("Update potions set Castle_CastleId = '" + this.MainCastle.CastleId + "' where PotionId =" + potion.PotionId);
+            }
+
+
             await newManager.SaveChangesAsync();
         }
 
@@ -195,32 +255,25 @@ namespace Clickers
         {
             MySQLManager<Hero> HeroManager = new MySQLManager<Hero>();
             string table = "Update heroes set ";
-            string setArmor = " Armor = '" + hero.Armor + "' ";
-            string setAttack= " Attack = '" + hero.Attack + "' ";
-            string setLife = " Life = '" + hero.Life + "' ";
-            string setWeapon = "";
+            string heroId = "' where HeroId = " + hero.HeroId;
+
             if (hero.Potion != null)
             {
-                string setPotion = " Potion_PotionId = '" + hero.Potion.PotionId + "' ";
+                string setPotion = table + "Potion_PotionId = '" + hero.Potion.PotionId + heroId;
+                await HeroManager.Database.ExecuteSqlCommandAsync(setPotion);
             }
-            MySQLManager<Clickers.Models.Items.Weapon> WManager = new MySQLManager<Models.Items.Weapon>();
+            
             if (hero.Weapon != null)
             {
-                if (HeroManager.Entry(hero.Weapon).State == System.Data.Entity.EntityState.Detached)
-                {
-                    WManager.DbSetT.Add(hero.Weapon);
-                    await WManager.SaveChangesAsync();
-                }
-                setWeapon = ", Weapon_WeaponId = '" + hero.Weapon.WeaponId + "' ";
+                string setWeapon = table + "Weapon_WeaponId = '" + hero.Weapon.WeaponId + heroId;
+                await HeroManager.Database.ExecuteSqlCommandAsync(setWeapon);
             }
+
             if (hero.Shield != null)
             {
-                string setShield = " Shield_ShieldId = '" + hero.Shield.ShieldId + "' ";
+                string setShield = table + "Shield_ShieldId = '" + hero.Shield.ShieldId + heroId;
+                await HeroManager.Database.ExecuteSqlCommandAsync(setShield);
             }
-            string whereHero = "where HeroId = " + hero.HeroId;
-            string wholeString = table + setArmor + ", " + setLife + setWeapon + whereHero;
-            await HeroManager.Database.ExecuteSqlCommandAsync(wholeString);
-            await WManager.SaveChangesAsync();
         }
     }
 }

@@ -89,7 +89,7 @@ namespace Clickers.ViewModel.SoldierProducer
             if (GameViewModel.Instance.GoldCounter >= (this.Soldier.Price * SoldiersNumber))
             {
                 Soldier newSoldier = new Soldier();
-                newSoldier.InitializeSoldier(this.Soldier);
+                newSoldier.CopySoldier(this.Soldier);
                 for (int i = 0; i < SoldiersNumber; i++)
                 {
                     GameViewModel.Instance.MainCastle.Army.AllSoldiers.Add(newSoldier);

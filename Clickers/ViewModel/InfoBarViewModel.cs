@@ -111,7 +111,7 @@ namespace Clickers.ViewModel
             Token = TokenSource.Token;
             Random randomizer = new Random();
             int timeToCount = randomizer.Next(100, 240);
-            Thread.Sleep(new TimeSpan(0, 0, 10));
+            Thread.Sleep(new TimeSpan(0, 0, timeToCount));
             for (int i = 0; i <= 4; i++)
             {
                 Thread.Sleep(600);
@@ -131,7 +131,7 @@ namespace Clickers.ViewModel
                 }
 
             }
-            for (int i = 10; i >= 0; i--)
+            for (int i = 60; i >= 0; i--)
             {
                 System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
@@ -176,23 +176,25 @@ namespace Clickers.ViewModel
                     }
                     else if (GameViewModel.Instance.MainCastle.Army.Hero != null)
                     {
+                        GameViewModel.Instance.MainCastle.Army.BoostArmy();
                         System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                         {
-                            Battle newBattle = new Battle(GameViewModel.Instance.EnnemyCastle.Army, GameViewModel.Instance.MainCastle.Army.BoostArmy(), GameViewModel.Instance.MainCastle, GameViewModel.Instance.EnnemyCastle, true);
+                            Battle newBattle = new Battle(GameViewModel.Instance.MainCastle, GameViewModel.Instance.EnnemyCastle, true);
                         }));
                     }
                     else if (GameViewModel.Instance.EnnemyCastle.Army.Hero != null)
                     {
+                        GameViewModel.Instance.EnnemyCastle.Army.BoostArmy();
                         System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                         {
-                            Battle newBattle = new Battle(GameViewModel.Instance.EnnemyCastle.Army.BoostArmy(), GameViewModel.Instance.MainCastle.Army, GameViewModel.Instance.MainCastle, GameViewModel.Instance.EnnemyCastle, true);
+                            Battle newBattle = new Battle( GameViewModel.Instance.MainCastle, GameViewModel.Instance.EnnemyCastle, true);
                         }));
                     }
                     else
                     {
                         System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                         {
-                            Battle newBattle = new Battle(GameViewModel.Instance.EnnemyCastle.Army, GameViewModel.Instance.MainCastle.Army, GameViewModel.Instance.MainCastle, GameViewModel.Instance.EnnemyCastle, true);
+                            Battle newBattle = new Battle(GameViewModel.Instance.MainCastle, GameViewModel.Instance.EnnemyCastle, true);
                         }));
                     }
                 }

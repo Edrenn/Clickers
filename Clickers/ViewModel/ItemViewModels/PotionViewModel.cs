@@ -61,7 +61,7 @@ namespace Clickers.ViewModel.ItemViewModels
             if (GameViewModel.Instance.GoldCounter >= potion.Price)
             {
                 GameViewModel.Instance.GoldCounter -= this.potion.Price;
-                GameViewModel.Instance.MainCastle.PotionStock.Add(potion.DuplicatePotion());
+                GameViewModel.Instance.MainCastle.PotionStock.Add(potion);
             }
             else
             {

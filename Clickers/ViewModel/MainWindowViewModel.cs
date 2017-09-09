@@ -2,6 +2,7 @@
 using Clickers.Models;
 using Clickers.Views;
 using Clickers.Views.OptionView;
+using Clickers.ViewModel.GoldProducer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,20 @@ namespace Clickers.ViewModel
             this.view = view;
             EventGenerator();
             Switcher.pageSwitcher = view;
+            MySQLFullDB mySQLfullDB = new MySQLFullDB();
+            if (!mySQLfullDB.Database.Exists())
+            {
+                this.view.loadGameButton.IsEnabled = false;
+                this.view.loadGameButton.Opacity = 0.3;
+            }
+
         }
 
         public void Navigate(UserControl nextPage)
         {
             view.Content = nextPage;
         }
+
         #region PrivateMethods
         private void EventGenerator()
         {
@@ -216,19 +225,93 @@ namespace Clickers.ViewModel
 
         private void LoadGameButton_Click(object sender, RoutedEventArgs e)
         {
-            MainCastleView newPage = new MainCastleView();
-            LoadCastle();
-            Switcher.Switch(newPage);
+            MySQLFullDB mySQLfullDB = new MySQLFullDB();
+            if (!mySQLfullDB.Database.Exists())
+            {
+                this.view.loadGameButton.Opacity = 0.3;
+                this.view.loadGameButton.IsEnabled = false;
+                MessageBox.Show("Il n'y a aucune partie à charger");
+            }
+            else
+            {
+                MainCastleView newPage = new MainCastleView();
+                LoadGame();
+                Switcher.Switch(newPage);
+            }
+
         }
 
-        private async void LoadCastle()
+        /// <summary>
+        /// Loads all the info of the last save
+        /// </summary>
+        private async void LoadGame()
         {
+            //Load the main castle
             DataBaseManager.EntitiesLink.MySQLCastle castleEntitiesManager = new DataBaseManager.EntitiesLink.MySQLCastle();
-            Castle castleToLoad = myCastleManager.Get(1).Result;
-            castleEntitiesManager.GetProperties(castleToLoad);
+             GameViewModel.Instance.MainCastle = myCastleManager.Get(1).Result;
+            castleEntitiesManager.GetProperties(GameViewModel.Instance.MainCastle);
+
+            //Load the ennemy castle
+            GameViewModel.Instance.EnnemyCastle = myCastleManager.Get(2).Result;
+            castleEntitiesManager.GetArmy(GameViewModel.Instance.EnnemyCastle);
+
+            //Load the army
             DataBaseManager.EntitiesLink.MySQLArmy armyEntities = new DataBaseManager.EntitiesLink.MySQLArmy();
-            armyEntities.GetHero(castleToLoad.Army);
-            GameViewModel.Instance.MainCastle = castleToLoad;
+            armyEntities.GetHero(GameViewModel.Instance.MainCastle.Army);
+            GetAllSoldierFromSavedArmy();
+
+            //Load heroes 
+            DataBaseManager.EntitiesLink.MySQLHero heroesEntities = new DataBaseManager.EntitiesLink.MySQLHero();
+            foreach (Hero hero in GameViewModel.Instance.MainCastle.Heroes)
+            {
+                heroesEntities.GetProperties(hero);
+            }
+
+            RestartProducers();
+        }
+
+        private void RestartProducers()
+        {
+            foreach (GoldProducerViewModel GoldProducerVM in GameViewModel.Instance.AllGoldProducerVM)
+            {
+                if (GoldProducerVM.RessourceProducer.IsActive)
+                {
+                    GoldProducerVM.StartProducing();
+                }
+            }
+
+        }
+
+
+        private void GetAllSoldierFromSavedArmy()
+        {
+            MySQLManager<Soldier> SoldierManager = new MySQLManager<Soldier>();
+            Soldier knight = SoldierManager.Get(1).Result;
+            Soldier horseman = SoldierManager.Get(2).Result;
+            Soldier archer  = SoldierManager.Get(3).Result;
+            // Load all Knight
+            for (int i = 0; i < GameViewModel.Instance.MainCastle.Army.chevCounter; i++)
+            {
+                Soldier newSoldier = new Soldier();
+                newSoldier.CopySoldier(knight);
+                GameViewModel.Instance.MainCastle.Army.AllSoldiers.Add(newSoldier);
+            }
+
+            // Load all HorseMan
+            for (int i = 0; i < GameViewModel.Instance.MainCastle.Army.cavCounter; i++)
+            {
+                Soldier newSoldier = new Soldier();
+                newSoldier.CopySoldier(horseman);
+                GameViewModel.Instance.MainCastle.Army.AllSoldiers.Add(newSoldier);
+            }
+
+            // Load all Archer
+            for (int i = 0; i < GameViewModel.Instance.MainCastle.Army.cavCounter; i++)
+            {
+                Soldier newSoldier = new Soldier();
+                newSoldier.CopySoldier(archer);
+                GameViewModel.Instance.MainCastle.Army.AllSoldiers.Add(newSoldier);
+            }
         }
         #endregion
     }

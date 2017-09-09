@@ -59,7 +59,9 @@ namespace Clickers.DataBaseManager
                 DbSetBlacksmith.Add(Blacksmith);
 
                 Army newArmy = new Army();
+                Army newEnnemyArmy = new Army();
                 DbSetArmy.Add(newArmy);
+                DbSetArmy.Add(newEnnemyArmy);
 
                 await this.SaveChangesAsync();
 
@@ -71,6 +73,16 @@ namespace Clickers.DataBaseManager
                 newCastle.Healer = HealerHouse;
                 newCastle.Army = newArmy;
                 DbSetCastle.Add(newCastle);
+
+
+                Castle ennemyCastle = new Castle("Château ennemi");
+                ennemyCastle.Army = newEnnemyArmy;
+                //ennemyCastle.Blacksmith = Blacksmith;
+                //ennemyCastle.GoldProducers = allGoldProducer;
+                //ennemyCastle.SoldiersProducers = allSoldierProducer;
+                //ennemyCastle.Heroes = allHeroes;
+                //ennemyCastle.Healer = HealerHouse;
+                DbSetCastle.Add(ennemyCastle);
                 await this.SaveChangesAsync();
 
             }

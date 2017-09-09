@@ -1,6 +1,7 @@
 ﻿using Clickers.DataBaseManager;
 using Clickers.Models.Base;
 using Clickers.DataBaseManager.EntitiesLink;
+using Clickers.Json;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace Clickers.Models
         }
 
         private List<Soldier> allSoldiers;
+        [NotMapped]
         public List<Soldier> AllSoldiers
         {
             get
@@ -41,6 +43,10 @@ namespace Clickers.Models
             }
         }
 
+        public int chevCounter { get; set; }
+        public int cavCounter { get; set; }
+        public int archCounter { get; set; }
+
         public Army()
         {
             allSoldiers = new List<Soldier>();
@@ -50,15 +56,12 @@ namespace Clickers.Models
         {
             Random random = new Random();
 
-            MySQLManager<Hero> MyHeroSQLManager = new MySQLManager<Hero>();
+            List<Hero> allHeroes = JsonManager.Instance.GetAllHerosFromJSon(AllPath.Instance.JsonFolder + AllPath.Instance.BaseHero);
             MySQLHero heroSQL = new MySQLHero();
 
-            Hero hero1 = MyHeroSQLManager.Get(1).Result;
-            hero1 = heroSQL.GetSkills(hero1);
-            Hero hero2 = MyHeroSQLManager.Get(2).Result;
-            hero2 = heroSQL.GetSkills(hero2);
-            Hero hero3 = MyHeroSQLManager.Get(3).Result;
-            hero3 = heroSQL.GetSkills(hero3);
+            Hero hero1 = allHeroes[0];
+            Hero hero2 = allHeroes[1];
+            Hero hero3 = allHeroes[2];
 
             Hero newHero = new Hero();
             int testTypeHero = random.Next(0, 40);
@@ -106,15 +109,15 @@ namespace Clickers.Models
                 int testType = random.Next(0, 30);
                 if (testType <= 10)
                 {
-                    newSoldier.InitializeSoldier(chevalier);
+                    newSoldier.CopySoldier(chevalier);
                 }
                 else if (testType > 20)
                 {
-                    newSoldier.InitializeSoldier(archer);
+                    newSoldier.CopySoldier(archer);
                 }
                 else
                 {
-                    newSoldier.InitializeSoldier(cavalier);
+                    newSoldier.CopySoldier(cavalier);
                 }
                 GameViewModel.Instance.EnnemyCastle.Army.AllSoldiers.Add(newSoldier);
             }

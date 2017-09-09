@@ -46,6 +46,13 @@ namespace Clickers.Models.Buildings
             }
         }
 
+        private int upgradeTime;
+        public int UpgradeTime
+        {
+            get { return upgradeTime; }
+            set { upgradeTime = value; }
+        }
+
         private int quantityProduct;
         public int QuantityProduct
         {

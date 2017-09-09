@@ -94,8 +94,12 @@ namespace Clickers.Models
             get { return strongAgainst; }
             set { strongAgainst = value; }
         }
-        
-        public void InitializeSoldier(Soldier soldier)
+
+        /// <summary>
+        /// Initializes the current soldier.
+        /// </summary>
+        /// <param name="soldier">The soldier to copy.</param>
+        public void CopySoldier(Soldier soldier)
         {
             this.ImagePath = soldier.ImagePath;
             this.Name = soldier.Name;

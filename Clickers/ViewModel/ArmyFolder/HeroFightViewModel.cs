@@ -428,7 +428,7 @@ namespace Clickers.ViewModel.Army
         private void launchBattle()
         {
             GameViewModel.Instance.EnnemyCastle.Army.GenerateEnnemyArmy();
-            Battle newBattle = new Battle(attackingArmy, defendingArmy, defendingCastle, attackingCastle,this.isEnnemyAttack);
+            Battle newBattle = new Battle(defendingCastle, attackingCastle,this.isEnnemyAttack);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

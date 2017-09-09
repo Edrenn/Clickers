@@ -74,7 +74,7 @@ namespace Clickers.ViewModel.ItemViewModels
             if (GameViewModel.Instance.GoldCounter >= Weapon.Price)
             {
                 GameViewModel.Instance.GoldCounter -= this.Weapon.Price;
-                GameViewModel.Instance.MainCastle.WeaponStock.Add(Weapon.DuplicateWeapon());
+                GameViewModel.Instance.MainCastle.WeaponStock.Add(Weapon);
             }
             else
             {

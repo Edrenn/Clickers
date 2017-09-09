@@ -112,46 +112,58 @@ namespace Clickers.ViewModel.GoldProducer
 
         private void Upgrade()
         {
-            System.Windows.Window toto = new System.Windows.Window();
-            toto = new System.Windows.Window();
-            toto.Width = 250;
-            toto.Height = 250;
-            System.Windows.Controls.TextBlock test = new System.Windows.Controls.TextBlock() { Text = "Amélioration en cours" };
-            test.HorizontalAlignment = HorizontalAlignment.Center;
-            test.VerticalAlignment = VerticalAlignment.Center;
-            toto.Content = test;
-            toto.HorizontalAlignment = HorizontalAlignment.Center;
-            toto.VerticalAlignment = VerticalAlignment.Center;
-            toto.Show();
+            this.TokenSource.Cancel();
+            int timeToWait = this.RessourceProducer.UpgradeTime;
 
-            if (this.UsineTask.IsCompleted == false)
+
+            this.View.NameTB.Margin = new Thickness(0);
+            this.View.NameTB.HorizontalAlignment = HorizontalAlignment.Center;
+            this.View.PriceSP.Visibility = Visibility.Collapsed;
+            this.View.UnLockedProducerGrid.Visibility = Visibility.Collapsed;
+            this.View.LockedProducerGrid.Visibility = Visibility.Visible;
+            this.View.LockImg.Visibility = Visibility.Collapsed;
+            this.View.NameTB.Text = "Amélioration en cours : " + timeToWait.ToString() + " s";
+            
+            Task UpgradeTask = new Task(new Action(() =>
             {
-                while (this.UsineTask.IsCompleted == false)
+                while (timeToWait > 0)
                 {
+                    Thread.Sleep(new TimeSpan(0, 0, 1));
+                    timeToWait--;
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        this.View.NameTB.Text = "Amélioration en cours : " + timeToWait.ToString() + " s";
+                    }));
+
                 }
 
-            }
-            if (toto.ShowActivated)
-            {
-                toto.Close();
-            }
 
-            this.RessourceProducer.Upgrade();
-            System.Windows.MessageBox.Show(this.RessourceProducer.Name + " est passé au niveau " + this.RessourceProducer.Level);
-            TokenSource = new CancellationTokenSource();
-            Token = TokenSource.Token;
-            this.UsineTask = new Task(() =>
-            {
-                GameViewModel.Instance.UsineProduction(RessourceProducer.ProductSpeed, RessourceProducer.QuantityProduct, TokenSource);
+                this.RessourceProducer.Upgrade();
+                System.Windows.MessageBox.Show(this.RessourceProducer.Name + " est passé au niveau " + this.RessourceProducer.Level);
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    this.View.UnLockedProducerGrid.Visibility = Visibility.Visible;
+                    View.LockedProducerGrid.Visibility = Visibility.Collapsed;
 
-            }, Token);
-            this.UsineTask.Start();
+                }));
+                TokenSource = new CancellationTokenSource();
+                Token = TokenSource.Token;
+                this.UsineTask = new Task(() =>
+                {
+                    GameViewModel.Instance.UsineProduction(RessourceProducer.ProductSpeed, RessourceProducer.QuantityProduct, TokenSource);
 
-            if (RessourceProducer.Level == 5)
-            {
-                view.UpgradeButton.Content = "Maxed";
-                view.UpgradeButton.IsEnabled = false;
-            }
+                }, Token);
+                this.UsineTask.Start();
+
+                if (RessourceProducer.Level == 5)
+                {
+                    view.UpgradeButton.Content = "Maxed";
+                    view.UpgradeButton.IsEnabled = false;
+                }
+
+
+            }));
+            UpgradeTask.Start();
         }
 
         private void BuyButton_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -167,17 +179,21 @@ namespace Clickers.ViewModel.GoldProducer
                 RessourceProducer.Price *= 2;
                 this.RessourceProducer.IsActive = true;
                 SetActiveView();
-
-
-                Token = TokenSource.Token;
-                this.UsineTask = new Task(() =>
-                {
-                    GameViewModel.Instance.UsineProduction(RessourceProducer.ProductSpeed, RessourceProducer.QuantityProduct, TokenSource);
-
-                }, Token);
-
-                this.UsineTask.Start();
+                StartProducing();
             }
+        }
+
+        public void StartProducing()
+        {
+            this.TokenSource = new CancellationTokenSource();
+            Token = TokenSource.Token;
+            this.UsineTask = new Task(() =>
+            {
+                GameViewModel.Instance.UsineProduction(RessourceProducer.ProductSpeed, RessourceProducer.QuantityProduct, TokenSource);
+
+            }, Token);
+
+            this.UsineTask.Start();
         }
 
         public void SetActiveView()

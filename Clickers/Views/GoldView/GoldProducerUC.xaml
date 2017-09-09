@@ -21,9 +21,9 @@
                     <Image Source="../../Assets/Image/wallLargeTexture2.jpg" Margin="-1,0,0,0"></Image>
                     <Image Source="../../Assets/Image/wallLargeTexture2.jpg" Margin="-1,0,0,0"></Image>
                 </StackPanel>
-                <TextBlock Text="{Binding Name}" Style="{ StaticResource TitlePolice}" Margin="400,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Foreground="White"/>
-                <Image Source="../../Assets/Image/locked.png"  HorizontalAlignment="Center" Height="130"/>
-                <StackPanel Orientation="Horizontal"  Margin="350,0,0,0" VerticalAlignment="Center" >
+                <TextBlock x:Name="NameTB" Text="{Binding Name}" Style="{ StaticResource TitlePolice}" Margin="400,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Foreground="White"/>
+                <Image x:Name="LockImg" Source="../../Assets/Image/locked.png"  HorizontalAlignment="Center" Height="130"/>
+                <StackPanel x:Name="PriceSP" Orientation="Horizontal"  Margin="350,0,0,0" VerticalAlignment="Center" >
                     <TextBlock Text="Prix : " Style="{ StaticResource TitlePolice}" FontSize="30" Foreground="White"/>
                     <TextBlock Text="{Binding Price}" Style="{ StaticResource TitlePolice}" FontSize="30" Foreground="White"/>
                     <TextBlock Text="Golds" Style="{ StaticResource TitlePolice}" FontSize="30" Foreground="White"/>

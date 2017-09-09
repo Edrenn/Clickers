@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Controls;
 
 using Clickers.DataBaseManager;
 using Clickers.ViewModel.GoldProducer;
@@ -21,9 +22,7 @@ namespace Clickers.ViewModel
         #region Fields
         GoldFieldView view;
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-        #region Properties
-
+        
         #endregion
 
         public GoldFieldViewModel(GoldFieldView view)
@@ -33,23 +32,26 @@ namespace Clickers.ViewModel
             EventGenerator();
             view.DataContext = GameViewModel.Instance;
 
-            foreach (RessourceProducer item in GameViewModel.Instance.MainCastle.GoldProducers)
+            foreach (GoldProducerViewModel GPVM in GameViewModel.Instance.AllGoldProducerVM)
             {
-                GoldProducerViewModel controller = new GoldProducerViewModel(item);
-                if (item.IsVisible)
+                if (GPVM.View.Parent != null)
                 {
-                    if (item.IsActive == true)
+                    ((StackPanel)GPVM.View.Parent).Children.Remove(GPVM.View);
+                }
+                if (GPVM.RessourceProducer.IsVisible)
+                {
+                    if (GPVM.RessourceProducer.IsActive == true)
                     {
-                        controller.SetActiveView();
-                        this.view.AllGoldProducersSP.Children.Add(controller.View);
+                        GPVM.SetActiveView();
+                        this.view.AllGoldProducersSP.Children.Add(GPVM.View);
                     }
                     else
-                        this.view.AllGoldProducersSP.Children.Add(controller.View);
+                        this.view.AllGoldProducersSP.Children.Add(GPVM.View);
                 }
                 else
                 {
-                    controller.View.Visibility = System.Windows.Visibility.Collapsed;
-                    this.view.AllGoldProducersSP.Children.Add(controller.View);
+                    GPVM.View.Visibility = System.Windows.Visibility.Collapsed;
+                    this.view.AllGoldProducersSP.Children.Add(GPVM.View);
                 }
             }
 
@@ -57,9 +59,6 @@ namespace Clickers.ViewModel
 
         public GoldFieldViewModel()
         {
-            this.view = new GoldFieldView();
-            EventGenerator();
-            view.DataContext = GameViewModel.Instance;
         }
 
         private void EventGenerator()

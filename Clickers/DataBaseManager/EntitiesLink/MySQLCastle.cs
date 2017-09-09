@@ -45,9 +45,34 @@ namespace Clickers.DataBaseManager.EntitiesLink
             this.Entry(castle.Blacksmith).Collection(b => b.ShieldList).Load();
             this.Entry(castle.Blacksmith).Collection(b => b.WeaponList).Load();
 
+            try
+            {
+                this.Entry(castle).Collection(c => c.WeaponStock).Load();
+                this.Entry(castle).Collection(c => c.ShieldStock).Load();
+                this.Entry(castle).Collection(c => c.PotionStock).Load();
+            }
+            catch (Exception)
+            {
+                
+            }
+
 
             this.Entry(castle).Reference(c => c.Healer).Load();
             this.Entry(castle.Healer).Collection(b => b.PotionList).Load();
+            return castle;
+        }
+
+        public Castle GetArmy(Castle castle)
+        {
+            this.DbSetT.Attach(castle);
+            this.Entry(castle).Reference(c => c.Army).Load();
+            try
+            {
+                this.Entry(castle.Army).Reference(a => a.Hero).Load();
+            }
+            catch (Exception)
+            {
+            }
             return castle;
         }
     }

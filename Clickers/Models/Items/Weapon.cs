@@ -70,7 +70,7 @@ namespace Clickers.Models.Items
 
         public Weapon DuplicateWeapon()
         {
-            Weapon newWeapon = new Weapon(); 
+            Weapon newWeapon = new Weapon();
             newWeapon.Description = this.Description;
             newWeapon.DamageValue = this.DamageValue;
             newWeapon.ImagePath = this.ImagePath;

@@ -1,4 +1,5 @@
 ﻿using Clickers.DataBaseManager;
+using Clickers.DataBaseManager.EntitiesLink;
 using Clickers.Models;
 using Clickers.Views;
 using Clickers.Views.OptionView;
@@ -103,6 +104,8 @@ namespace Clickers.ViewModel
 
         private void ValidateButton_Click(object sender, RoutedEventArgs e)
         {
+
+            Switcher.Switch(new LoadingPage());
             Button button = (Button)sender;
             StackPanel sp = (StackPanel)button.Parent;
             TextBox tb = (TextBox)sp.Children[1];
@@ -112,18 +115,26 @@ namespace Clickers.ViewModel
             }
             else
             {
-                NormalGameGeneration(tb.Text);
+
                 Window window = (Window)sp.Parent;
                 window.Close();
+                NormalGameGeneration(tb.Text);
             }
         }
 
         private async void NormalGameGeneration(string CastleName)
         {
-            MySQLFullDB mySQLFullDB = new MySQLFullDB();
-            mySQLFullDB.InitLocalMySQL(CastleName);
-            MainCastleView newPage = new MainCastleView();
-            Switcher.Switch(newPage);
+            Task newDBTask = new Task(new Action(() =>
+            {
+                MySQLFullDB mySQLFullDB = new MySQLFullDB();
+                mySQLFullDB.InitLocalMySQL(CastleName);
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    MainCastleView newPage = new MainCastleView();
+                    Switcher.Switch(newPage);
+                }));
+            }));
+            newDBTask.Start();
         }
         #endregion
 
@@ -184,8 +195,9 @@ namespace Clickers.ViewModel
             TextBox CastleNameTbx = (TextBox)sp.Children[1];
             if (!String.IsNullOrEmpty(CastleNameTbx.Text))
             {
-                CustomGameGeneration(CastleNameTbx.Text, listView.SelectedItem.ToString());
                 window.Close();
+                Switcher.Switch(new LoadingPage());
+                CustomGameGeneration(CastleNameTbx.Text, listView.SelectedItem.ToString());
             }
             else
             {
@@ -199,13 +211,33 @@ namespace Clickers.ViewModel
 
         private async void CustomGameGeneration(string CastleName,string customFolder)
         {
-            MySQLFullDB mySQLFullDB = new MySQLFullDB();
-            mySQLFullDB.InitCustomLocalMySQL(customFolder + "//");
-            Castle newCastle = Json.JsonManager.Instance.GetCastleFromJSon(AllPath.Instance.JsonCustomFolder + customFolder + "//" + AllPath.Instance.CustomCastle);
-            newCastle.Name = CastleName;
-            await myCastleManager.Insert(newCastle);
-            MainCastleView newPage = new MainCastleView();
-            Switcher.Switch(newPage);
+            Task newDBTask = new Task(new Action(() =>
+            {
+                //Load CustomCastle
+                MySQLFullDB mySQLFullDB = new MySQLFullDB();
+                mySQLFullDB.InitCustomLocalMySQL(customFolder + "//");
+                Castle castleWithCustomValues = Json.JsonManager.Instance.GetCastleFromJSon(AllPath.Instance.JsonCustomFolder + customFolder + "//" + AllPath.Instance.CustomCastle);
+
+
+                // Update MainCastle
+                MySQLCastle CastleEntities = new MySQLCastle();
+                Castle newCastle = CastleEntities.Get(1).Result;
+                CastleEntities.GetProperties(newCastle);
+                newCastle.Name = CastleName;
+                newCastle.Life = castleWithCustomValues.Life;
+                newCastle.Golds = castleWithCustomValues.Golds;
+                CastleEntities.Update(newCastle);
+
+
+
+
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    MainCastleView newPage = new MainCastleView();
+                    Switcher.Switch(newPage);
+                }));
+            }));
+            newDBTask.Start();
         }
         #endregion
 
@@ -220,7 +252,7 @@ namespace Clickers.ViewModel
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
-            this.view.Close();
+            Application.Current.Shutdown();
         }
 
         private void LoadGameButton_Click(object sender, RoutedEventArgs e)
@@ -234,9 +266,19 @@ namespace Clickers.ViewModel
             }
             else
             {
-                MainCastleView newPage = new MainCastleView();
-                LoadGame();
-                Switcher.Switch(newPage);
+                Switcher.Switch(new LoadingPage());
+
+                Task loadTask = new Task(new Action(() =>
+                {
+                    LoadGame();
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        MainCastleView newPage = new MainCastleView();
+                        Switcher.Switch(newPage);
+                    }));
+                }));
+                loadTask.Start();
+
             }
 
         }

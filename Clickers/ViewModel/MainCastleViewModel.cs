@@ -36,6 +36,14 @@ namespace Clickers.ViewModel
             view.TaverneButton.Click += TaverneButton_Click;
             view.HealerHouseButton.Click += HealerHouse_Click;
             view.SaveButton.Click += SaveButton_Click;
+            view.QuitButton.Click += QuitButton_Click;
+        }
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameViewModel.Instance.Save();
+            Application.Current.Shutdown();
+
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)

@@ -206,6 +206,9 @@
     <Compile Include="Views\ElementViews\PotionView.xaml.cs">
       <DependentUpon>PotionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LoadingPage.xaml.cs">
+      <DependentUpon>LoadingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OptionView\HeroOptionUC.xaml.cs">
       <DependentUpon>HeroOptionUC.xaml</DependentUpon>
     </Compile>
@@ -325,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ElementViews\PotionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoadingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

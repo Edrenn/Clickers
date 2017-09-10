@@ -119,8 +119,11 @@ namespace Clickers
             this.AllGoldProducerVM = new List<GoldProducerViewModel>();
             foreach (RessourceProducer RP in MainCastle.GoldProducers)
             {
-                GoldProducerViewModel newGPVM = new GoldProducerViewModel(RP);
-                this.AllGoldProducerVM.Add(newGPVM);
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    GoldProducerViewModel newGPVM = new GoldProducerViewModel(RP);
+                    this.AllGoldProducerVM.Add(newGPVM);
+                });
             }
 
             this.EnnemyCastle = MySQLCastle.Get(2).Result;

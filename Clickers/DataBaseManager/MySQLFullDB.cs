@@ -77,11 +77,6 @@ namespace Clickers.DataBaseManager
 
                 Castle ennemyCastle = new Castle("Château ennemi");
                 ennemyCastle.Army = newEnnemyArmy;
-                //ennemyCastle.Blacksmith = Blacksmith;
-                //ennemyCastle.GoldProducers = allGoldProducer;
-                //ennemyCastle.SoldiersProducers = allSoldierProducer;
-                //ennemyCastle.Heroes = allHeroes;
-                //ennemyCastle.Healer = HealerHouse;
                 DbSetCastle.Add(ennemyCastle);
                 await this.SaveChangesAsync();
 
@@ -102,23 +97,38 @@ namespace Clickers.DataBaseManager
                 {
                     DbSetSoldiersProducer.Add(item);
                 }
-                List<Hero> allHeros = JsonManager.Instance.GetAllHerosFromJSon(AllPath.Instance.JsonCustomFolder + customFolder + AllPath.Instance.CustomHero);
-                foreach (Hero hero in allHeros)
+                List<Hero> allHeroes = JsonManager.Instance.GetAllHerosFromJSon(AllPath.Instance.JsonCustomFolder + customFolder + AllPath.Instance.CustomHero);
+                foreach (Hero hero in allHeroes)
                 {
                     DbSetHeros.Add(hero);
                 }
-
-                List<Shield> allShield = JsonManager.Instance.GetShieldsFromJSon();
-                foreach (Shield shield in allShield)
-                {
-                    DbSetShield.Add(shield);
-                }
+                
                 HealerHouse HealerHouse = JsonManager.Instance.GetHealerHouseFromJSon();
                 DbSetHealerHouse.Add(HealerHouse);
 
                 Blacksmith Blacksmith = JsonManager.Instance.GetBlacksmithFromJSon();
                 DbSetBlacksmith.Add(Blacksmith);
-                this.SaveChangesAsync();
+
+                Army newArmy = new Army();
+                Army newEnnemyArmy = new Army();
+                DbSetArmy.Add(newArmy);
+                DbSetArmy.Add(newEnnemyArmy);
+
+                await this.SaveChangesAsync();
+
+                Castle newCastle = new Castle();
+                newCastle.Blacksmith = Blacksmith;
+                newCastle.GoldProducers = allGoldProducer;
+                newCastle.SoldiersProducers = allSoldierProducer;
+                newCastle.Heroes = allHeroes;
+                newCastle.Healer = HealerHouse;
+                newCastle.Army = newArmy;
+                DbSetCastle.Add(newCastle);
+
+                Castle ennemyCastle = new Castle("Château ennemi");
+                ennemyCastle.Army = newEnnemyArmy;
+                DbSetCastle.Add(ennemyCastle);
+                await this.SaveChangesAsync();
             }
         }
 

@@ -51,7 +51,7 @@
             </Button.Content>
         </Button>
 
-        <Button x:Name="creditGameButton" Height="90" Grid.Row="4" Style="{StaticResource MenuButton}"  Width="300">
+        <Button x:Name="creditGameButton" Height="90" Grid.Row="4" Style="{StaticResource MenuButton}"  Width="300" Visibility="Collapsed">
             <Button.Content>
                 <Grid>
                     <Image Source="Assets/Image/Bouton.png"/>
@@ -60,7 +60,7 @@
             </Button.Content>
         </Button>
 
-        <Button x:Name="QuitButton" Height="90" Grid.Row="5" Style="{StaticResource MenuButton}"  Width="300">
+        <Button x:Name="QuitButton" Height="90" Grid.Row="4" Style="{StaticResource MenuButton}"  Width="300">
             <Button.Content>
                 <Grid>
                     <Image Source="Assets/Image/Bouton.png"/>

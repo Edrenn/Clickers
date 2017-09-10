@@ -93,6 +93,7 @@ namespace Clickers.ViewModel
                         }
                         else
                         {
+                            GameViewModel.Instance.MainCastle.Army.BoostArmy();
                             Battle newBattle = new Battle(GameViewModel.Instance.EnnemyCastle, GameViewModel.Instance.MainCastle, false);
                         }
                     }
@@ -107,7 +108,7 @@ namespace Clickers.ViewModel
                     System.Windows.MessageBox.Show("Attention votre héros n'a plus de points de vie. Soignez-le ou choisissez en un autre.");
                 }
             }
-            else
+            else if (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count >= 5)
             {
                 InfoBarViewModel._Instance.TokenSource.Cancel();
                 GameViewModel.Instance.EnnemyCastle.Army.GenerateEnnemyArmy();
@@ -126,6 +127,10 @@ namespace Clickers.ViewModel
                 {
                     Battle newBattle = new Battle(GameViewModel.Instance.EnnemyCastle, GameViewModel.Instance.MainCastle, false);
                 }
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Il vous faut au minimum 5 soldats");
             }
         }
 

@@ -133,11 +133,18 @@ namespace Clickers.ViewModel
             }
             for (int i = 60; i >= 0; i--)
             {
-                System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                try
                 {
-                    this.AlertPopUp.TimeCounterTB.Text = i.ToString();
-                }));
-                Thread.Sleep(new TimeSpan(0, 0, 1));
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        this.AlertPopUp.TimeCounterTB.Text = i.ToString();
+                    }));
+                    Thread.Sleep(new TimeSpan(0, 0, 1));
+                }
+                catch (Exception)
+                {
+
+                }
             }
 
             System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>

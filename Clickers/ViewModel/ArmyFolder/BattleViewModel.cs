@@ -158,22 +158,22 @@ namespace Clickers.ViewModel.ArmyFolder
                     }
                 }
 
+                WashingBodies();
                 if (isEnnemyAttack)
                 {
                     view.AllyUnitsloseTB.Text = "Unités alliées détruites : " + DefenseDeaths.Count;
-                    view.AllyUnitsRestTB.Text = "Unités restantes : " + (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count - DefenseDeaths.Count);
+                    view.AllyUnitsRestTB.Text = "Unités alliées restantes : " + (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count);
                     view.EnnemyUnitsloseTB.Text = "Unités ennemies détruites : " + AttackDeaths.Count;
                     view.EnnemyUnitsRestTB.Text = "Unités ennemies restantes : " + (GameViewModel.Instance.EnnemyCastle.Army.AllSoldiers.Count - AttackDeaths.Count);
                 }
                 else
                 {
                     view.AllyUnitsloseTB.Text = "Unités alliées détruites : " + AttackDeaths.Count;
-                    view.AllyUnitsRestTB.Text = "Unités restantes : " + (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count - AttackDeaths.Count);
+                    view.AllyUnitsRestTB.Text = "Unités alliées restantes : " + (GameViewModel.Instance.MainCastle.Army.AllSoldiers.Count);
                     view.EnnemyUnitsloseTB.Text = "Unités ennemies détruites : " + DefenseDeaths.Count;
                     view.EnnemyUnitsRestTB.Text = "Unités ennemies restantes : " + (GameViewModel.Instance.EnnemyCastle.Army.AllSoldiers.Count - DefenseDeaths.Count);
                 }
                 Switcher.Switch(view);
-                WashingBodies();
             }));
         }
 
@@ -183,13 +183,6 @@ namespace Clickers.ViewModel.ArmyFolder
         /// </summary>
         private void WashingBodies()
         {
-            foreach (Soldier soldier in AttackDeaths)
-            {
-                if (AttackSoldiers.Contains(soldier))
-                {
-                    AttackSoldiers.Remove(soldier);
-                }
-            }
             if (this.isEnnemyAttack)
             {
                 foreach (Soldier soldier in this.DefenseDeaths)
@@ -210,10 +203,17 @@ namespace Clickers.ViewModel.ArmyFolder
                     }
                 }
             }
-            
-            if (GameViewModel.Instance.EnnemyCastle.Army.Hero.Life <= 0)
+
+            foreach (Soldier soldier in GameViewModel.Instance.MainCastle.Army.AllSoldiers)
             {
-                GameViewModel.Instance.EnnemyCastle.Army.Hero = null;
+                soldier.AttackValue = 5;
+            }
+            if (GameViewModel.Instance.EnnemyCastle.Army.Hero != null)
+            {
+                if (GameViewModel.Instance.EnnemyCastle.Army.Hero.Life <= 0)
+                {
+                    GameViewModel.Instance.EnnemyCastle.Army.Hero = null;
+                }
             }
         }
 

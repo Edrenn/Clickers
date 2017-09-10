@@ -419,6 +419,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -462,10 +463,14 @@
     <Resource Include="Assets\Image\chevalier.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Image\archer.jpg" />
+    <Resource Include="Assets\Image\archer.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Image\cavalier.jpg" />
+    <Resource Include="Assets\Image\cavalier.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Image\ProvencalLeGaulois.jpg" />

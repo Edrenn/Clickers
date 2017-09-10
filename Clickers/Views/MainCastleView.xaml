@@ -26,7 +26,7 @@
         <Image Source="/Assets/Image/MainCastle2.jpg" Grid.ColumnSpan="3" Margin="-171,-30,-145,-40" Grid.RowSpan="5"/>
         <local:InfoBarUserControl x:Name="InfoBarUC" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0"></local:InfoBarUserControl>
 
-        <Button x:Name="ThiefButton" Style="{StaticResource MenuButton}" Grid.Column="0" Margin="0,9.6,0,25.6" Width="Auto" Grid.Row="1" Visibility="Collapsed">
+        <Button x:Name="ThiefButton" Style="{StaticResource MenuButton}" Grid.Column="0" Margin="0,9.6,0,25.6" Width="Auto" Grid.Row="1" Visibility="Visible">
             <Button.Content>
                 <Grid>
                     <Image Source="/Assets/Image/Bouton.png"/>

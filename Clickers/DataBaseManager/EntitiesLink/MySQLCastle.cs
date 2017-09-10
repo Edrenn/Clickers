@@ -42,6 +42,15 @@ namespace Clickers.DataBaseManager.EntitiesLink
             }
 
             this.Entry(castle).Reference(c => c.Blacksmith).Load();
+            try
+            {
+                this.Entry(castle.Blacksmith).Collection(c => c.WeaponList).Load();
+                this.Entry(castle.Blacksmith).Collection(c => c.ShieldList).Load();
+            }
+            catch (Exception)
+            {
+                
+            }
 
             try
             {

@@ -30,20 +30,27 @@ namespace Clickers.Views
 
         private void BeginLoadingAnimation()
         {
-            Application.Current.Dispatcher.Invoke(new Action(() => { this.LoadingTB.Text = "Chargement"; }));
-            Task loadingScreenAnimation = new Task(new Action(() =>
+            try
             {
                 Application.Current.Dispatcher.Invoke(new Action(() => { this.LoadingTB.Text = "Chargement"; }));
-                Thread.Sleep(600);
-                Application.Current.Dispatcher.Invoke(new Action(() => { this.LoadingTB.Text = "Chargement."; }));
-                Thread.Sleep(600);
-                Application.Current.Dispatcher.Invoke(new Action(() => { this.LoadingTB.Text = "Chargement.."; }));
-                Thread.Sleep(600);
-                Application.Current.Dispatcher.Invoke(new Action(() => { this.LoadingTB.Text = "Chargement..."; }));
-                Thread.Sleep(600);
-                BeginLoadingAnimation();
-            }));
-            loadingScreenAnimation.Start();
+                Task loadingScreenAnimation = new Task(new Action(() =>
+                {
+                    Application.Current.Dispatcher.Invoke(new Action(() => { this.LoadingTB.Text = "Chargement"; }));
+                    Thread.Sleep(600);
+                    Application.Current.Dispatcher.Invoke(new Action(() => { this.LoadingTB.Text = "Chargement."; }));
+                    Thread.Sleep(600);
+                    Application.Current.Dispatcher.Invoke(new Action(() => { this.LoadingTB.Text = "Chargement.."; }));
+                    Thread.Sleep(600);
+                    Application.Current.Dispatcher.Invoke(new Action(() => { this.LoadingTB.Text = "Chargement..."; }));
+                    Thread.Sleep(600);
+                    BeginLoadingAnimation();
+                }));
+                loadingScreenAnimation.Start();
+            }
+            catch (Exception)
+            {
+                
+            }
         }
     }
 }

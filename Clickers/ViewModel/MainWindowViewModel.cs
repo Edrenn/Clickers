@@ -20,12 +20,18 @@ namespace Clickers.ViewModel
         MySQLManager<Castle> myCastleManager = new MySQLManager<Castle>();
         MainWindow view;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
+        /// </summary>
+        /// <param name="view">The view to manage.</param>
         public MainWindowViewModel(MainWindow view)
         {
             this.view = view;
             EventGenerator();
             Switcher.pageSwitcher = view;
+
             MySQLFullDB mySQLfullDB = new MySQLFullDB();
+            // We check if there is a game to load
             if (!mySQLfullDB.Database.Exists())
             {
                 this.view.loadGameButton.IsEnabled = false;
@@ -34,6 +40,10 @@ namespace Clickers.ViewModel
 
         }
 
+        /// <summary>
+        /// Navigates the specified next page.
+        /// </summary>
+        /// <param name="nextPage">Page to Navigate.</param>
         public void Navigate(UserControl nextPage)
         {
             view.Content = nextPage;
@@ -105,7 +115,6 @@ namespace Clickers.ViewModel
         private void ValidateButton_Click(object sender, RoutedEventArgs e)
         {
 
-            Switcher.Switch(new LoadingPage());
             Button button = (Button)sender;
             StackPanel sp = (StackPanel)button.Parent;
             TextBox tb = (TextBox)sp.Children[1];
@@ -115,7 +124,7 @@ namespace Clickers.ViewModel
             }
             else
             {
-
+                Switcher.Switch(new LoadingPage());
                 Window window = (Window)sp.Parent;
                 window.Close();
                 NormalGameGeneration(tb.Text);

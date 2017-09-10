@@ -101,6 +101,7 @@ namespace Clickers.Models
         /// <param name="soldier">The soldier to copy.</param>
         public void CopySoldier(Soldier soldier)
         {
+            this.SoldierId = 3;
             this.ImagePath = soldier.ImagePath;
             this.Name = soldier.Name;
             this.AttackValue = 5;

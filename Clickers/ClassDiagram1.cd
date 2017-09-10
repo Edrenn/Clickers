@@ -1,0 +1,706 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Clickers.App" Collapsed="true">
+    <Position X="36.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="41.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.GameViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAIACAgAAAgIAAAAAhEAAgIRDAkAAQAAAAAAAAgA=</HashCode>
+      <FileName>ViewModel\GameViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.DataBaseManager.AllPath" Collapsed="true">
+    <Position X="34.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgABAAIAAQACAAAAAACAAAAAgCBAAAAgSAAAAAoAAAA=</HashCode>
+      <FileName>DataBaseManager\AllPath.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.DataBaseManager.MySQLFullDB" Collapsed="true">
+    <Position X="45.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQEAACAAAEAoAEACAAAAAQAAAEIAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBaseManager\MySQLFullDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.DataBaseManager.MySQLManager&lt;TEntity&gt;" Collapsed="true">
+    <Position X="6" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAABAAAAAAAAAAAEIAAAAAgAABABAQAA=</HashCode>
+      <FileName>DataBaseManager\MySQLManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.DataBaseManager.EntitiesLink.MySQLArmy" Collapsed="true">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>DataBaseManager\EntitiesLink\MySQLArmy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.DataBaseManager.EntitiesLink.MySQLBlacksmith" Collapsed="true">
+    <Position X="7.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBaseManager\EntitiesLink\MySQLBlacksmith.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.DataBaseManager.EntitiesLink.MySQLCastle" Collapsed="true">
+    <Position X="9.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>DataBaseManager\EntitiesLink\MySQLCastle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.DataBaseManager.EntitiesLink.MySQLHealerHouse" Collapsed="true">
+    <Position X="11.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>DataBaseManager\EntitiesLink\MySQLHealerHouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.DataBaseManager.EntitiesLink.MySQLHero" Collapsed="true">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBaseManager\EntitiesLink\MySQLHero.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.DataBaseManager.EntitiesLink.SoldierProducerMySQLManager" Collapsed="true">
+    <Position X="2.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBaseManager\EntitiesLink\SoldierProducerMySQLManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Images.ButtonProperties" Collapsed="true">
+    <Position X="36.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEQAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Images\ButtonProperties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Json.JsonManager" Collapsed="true">
+    <Position X="34.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAACgQEIQAAARAAAAAAFAAgAAQRBAAAAAAEA=</HashCode>
+      <FileName>Json\JsonManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Army" Collapsed="true">
+    <Position X="19.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAEAAEABAEAAIAAAgCAAAIAAEAIAAIAAAAAA=</HashCode>
+      <FileName>Models\Army.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Battle" Collapsed="true">
+    <Position X="23.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAEEAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Battle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Castle" Collapsed="true">
+    <Position X="26" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQEBDAAAAAAAAIACAACAQQQABEEFAAACAQAAIAEBBSw=</HashCode>
+      <FileName>Models\Castle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.ConnectionString" Collapsed="true">
+    <Position X="38.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAFAAAABUAAAAAAAACAAAgAgAAIAAAgAAAAI=</HashCode>
+      <FileName>Models\ConnectionString.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Enums" Collapsed="true">
+    <Position X="41.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Hero" Collapsed="true">
+    <Position X="28.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EMkAABJKAAECgAABgIAAiIQAiIgFAAiAEQAAABCBAAA=</HashCode>
+      <FileName>Models\Hero.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Clickers.Models.Soldier" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAJCABAAQAAUAAAgAAAAIQAAAAFAAgAAQAAAAAQAAg=</HashCode>
+      <FileName>Models\Soldiers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Base.BaseEntity">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Base\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Clickers.Models.Buildings.Blacksmith" Collapsed="true">
+    <Position X="10.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAICAAAAAAAAEAAAABIAAgAAAAIAA=</HashCode>
+      <FileName>Models\Buildings\Blacksmith.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Buildings.Building" Collapsed="true">
+    <Position X="13.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQAAAAAAkAAAAJQAAAEEAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Buildings\Building.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Buildings.HealerHouse" Collapsed="true">
+    <Position X="12.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAECAAQAAgAEAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Buildings\HealerHouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Buildings.RessourceProducer" Collapsed="true">
+    <Position X="14.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAkCAEAAEABAABAgAAEAgBAAAAAQBAAAAAQAAAA=</HashCode>
+      <FileName>Models\Buildings\RessourceProducer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Buildings.SoldiersProducer" Collapsed="true">
+    <Position X="17" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAGAAAABAAAAAAAAAAAgAAAAABAAAAAQAAAAAA=</HashCode>
+      <FileName>Models\Buildings\SoldiersProducer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Generators.EntityGenerator&lt;T&gt;" Collapsed="true">
+    <Position X="40" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Generators\EntityGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Generators.TypeEnum" Collapsed="true">
+    <Position X="40" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAACABIAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Generators\TypeEnum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Items.Item" Collapsed="true">
+    <Position X="30.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQAgAAAAoAAAAIQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Items\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Items.Potion" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAAQAgAAAAoAAABIQEAAAEAAAAEAAAABAAAAA=</HashCode>
+      <FileName>Models\Items\Potion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Items.Shield" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQAgAAgCoAAAAIQAAAAEAAgQAAAAEAAAAAA=</HashCode>
+      <FileName>Models\Items\Shield.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Items.Weapon" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQAgAABAoEAAQMQAAAAEAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Models\Items\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Reflection.Reflectionner" Collapsed="true">
+    <Position X="38.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAABAAQACAAAAAA=</HashCode>
+      <FileName>Models\Reflection\Reflectionner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Models.Skills.Skill" Collapsed="true">
+    <Position X="21.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAgAAAAIAAAAAQBgQAFAQEAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Skills\Skill.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Clickers.Models.Skills.SkillsEnum" Collapsed="true">
+    <Position X="45.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Skills\SkillsEnum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Properties.Resources" Collapsed="true">
+    <Position X="40" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Properties.Settings" Collapsed="true">
+    <Position X="41.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.Army.ArmyViewModel" Collapsed="true">
+    <Position X="40" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAEAAAAAAgAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ArmyFolder\ArmyViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.Army.HeroFightViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="34.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oAAAAIACICAAAGuAAEAKAABAjYABgAAAQYAQAJgAUAA=</HashCode>
+      <FileName>ViewModel\ArmyFolder\HeroFightViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.ViewModel.Army.SkillViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAABACAAAAAAAAAAAAAAAAgQABAAEAAQAAAAAAEAA=</HashCode>
+      <FileName>ViewModel\ArmyFolder\SkillViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.ViewModel.ArmyFolder.BattleViewModel" Collapsed="true">
+    <Position X="47" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAEICgAAUGIAAAAAAIAYAIChQCDAAAAAQAAAAAAAQA=</HashCode>
+      <FileName>ViewModel\ArmyFolder\BattleViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.AttackAlertViewModel" Collapsed="true">
+    <Position X="43.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\AttackAlertViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.BlackSmithViewModel" Collapsed="true">
+    <Position X="34.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAEBAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\BlackSmithViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.EquipmentListingViewModel" Collapsed="true">
+    <Position X="45.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABEAAAAQAAACAAQAAACEBAAAAAQIABAAAAAA=</HashCode>
+      <FileName>ViewModel\EquipmentListingViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.GoldFieldViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAEAAAAAgAAAAABAAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\GoldProducer\GoldFieldViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.ViewModel.GoldProducersViewModelOld" Collapsed="true">
+    <Position X="38.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAEAEAACAAAAAIAgAAKAWAAghABQAQAAEQAAAAARAAA=</HashCode>
+      <FileName>ViewModel\GoldProducer\GoldProducersViewModelOld.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.HealerHouseViewModel" Collapsed="true">
+    <Position X="47" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAEAgAAAAEAAAAAAAABAAAAAQQgAAAAAAg=</HashCode>
+      <FileName>ViewModel\HealerHouseViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.InfoBarViewModel" Collapsed="true">
+    <Position X="43.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAUFAAAGAAAAAAAAAQEEAAAAgAARAAEAEQAAAAABAIA=</HashCode>
+      <FileName>ViewModel\InfoBarViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.MainCastleViewModel" Collapsed="true">
+    <Position X="40" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCAAAAAAAABAIAAAAAGAACAAAAAAAAAQAQAAAAAACBA=</HashCode>
+      <FileName>ViewModel\MainCastleViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.MainWindowViewModel" Collapsed="true">
+    <Position X="43.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAQAAAEEIABAAAJEEABAAAAIEAAAAAQAQAAgACAU=</HashCode>
+      <FileName>ViewModel\MainWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.OptionViewModel" Collapsed="true">
+    <Position X="33" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BgAAwABAgEAEAAAgAgEIAAAAAAABFAAFAQABCCIAMIA=</HashCode>
+      <FileName>ViewModel\OptionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.SoldiersBuildingsViewModel" Collapsed="true">
+    <Position X="41.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAEEAwgAAAAAAACAAQAAABAAAACQAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\SoldierProducer\SoldiersBuildingsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.Switcher" Collapsed="true">
+    <Position X="47" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Switcher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.TaverneViewModel" Collapsed="true">
+    <Position X="34.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAoAAABDAAAAQQAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\TaverneViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.ToCastleButtonViewModel" Collapsed="true">
+    <Position X="38.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>ViewModel\ToCastleButtonViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.GoldProducer.GoldProducerViewModel" Collapsed="true">
+    <Position X="43.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACEAEgACAAAAAAAAAAAgUAAggAARACCAEQAAgAABAAA=</HashCode>
+      <FileName>ViewModel\GoldProducer\GoldProducerViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.ItemViewModels.PotionViewModel" Collapsed="true">
+    <Position X="36.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgBCAAIAEAAAABAAAAAAAAABAABAAAABQAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ItemViewModels\PotionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.ItemViewModels.ShieldViewModel" Collapsed="true">
+    <Position X="43.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAEEAAABBAAAAAAAABAABAAAAgRAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ItemViewModels\ShieldViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.ItemViewModels.WeaponViewModel" Collapsed="true">
+    <Position X="47" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAEAAAABAAAAAAAAADAABAAgAgRAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ItemViewModels\WeaponViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.popUp.InventorySetViewModel" Collapsed="true">
+    <Position X="47" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAABAAAAAAAAAAAABABAAAQAQAAAAAAA=</HashCode>
+      <FileName>ViewModel\popUp\InventorySetViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.SoldierProducer.HeroViewModel" Collapsed="true">
+    <Position X="40" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEIAAABAAIAAAAAABAABAAAAAQABAAAAAAA=</HashCode>
+      <FileName>ViewModel\SoldierProducer\HeroViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.SoldierProducer.SoldierProducerViewModel" Collapsed="true">
+    <Position X="38.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAABAAAAAABAAAEAQACAAAAAgA=</HashCode>
+      <FileName>ViewModel\SoldierProducer\SoldierProducerViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.ViewModel.SoldierProducer.SoldierViewModel" Collapsed="true">
+    <Position X="45.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAIAAAAAAAAAEAAAAAAgABAAIAAQAAAAAEAAA=</HashCode>
+      <FileName>ViewModel\SoldierProducer\SoldierViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clickers.Views.ArmyView.ArmyView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ArmyView\ArmyView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.ArmyView.UnitView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="41.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ArmyView\UnitView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.AttackAlertView.AttackAlertCounterView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="41.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAQAAAAECIAAAAAgIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\AttackAlertView\AttackAlertCounterView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.BattleReport" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="45.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\BattleReport.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.BlackSmithView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\BlackSmithView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.GoldFieldView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="34.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\GoldView\GoldFieldView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.GoldProducerUserControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="41.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAECIAAAAAgIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\GoldView\GoldProducerUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.HealerHouseView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="45.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\HealerHouseView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.InfoBarUserControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="41.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\InfoBarUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.LoadingPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\LoadingPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.MainCastleView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MainCastleView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.SoldiersBuildingsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="40" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\SoldierView\SoldiersBuildingsView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.ToCastleButtonUserControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ToCastleButtonUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.UserControlBase" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="43.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\UserControlBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.UsernameRegister" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="45.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\UsernameRegister.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.ElementViews.EquipmentListing" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="43.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ElementViews\EquipmentListing.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.ElementViews.EquipmentView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="47" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ElementViews\EquipmentView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.ElementViews.InventoryUC" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ElementViews\InventoryUC.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.ElementViews.PotionView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="34.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ElementViews\PotionView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.GoldView.GoldProducerUC" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="40" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\GoldView\GoldProducerUC.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.HeroFightViews.ActionsBarView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\HeroFightViews\ActionsBarView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.HeroFightViews.HeroDuelFightView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\HeroFightViews\HeroDuelFightView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.HeroFightViews.SkillView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="47" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\HeroFightViews\SkillView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.OptionView.HeroOptionUC" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\OptionView\HeroOptionUC.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.OptionView.OptionUserControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="47" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\OptionView\OptionUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.OptionView.SoldierOptionUC" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="34.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\OptionView\SoldierOptionUC.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.popUp.InventorySetPopUp" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="45.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\popUp\InventorySetPopUp.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.TaverneView.HeroView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Views\SoldierView\HeroView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.TaverneView.TaverneView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TaverneView\TaverneView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.SoldierView.SoldierProducerView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\SoldierView\SoldierProducerView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clickers.Views.SoldierView.SoldierView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="43.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\SoldierView\SoldierView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
